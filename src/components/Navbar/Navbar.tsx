@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Sparkles, Globe, Github, Menu, ChevronDown, Check } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Globe, Github, Menu, ChevronDown, Check } from 'lucide-react';
 import { useLanguage, Language } from '../../locales/translations';
 import { GITHUB_REPO_URL } from '../../data/config';
+import { PillNav, PillNavItem } from './PillNav';
 
 interface NavbarProps {
   onToggleSidebarMobile: () => void;
@@ -11,14 +12,44 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
   const { language, setLanguage, t } = useLanguage();
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLanguageChange = (lang: Language) => {
     setLanguage(lang);
     setLangDropdownOpen(false);
   };
 
+  const navItems: PillNavItem[] = [
+    { label: t.navHome, href: '/' },
+    { label: t.navDocs, href: '/docs' },
+    { label: t.navGuide, href: '/guide' },
+    { label: t.navChangelog, href: '/changelog' },
+    { label: t.navBlog, href: '/blog' }
+  ];
+
+  // Router Link component to integrate React Router SPA navigation into PillNav
+  const RouterLink = ({ href, className, children, onClick, ...rest }: any) => {
+    return (
+      <a
+        href={href}
+        className={className}
+        onClick={(e) => {
+          e.preventDefault();
+          onClick?.(e);
+          if (href && href !== '#') {
+            navigate(href);
+          }
+        }}
+        {...rest}
+      >
+        {children}
+      </a>
+    );
+  };
+
   return (
-    <header className="sticky top-0 z-30 w-full px-4 sm:px-8 py-3.5 flex items-center justify-between backdrop-blur-md bg-[#090909]/80 border-b border-[#1E1E1E]">
+    <header className="sticky top-0 z-30 w-full px-4 sm:px-8 py-2.5 flex items-center justify-between backdrop-blur-md bg-[#090909]/80 border-b border-[#1E1E1E]">
       {/* Mobile Drawer Trigger & Brand */}
       <div className="flex items-center gap-3 lg:hidden">
         <button
@@ -33,81 +64,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
         </span>
       </div>
 
-      {/* Center Floating Pill Navigation - Stitch Style */}
-      <nav aria-label="Navegação principal" className="hidden md:flex items-center mx-auto">
-        <div className="flex items-center gap-1 p-1 bg-[#121212]/90 border border-[#262626] rounded-full shadow-lg backdrop-blur-md">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
-                isActive
-                  ? 'bg-[#1E1E1E] text-white shadow-inner border border-[#333333]'
-                  : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#181818]'
-              }`
-            }
-          >
-            {({ isActive }) => (
-              <>
-                <Sparkles className={`w-3.5 h-3.5 ${isActive ? 'text-[#3B82F6]' : 'text-[#71717A]'}`} />
-                <span>{t.navHome}</span>
-              </>
-            )}
-          </NavLink>
-
-          <NavLink
-            to="/docs"
-            className={({ isActive }) =>
-              `px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
-                isActive
-                  ? 'bg-[#1E1E1E] text-white border border-[#333333]'
-                  : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#181818]'
-              }`
-            }
-          >
-            {t.navDocs}
-          </NavLink>
-
-          <NavLink
-            to="/guide"
-            className={({ isActive }) =>
-              `px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
-                isActive
-                  ? 'bg-[#1E1E1E] text-white border border-[#333333]'
-                  : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#181818]'
-              }`
-            }
-          >
-            {t.navGuide}
-          </NavLink>
-
-          <NavLink
-            to="/changelog"
-            className={({ isActive }) =>
-              `px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
-                isActive
-                  ? 'bg-[#1E1E1E] text-white border border-[#333333]'
-                  : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#181818]'
-              }`
-            }
-          >
-            {t.navChangelog}
-          </NavLink>
-
-          <NavLink
-            to="/blog"
-            className={({ isActive }) =>
-              `px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
-                isActive
-                  ? 'bg-[#1E1E1E] text-white border border-[#333333]'
-                  : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#181818]'
-              }`
-            }
-          >
-            {t.navBlog}
-          </NavLink>
-        </div>
-      </nav>
+      {/* Center React Bits PillNav Component */}
+      <div className="hidden md:flex items-center mx-auto">
+        <PillNav
+          items={navItems}
+          activeHref={location.pathname}
+          linkComponent={RouterLink}
+          theme="dark"
+          layout="joined"
+          surface="glass"
+          itemStyle="pill"
+          hoverEffect="fill"
+          indicator="dot"
+          size="md"
+          highlightColor="#3B82F6"
+          highlightTextColor="#ffffff"
+        />
+      </div>
 
       {/* Right Actions: Language Selector & GitHub Contribute Button */}
       <div className="flex items-center gap-3">
