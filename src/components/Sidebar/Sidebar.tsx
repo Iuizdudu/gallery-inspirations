@@ -10,7 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { CATEGORIES } from '../../data/categories';
-import { REFERENCES } from '../../data/references';
+import { REFERENCES, getReferencesByCategory } from '../../data/references';
 import { CategoryIcon } from '../Icons/CategoryIcon';
 import { useLanguage } from '../../locales/translations';
 
@@ -35,7 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   // Helper to count references per category
   const getCategoryCount = (catId: string) => {
-    return REFERENCES.filter((ref) => ref.categoryId === catId).length;
+    return getReferencesByCategory(catId).length;
   };
 
   const sidebarContent = (

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ArrowUpDown, Sparkles, Filter, ExternalLink } from 'lucide-react';
-import { REFERENCES, Reference } from '../../data/references';
+import { REFERENCES, Reference, getReferencesByCategory } from '../../data/references';
 import { CATEGORIES, getCategoryById } from '../../data/categories';
 import { ReferenceItem } from '../../components/ReferenceList/ReferenceItem';
 import { ContributionBanner } from '../../components/ContributionButton/ContributionBanner';
@@ -20,12 +20,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
 
   // Filter and sort references
   const filteredReferences = useMemo(() => {
-    let result = [...REFERENCES];
-
-    // Filter by Category
-    if (selectedCategory !== 'all') {
-      result = result.filter((ref) => ref.categoryId === selectedCategory);
-    }
+    let result = selectedCategory !== 'all' ? getReferencesByCategory(selectedCategory) : [...REFERENCES];
 
     // Filter by Search Query
     if (searchQuery.trim()) {
@@ -123,7 +118,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
               >
                 <option value="all">{t.allCategories} ({REFERENCES.length})</option>
                 {CATEGORIES.map((cat) => {
-                  const count = REFERENCES.filter((r) => r.categoryId === cat.id).length;
+                  const count = getReferencesByCategory(cat.id).length;
                   return (
                     <option key={cat.id} value={cat.id}>
                       {language === 'pt-BR' ? cat.namePt : cat.nameEn} ({count})
@@ -219,13 +214,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
               {t.exploreCategoriesTitle}
             </h3>
             <p className="text-xs text-[#71717A]">
-              Explore todas as 18 seções catalogadas da biblioteca.
+              Explore todas as categorias catalogadas da biblioteca.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {CATEGORIES.map((category) => {
-              const count = REFERENCES.filter((r) => r.categoryId === category.id).length;
+              const count = getReferencesByCategory(category.id).length;
               const catName = language === 'pt-BR' ? category.namePt : category.nameEn;
               const catDesc = language === 'pt-BR' ? category.descriptionPt : category.descriptionEn;
 
