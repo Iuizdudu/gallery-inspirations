@@ -16,6 +16,7 @@ import {
 import { getReferenceById, getReferencesByCategory } from '../../data/references';
 import { getCategoryById } from '../../data/categories';
 import { useLanguage } from '../../locales/translations';
+import SpecularButton from '../../components/SpecularButton/SpecularButton';
 
 export const ReferenceDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -133,15 +134,31 @@ export const ReferenceDetailsPage: React.FC = () => {
               )}
             </button>
 
-            <a
+            <SpecularButton
+              as="a"
               href={reference.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-lg bg-[#3B82F6] hover:bg-[#2563EB] text-white shadow-sm transition-colors group"
+              size="sm"
+              radius={10}
+              tint="#38BDF8"
+              tintOpacity={0.12}
+              textColor="#ffffff"
+              lineColor="#60A5FA"
+              baseColor="#1E3A8A"
+              intensity={1.2}
+              idleIntensity={0.4}
+              shineSize={14}
+              shineFade={36}
+              thickness={1.4}
+              glow={1}
+              followMouse={true}
+              proximity={260}
+              className="!px-4 !py-2 text-xs font-semibold shadow-lg shadow-blue-500/15 group"
             >
               <span>{t.viewOriginalWebsite}</span>
               <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+            </SpecularButton>
           </div>
         </div>
 

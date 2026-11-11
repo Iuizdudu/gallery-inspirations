@@ -4,6 +4,7 @@ import { ExternalLink, ArrowRight } from 'lucide-react';
 import { Reference } from '../../data/references';
 import { getCategoryById } from '../../data/categories';
 import { useLanguage } from '../../locales/translations';
+import SpecularButton from '../SpecularButton/SpecularButton';
 
 interface ReferenceItemProps {
   reference: Reference;
@@ -92,16 +93,32 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
 
-            <a
+            <SpecularButton
+              as="a"
               href={reference.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[#A1A1AA] hover:text-white py-1.5 px-3 rounded-lg hover:bg-[#1C1C1C] t-button"
+              size="xs"
+              radius={8}
+              tint="#ffffff"
+              tintOpacity={0.05}
+              textColor="#D4D4D8"
+              lineColor="#38BDF8"
+              baseColor="#3F3F46"
+              intensity={1}
+              idleIntensity={0.25}
+              shineSize={14}
+              shineFade={32}
+              thickness={1.1}
+              glow={0.7}
+              followMouse={true}
+              proximity={180}
               title={`${t.visitAction} ${reference.title}`}
+              className="!py-1.5 !px-3 text-xs font-medium hover:text-white"
             >
               <span>{t.visitAction}</span>
               <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+            </SpecularButton>
           </div>
         </div>
       </div>

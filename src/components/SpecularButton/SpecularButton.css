@@ -1,0 +1,99 @@
+.specular-button {
+  --sb-radius: 10px;
+  --sb-tint: #ffffff;
+  --sb-tint-opacity: 0.05;
+  --sb-blur: 8px;
+  --sb-text-color: #f5f5f5;
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--sb-radius);
+  font: inherit;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--sb-text-color);
+  background: #141414;
+  background: color-mix(in srgb, var(--sb-tint) calc(var(--sb-tint-opacity) * 100%), #121214);
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(var(--sb-blur));
+  backdrop-filter: blur(var(--sb-blur));
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.15s ease, border-color 0.15s ease;
+}
+
+button.specular-button,
+a.specular-button {
+  cursor: pointer;
+}
+
+.specular-button:hover {
+  background: color-mix(in srgb, var(--sb-tint) calc((var(--sb-tint-opacity) + 0.08) * 100%), #18181b);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.specular-button:active {
+  transform: scale(0.97);
+}
+
+.specular-button:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.specular-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.specular-button:disabled:active {
+  transform: none;
+}
+
+.specular-button--xs {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+}
+
+.specular-button--sm {
+  padding: 8px 16px;
+  font-size: 0.8125rem;
+}
+
+.specular-button--md {
+  padding: 10px 22px;
+  font-size: 0.875rem;
+}
+
+.specular-button--lg {
+  padding: 14px 28px;
+  font-size: 1rem;
+}
+
+.specular-button__light {
+  position: absolute;
+  inset: -24px;
+  z-index: 1;
+  display: block;
+  width: calc(100% + 48px);
+  height: calc(100% + 48px);
+  pointer-events: none;
+  background: transparent !important;
+}
+
+.specular-button__label {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+}
