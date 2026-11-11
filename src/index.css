@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-main: #090909;
+    --bg-sidebar: #0D0D0D;
+    --bg-surface: #121212;
+    --bg-surface-secondary: #181818;
+    --border-color: #262626;
+    --text-primary: #F5F5F5;
+    --text-secondary: #A1A1AA;
+    --text-muted: #71717A;
+    --accent-blue: #3B82F6;
+  }
+
+  html {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #090909;
+    color: #F5F5F5;
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #090909;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.3);
+    color: #ffffff;
+  }
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
+}
+
+/* Ambient blue glow mesh at top right matching Stitch mockup */
+.stitch-ambient-glow {
+  background: radial-gradient(
+    circle at 85% -10%,
+    rgba(59, 130, 246, 0.16) 0%,
+    rgba(59, 130, 246, 0.05) 40%,
+    transparent 70%
+  );
+}
+
+.subtle-border {
+  border-color: #262626;
+}

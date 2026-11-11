@@ -1,0 +1,6 @@
+{
+  "name": "Inspiration Archive",
+  "description": "Uma biblioteca digital editorial de referências curadas de design e desenvolvimento com navegação rápida e busca inteligente.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

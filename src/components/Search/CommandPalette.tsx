@@ -1,0 +1,241 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Search, X, ArrowRight, ExternalLink, CornerDownLeft, Command } from 'lucide-react';
+import { REFERENCES, Reference } from '../../data/references';
+import { CATEGORIES, getCategoryById } from '../../data/categories';
+import { useLanguage } from '../../locales/translations';
+
+interface CommandPaletteProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
+  const [query, setQuery] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const { language, t } = useLanguage();
+
+  // Focus input on open
+  useEffect(() => {
+    if (isOpen) {
+      setQuery('');
+      setSelectedIndex(0);
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 50);
+    }
+  }, [isOpen]);
+
+  // Filter references based on query
+  const filteredReferences = React.useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      // When query is empty, show featured items
+      return REFERENCES.slice(0, 8);
+    }
+
+    return REFERENCES.filter((ref) => {
+      const cat = getCategoryById(ref.categoryId);
+      const catName = language === 'pt-BR' ? cat?.namePt : cat?.nameEn;
+      const desc = language === 'pt-BR' ? ref.descriptionPt : ref.descriptionEn;
+
+      return (
+        ref.title.toLowerCase().includes(q) ||
+        ref.author.toLowerCase().includes(q) ||
+        desc.toLowerCase().includes(q) ||
+        (catName && catName.toLowerCase().includes(q)) ||
+        ref.tags.some((tag) => tag.toLowerCase().includes(q))
+      );
+    }).slice(0, 15);
+  }, [query, language]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev + 1) % Math.max(1, filteredReferences.length));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev - 1 + filteredReferences.length) % Math.max(1, filteredReferences.length));
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (filteredReferences[selectedIndex]) {
+          const item = filteredReferences[selectedIndex];
+          onClose();
+          navigate(`/reference/${item.id}`);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, filteredReferences, selectedIndex, navigate, onClose]);
+
+  // Scroll selected item into view
+  useEffect(() => {
+    if (resultsRef.current) {
+      const selectedEl = resultsRef.current.children[selectedIndex] as HTMLElement;
+      if (selectedEl) {
+        selectedEl.scrollIntoView({ block: 'nearest' });
+      }
+    }
+  }, [selectedIndex]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="command-palette-title"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/75 backdrop-blur-sm transition-opacity"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-2xl bg-[#121212] border border-[#262626] rounded-xl shadow-2xl overflow-hidden flex flex-col text-[#F5F5F5] animate-in fade-in zoom-in-95 duration-150"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Search Input Bar */}
+        <div className="flex items-center px-4 py-3.5 border-b border-[#262626] gap-3 bg-[#161616]">
+          <Search className="w-5 h-5 text-[#3B82F6] shrink-0" />
+          <input
+            ref={inputRef}
+            id="command-palette-title"
+            type="text"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setSelectedIndex(0);
+            }}
+            placeholder={t.searchModalPlaceholder}
+            className="w-full bg-transparent border-none outline-none text-base text-[#F5F5F5] placeholder-[#71717A]"
+          />
+          {query && (
+            <button
+              onClick={() => {
+                setQuery('');
+                inputRef.current?.focus();
+              }}
+              className="text-[#71717A] hover:text-[#F5F5F5] p-1 rounded transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+          <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-xs text-[#71717A] bg-[#222222] border border-[#2e2e2e] rounded">
+            ESC
+          </span>
+        </div>
+
+        {/* Quick Category Jump Tags when query is empty */}
+        {!query && (
+          <div className="px-4 py-2 border-b border-[#222222] bg-[#121212]/60 flex items-center gap-2 overflow-x-auto text-xs text-[#A1A1AA]">
+            <span className="shrink-0 text-[#71717A] font-medium">{t.searchRecent}:</span>
+            {CATEGORIES.slice(0, 6).map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  onClose();
+                  navigate(`/category/${cat.slug}`);
+                }}
+                className="shrink-0 px-2.5 py-1 rounded-md bg-[#181818] hover:bg-[#262626] hover:text-white transition-colors"
+              >
+                {language === 'pt-BR' ? cat.namePt : cat.nameEn}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Results List */}
+        <div
+          ref={resultsRef}
+          className="max-h-96 overflow-y-auto divide-y divide-[#1e1e1e] p-2"
+        >
+          {filteredReferences.length === 0 ? (
+            <div className="py-12 px-4 text-center text-sm text-[#71717A]">
+              {t.searchModalEmpty}
+            </div>
+          ) : (
+            filteredReferences.map((ref, idx) => {
+              const isSelected = idx === selectedIndex;
+              const cat = getCategoryById(ref.categoryId);
+              const catName = language === 'pt-BR' ? cat?.namePt : cat?.nameEn;
+
+              return (
+                <div
+                  key={ref.id}
+                  onClick={() => {
+                    onClose();
+                    navigate(`/reference/${ref.id}`);
+                  }}
+                  onMouseEnter={() => setSelectedIndex(idx)}
+                  className={`flex items-start justify-between p-3 rounded-lg cursor-pointer transition-colors ${
+                    isSelected
+                      ? 'bg-[#1e1e1e] border-l-2 border-[#3B82F6]'
+                      : 'hover:bg-[#181818]'
+                  }`}
+                >
+                  <div className="flex-1 pr-4">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-medium text-sm text-[#F5F5F5] group-hover:text-white">
+                        {ref.title}
+                      </span>
+                      <span className="text-xs text-[#3B82F6] font-mono">
+                        {catName}
+                      </span>
+                      {ref.year && (
+                        <span className="text-xs text-[#71717A] font-mono">
+                          · {ref.year}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-[#A1A1AA] line-clamp-1">
+                      {language === 'pt-BR' ? ref.descriptionPt : ref.descriptionEn}
+                    </p>
+                    <div className="flex items-center gap-2 mt-1.5 text-[11px] text-[#71717A]">
+                      <span>{ref.author}</span>
+                      <span>·</span>
+                      <span>{ref.tags.slice(0, 3).join(', ')}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0 self-center">
+                    {isSelected && (
+                      <span className="flex items-center gap-1 text-[11px] text-[#A1A1AA] bg-[#262626] px-2 py-0.5 rounded">
+                        <span>Acessar</span>
+                        <CornerDownLeft className="w-3 h-3 text-[#3B82F6]" />
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
+        {/* Footer shortcuts */}
+        <div className="px-4 py-2 bg-[#0E0E0E] border-t border-[#262626] flex items-center justify-between text-xs text-[#71717A]">
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1">
+              <span className="px-1.5 py-0.5 bg-[#1a1a1a] border border-[#2a2a2a] rounded text-[10px]">↑↓</span>
+              {t.searchNavigateHint}
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="px-1.5 py-0.5 bg-[#1a1a1a] border border-[#2a2a2a] rounded text-[10px]">↵</span>
+              {t.searchSelectHint}
+            </span>
+          </div>
+          <span>{t.searchEscHint}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
