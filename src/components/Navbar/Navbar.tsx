@@ -4,6 +4,7 @@ import { Globe, Github, Menu, ChevronDown, Check } from 'lucide-react';
 import { useLanguage, Language } from '../../locales/translations';
 import { GITHUB_REPO_URL } from '../../data/config';
 import { PillNav, PillNavItem } from './PillNav';
+import StarBorder from '../StarBorder/StarBorder';
 
 interface NavbarProps {
   onToggleSidebarMobile: () => void;
@@ -120,17 +121,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
           )}
         </div>
 
-        {/* Contribute Button - Opens official GitHub repository */}
-        <a
+        {/* Contribute Button - Opens official GitHub repository with StarBorder effect */}
+        <StarBorder
+          as="a"
           href={GITHUB_REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
           title="Contribuir no repositório GitHub"
-          className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-white bg-[#141414] hover:bg-[#1C1C1C] hover:border-[#38BDF8]/50 border border-[#262626] rounded-full shadow-sm t-button"
+          color="#38BDF8"
+          trailColor="#60A5FA"
+          duration={3.5}
+          stars={1}
+          trailLength={0.3}
+          thickness={1}
+          radius={999}
+          glow={0.5}
+          hover="lap"
+          sparkle={false}
+          clickPulse={true}
+          theme="dark"
+          backgroundColor="#141416"
+          borderColor="rgba(255, 255, 255, 0.12)"
+          className="!py-1.5 !px-3.5 text-xs font-medium text-white shadow-sm flex items-center gap-2"
         >
-          <Github className="w-4 h-4 text-white" />
-          <span className="hidden sm:inline">{t.navContribute}</span>
-        </a>
+          <Github className="w-4 h-4 text-white shrink-0" />
+          <span className="hidden sm:inline font-medium">{t.navContribute}</span>
+        </StarBorder>
       </div>
     </header>
   );

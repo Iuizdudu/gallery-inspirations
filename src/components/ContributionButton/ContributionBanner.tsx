@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Github, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../locales/translations';
 import { GITHUB_REPO_URL } from '../../data/config';
+import StarBorder from '../StarBorder/StarBorder';
 
 export const ContributionBanner: React.FC = () => {
   const { language, t } = useLanguage();
@@ -49,16 +50,32 @@ export const ContributionBanner: React.FC = () => {
         </div>
       </div>
 
-      <a
+      <StarBorder
+        as="a"
         href={GITHUB_REPO_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium text-white bg-[#181818] hover:bg-[#222222] border border-[#2E2E2E] hover:border-[#38BDF8]/60 shrink-0 t-button group"
+        color="#38BDF8"
+        trailColor="#60A5FA"
+        duration={3.5}
+        direction="clockwise"
+        stars={1}
+        trailLength={0.35}
+        thickness={1.5}
+        radius={999}
+        glow={0.7}
+        hover="lap"
+        sparkle={true}
+        clickPulse={true}
+        theme="dark"
+        backgroundColor="#141416"
+        borderColor="rgba(255, 255, 255, 0.12)"
+        className="w-full sm:w-auto shrink-0 !py-2.5 !px-5 text-xs sm:text-sm font-medium text-white shadow-lg shadow-black/40 group"
       >
-        <Github className="w-4 h-4 text-white" />
-        <span>{t.contributeButton}</span>
-        <ArrowRight className="w-4 h-4 text-[#A1A1AA] group-hover:text-white group-hover:translate-x-1 transition-transform" />
-      </a>
+        <Github className="w-4 h-4 text-white shrink-0" />
+        <span className="font-medium">{t.contributeButton}</span>
+        <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover:text-white group-hover:translate-x-1 transition-transform shrink-0" />
+      </StarBorder>
     </div>
   );
 };

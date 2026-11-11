@@ -1,7 +1,8 @@
 import React from 'react';
-import { GitPullRequest, GitFork, GitCommit, ExternalLink, Terminal, ShieldCheck } from 'lucide-react';
+import { GitPullRequest, GitFork, GitCommit, ExternalLink, Terminal, ShieldCheck, Github } from 'lucide-react';
 import { useLanguage } from '../../locales/translations';
 import { GITHUB_REPO_URL } from '../../data/config';
+import StarBorder from '../../components/StarBorder/StarBorder';
 
 export const GuidePage: React.FC = () => {
   const { t } = useLanguage();
@@ -111,15 +112,31 @@ export const GuidePage: React.FC = () => {
 
       {/* Direct CTA */}
       <section className="pt-4">
-        <a
+        <StarBorder
+          as="a"
           href={GITHUB_REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs font-semibold shadow-lg shadow-[#3B82F6]/20 transition-all"
+          color="#38BDF8"
+          trailColor="#60A5FA"
+          duration={3.5}
+          stars={1}
+          trailLength={0.35}
+          thickness={1.5}
+          radius={12}
+          glow={0.7}
+          hover="lap"
+          sparkle={true}
+          clickPulse={true}
+          theme="dark"
+          backgroundColor="#141416"
+          borderColor="rgba(255, 255, 255, 0.15)"
+          className="inline-flex items-center gap-2 !px-5 !py-3 text-xs font-semibold text-white shadow-xl shadow-black/50"
         >
+          <Github className="w-4 h-4 text-white shrink-0" />
           <span>Abrir Repositório no GitHub</span>
-          <ExternalLink className="w-4 h-4" />
-        </a>
+          <ExternalLink className="w-4 h-4 text-[#94A3B8]" />
+        </StarBorder>
       </section>
     </div>
   );
