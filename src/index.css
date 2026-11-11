@@ -13,6 +13,26 @@
     --text-secondary: #A1A1AA;
     --text-muted: #71717A;
     --accent-blue: #3B82F6;
+
+    /* transitions.dev Motion Tokens */
+    --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-smooth-in: cubic-bezier(0.32, 0, 0.67, 0);
+    --ease-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
+    --ease-bounce-strong: cubic-bezier(0.34, 3.85, 0.64, 1);
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+    --duration-stagger: 40ms;
+    --duration-micro: 80ms;
+    --duration-quick: 150ms;
+    --duration-fast: 250ms;
+    --duration-medium: 350ms;
+    --duration-slow: 400ms;
+    --duration-very-slow: 500ms;
+
+    --distance-micro: 4px;
+    --distance-small: 6px;
+    --distance-base: 8px;
+    --distance-medium: 12px;
   }
 
   html {
@@ -49,6 +69,7 @@
 ::-webkit-scrollbar-thumb {
   background: #262626;
   border-radius: 9999px;
+  transition: background-color var(--duration-quick) var(--ease-smooth-out);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -67,4 +88,114 @@
 
 .subtle-border {
   border-color: #262626;
+}
+
+/* ==========================================================================
+   transitions.dev Core Motion Patterns & Recipes
+   ========================================================================== */
+
+/* Button interactive press & hover */
+.t-button {
+  transition: transform var(--duration-micro) var(--ease-bounce),
+              background-color var(--duration-quick) var(--ease-smooth-out),
+              border-color var(--duration-quick) var(--ease-smooth-out),
+              color var(--duration-quick) var(--ease-smooth-out),
+              box-shadow var(--duration-quick) var(--ease-smooth-out);
+}
+.t-button:active {
+  transform: scale(0.97);
+}
+
+/* Card interactive elevation & highlight */
+.t-card {
+  transition: transform var(--duration-fast) var(--ease-smooth-out),
+              border-color var(--duration-fast) var(--ease-smooth-out),
+              background-color var(--duration-fast) var(--ease-smooth-out),
+              box-shadow var(--duration-fast) var(--ease-smooth-out);
+}
+.t-card:hover {
+  transform: translateY(-2px);
+}
+.t-card:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Pill / Tag bounce */
+.t-pill {
+  transition: transform var(--duration-quick) var(--ease-bounce),
+              background-color var(--duration-quick) var(--ease-smooth-out),
+              border-color var(--duration-quick) var(--ease-smooth-out),
+              color var(--duration-quick) var(--ease-smooth-out);
+}
+.t-pill:hover {
+  transform: translateY(-1px);
+}
+.t-pill:active {
+  transform: scale(0.95);
+}
+
+/* Modal open scaling & fade (transitions.dev modal recipe) */
+.t-modal-enter {
+  animation: t-modal-in var(--duration-fast) var(--ease-smooth-out) forwards;
+}
+
+@keyframes t-modal-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Modal backdrop fade with blur transition */
+.t-modal-backdrop {
+  animation: t-backdrop-in var(--duration-fast) var(--ease-smooth-out) forwards;
+}
+
+@keyframes t-backdrop-in {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Dropdown / popover open (transitions.dev dropdown recipe) */
+.t-dropdown-enter {
+  transform-origin: top right;
+  animation: t-dropdown-in var(--duration-quick) var(--ease-smooth-out) forwards;
+}
+
+@keyframes t-dropdown-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Row item list selection transition */
+.t-row-item {
+  transition: transform var(--duration-fast) var(--ease-smooth-out),
+              background-color var(--duration-quick) var(--ease-smooth-out),
+              border-color var(--duration-quick) var(--ease-smooth-out);
+}
+
+/* Accessibility: prefers-reduced-motion override */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

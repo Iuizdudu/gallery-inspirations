@@ -1,0 +1,137 @@
+/* ==========================================================================
+   Autonomous Hero Heading Animations (No Mouse Required)
+   ========================================================================== */
+
+/* Multi-stop flowing electric gradient across typography */
+.hero-flowing-gradient {
+  background: linear-gradient(
+    115deg,
+    #60A5FA 0%,
+    #38BDF8 20%,
+    #BAE6FD 38%,
+    #FFFFFF 48%,
+    #38BDF8 58%,
+    #818CF8 78%,
+    #60A5FA 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hero-gradient-flow 6.5s ease-in-out infinite alternate;
+}
+
+@keyframes hero-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Sweeping specular shine band over the text */
+.hero-shine-sheen {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-shine-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 75%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  transform: skewX(-24deg);
+  pointer-events: none;
+  animation: hero-shine-loop 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes hero-shine-loop {
+  0%, 20% {
+    left: -120%;
+  }
+  60%, 100% {
+    left: 180%;
+  }
+}
+
+/* Autonomous breathing ambient aura behind the headline */
+.hero-ambient-aura {
+  position: absolute;
+  inset: -15% -10%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(56, 189, 248, 0.32) 0%,
+    rgba(96, 165, 250, 0.18) 35%,
+    rgba(129, 140, 248, 0.08) 60%,
+    transparent 75%
+  );
+  filter: blur(54px);
+  pointer-events: none;
+  z-index: 0;
+  animation: hero-aura-pulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes hero-aura-pulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 0.65;
+    transform: scale(0.98);
+  }
+}
+
+/* Entrance blur-reveal on initial load */
+.hero-entrance-reveal {
+  animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-flowing-gradient {
+    animation: none;
+    background-position: 50% 50%;
+  }
+  .hero-shine-sheen::after {
+    display: none;
+  }
+  .hero-ambient-aura {
+    animation: none;
+    opacity: 0.6;
+  }
+  .hero-entrance-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

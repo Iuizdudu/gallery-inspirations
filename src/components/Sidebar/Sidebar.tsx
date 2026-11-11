@@ -40,32 +40,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const sidebarContent = (
     <div className="flex flex-col h-full bg-[#0D0D0D] border-r border-[#1E1E1E] text-[#F5F5F5] select-none">
-      {/* Brand Header */}
+      {/* Brand Header - Exactly aligned with Navbar h-16 */}
       <div className="h-16 px-4 flex items-center justify-between border-b border-[#1E1E1E] shrink-0">
         <NavLink
           to="/"
           onClick={onCloseMobile}
-          className="flex items-center gap-2.5 group overflow-hidden"
+          className="flex items-center group overflow-hidden w-full"
+          title="Gallery Inspirations"
         >
-          {/* Custom 4-point star diamond brand mark matching Stitch */}
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#3B82F6] to-[#60A5FA] p-0.5 flex items-center justify-center shadow-lg shadow-[#3B82F6]/20 shrink-0">
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-5 h-5 text-white"
-            >
-              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
-            </svg>
-          </div>
-
-          {!isCollapsed && (
-            <div className="flex flex-col truncate">
-              <span className="font-semibold text-sm tracking-tight text-[#F5F5F5] leading-tight">
-                Inspiration
-              </span>
-              <span className="font-medium text-xs text-[#A1A1AA] tracking-tight">
-                Archive
-              </span>
+          {isCollapsed ? (
+            <div className="mx-auto w-10 h-10 rounded-xl bg-[#141414] hover:bg-[#1A1A1A] border border-[#262626] flex items-center justify-center overflow-hidden shrink-0 p-1.5 shadow-md transition-colors">
+              <img
+                src="/assets/aistudio/logo_icon.png"
+                alt="Gallery Inspirations"
+                className="w-full h-full object-contain brightness-0 invert opacity-95 group-hover:opacity-100 transition-opacity"
+              />
+            </div>
+          ) : (
+            <div className="flex items-center w-full">
+              <img
+                src="/assets/aistudio/logo_trimmed.png"
+                alt="Gallery Inspirations"
+                className="h-9 sm:h-10 max-h-10 w-auto max-w-[195px] object-contain brightness-0 invert opacity-95 group-hover:opacity-100 transition-all duration-150 drop-shadow-[0_2px_12px_rgba(255,255,255,0.18)]"
+              />
             </div>
           )}
         </NavLink>

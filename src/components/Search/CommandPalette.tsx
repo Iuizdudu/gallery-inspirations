@@ -97,16 +97,16 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       role="dialog"
       aria-modal="true"
       aria-labelledby="command-palette-title"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/75 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-12 sm:pt-20 px-4 sm:px-6 bg-black/80 backdrop-blur-md t-modal-backdrop"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl bg-[#121212] border border-[#262626] rounded-xl shadow-2xl overflow-hidden flex flex-col text-[#F5F5F5] animate-in fade-in zoom-in-95 duration-150"
+        className="w-full max-w-4xl bg-[#121212] border border-[#262626] rounded-2xl shadow-2xl overflow-hidden flex flex-col text-[#F5F5F5] t-modal-enter"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 border-b border-[#262626] gap-3 bg-[#161616]">
-          <Search className="w-5 h-5 text-[#3B82F6] shrink-0" />
+        <div className="flex items-center px-5 sm:px-6 py-4 border-b border-[#262626] gap-3.5 bg-[#161616]">
+          <Search className="w-5 h-5 text-[#38BDF8] shrink-0" />
           <input
             ref={inputRef}
             id="command-palette-title"
@@ -117,7 +117,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
               setSelectedIndex(0);
             }}
             placeholder={t.searchModalPlaceholder}
-            className="w-full bg-transparent border-none outline-none text-base text-[#F5F5F5] placeholder-[#71717A]"
+            className="w-full bg-transparent border-none outline-none text-base sm:text-lg text-[#F5F5F5] placeholder-[#71717A]"
           />
           {query && (
             <button
@@ -125,28 +125,28 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                 setQuery('');
                 inputRef.current?.focus();
               }}
-              className="text-[#71717A] hover:text-[#F5F5F5] p-1 rounded transition-colors"
+              className="text-[#71717A] hover:text-[#F5F5F5] p-1.5 rounded-md hover:bg-[#222222] t-button"
             >
               <X className="w-4 h-4" />
             </button>
           )}
-          <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-xs text-[#71717A] bg-[#222222] border border-[#2e2e2e] rounded">
+          <span className="hidden sm:inline-flex items-center px-2 py-0.5 text-xs text-[#94A3B8] bg-[#222222] border border-[#2e2e2e] rounded font-mono">
             ESC
           </span>
         </div>
 
         {/* Quick Category Jump Tags when query is empty */}
         {!query && (
-          <div className="px-4 py-2 border-b border-[#222222] bg-[#121212]/60 flex items-center gap-2 overflow-x-auto text-xs text-[#A1A1AA]">
+          <div className="px-5 py-2.5 border-b border-[#222222] bg-[#121212]/80 flex items-center gap-2 overflow-x-auto text-xs text-[#A1A1AA] scrollbar-none">
             <span className="shrink-0 text-[#71717A] font-medium">{t.searchRecent}:</span>
-            {CATEGORIES.slice(0, 6).map((cat) => (
+            {CATEGORIES.slice(0, 10).map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => {
                   onClose();
                   navigate(`/category/${cat.slug}`);
                 }}
-                className="shrink-0 px-2.5 py-1 rounded-md bg-[#181818] hover:bg-[#262626] hover:text-white transition-colors"
+                className="shrink-0 px-3 py-1 rounded-full bg-[#181818] border border-[#262626] hover:border-[#38BDF8]/40 hover:bg-[#222222] hover:text-white text-xs t-pill"
               >
                 {language === 'pt-BR' ? cat.namePt : cat.nameEn}
               </button>
@@ -157,10 +157,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
         {/* Results List */}
         <div
           ref={resultsRef}
-          className="max-h-96 overflow-y-auto divide-y divide-[#1e1e1e] p-2"
+          className="max-h-[500px] overflow-y-auto divide-y divide-[#1e1e1e] p-2.5 sm:p-3"
         >
           {filteredReferences.length === 0 ? (
-            <div className="py-12 px-4 text-center text-sm text-[#71717A]">
+            <div className="py-14 px-4 text-center text-sm text-[#71717A]">
               {t.searchModalEmpty}
             </div>
           ) : (
@@ -177,10 +177,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                     navigate(`/reference/${ref.id}`);
                   }}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`flex items-start justify-between p-3 rounded-lg cursor-pointer transition-colors ${
+                  className={`flex items-start justify-between p-3 rounded-lg cursor-pointer t-row-item ${
                     isSelected
-                      ? 'bg-[#1e1e1e] border-l-2 border-[#3B82F6]'
-                      : 'hover:bg-[#181818]'
+                      ? 'bg-[#1e1e1e] border-l-2 border-[#38BDF8] translate-x-1'
+                      : 'hover:bg-[#181818] hover:translate-x-0.5'
                   }`}
                 >
                   <div className="flex-1 pr-4">
@@ -188,7 +188,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                       <span className="font-medium text-sm text-[#F5F5F5] group-hover:text-white">
                         {ref.title}
                       </span>
-                      <span className="text-xs text-[#3B82F6] font-mono">
+                      <span className="text-xs text-[#38BDF8] font-mono">
                         {catName}
                       </span>
                       {ref.year && (
@@ -203,7 +203,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                     <div className="flex items-center gap-2 mt-1.5 text-[11px] text-[#71717A]">
                       <span>{ref.author}</span>
                       <span>·</span>
-                      <span>{ref.tags.slice(0, 3).join(', ')}</span>
+                      <span>{ref.tags.slice(0, 5).join(', ')}</span>
                     </div>
                   </div>
 

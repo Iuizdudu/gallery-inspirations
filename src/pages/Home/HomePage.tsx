@@ -6,6 +6,7 @@ import { CATEGORIES, getCategoryById } from '../../data/categories';
 import { ReferenceItem } from '../../components/ReferenceList/ReferenceItem';
 import { ContributionBanner } from '../../components/ContributionButton/ContributionBanner';
 import { CategoryIcon } from '../../components/Icons/CategoryIcon';
+import { ParticleText } from '../../components/ParticleText/ParticleText';
 import { useLanguage } from '../../locales/translations';
 
 interface HomePageProps {
@@ -56,42 +57,76 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
       <div className="absolute top-0 right-0 w-[55vw] h-[450px] stitch-ambient-glow pointer-events-none -z-10" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-12 space-y-10">
-        {/* Header Hero Section */}
-        <section className="space-y-4 pt-2">
-          {/* Top Identifier Badge */}
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#141414] border border-[#262626] text-xs font-medium text-[#A1A1AA]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
-            <span className="tracking-wider uppercase text-[11px] font-semibold text-[#F5F5F5]">
+        {/* Header Hero Section - Centered design matching reference */}
+        <section className="flex flex-col items-center text-center space-y-3.5 pt-2 sm:pt-6 w-full">
+          {/* Top Floating Glass Pill Badge with 4-Point Star */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121620]/90 border border-[#252E42] text-xs font-medium text-[#E4E4E7] shadow-lg shadow-black/40 backdrop-blur-md transition-all hover:border-[#38BDF8]/50">
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-4 h-4 text-white shrink-0 drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+            >
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+            </svg>
+            <span className="tracking-tight text-xs sm:text-[13px] text-[#F4F4F5]">
               {t.badge}
             </span>
           </div>
 
-          {/* Monumental Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F5F5F5] leading-[1.1] max-w-3xl">
-            {t.heroTitlePrefix}{' '}
-            <span className="text-[#3B82F6] block sm:inline">
-              {t.heroTitleHighlight}
+          {/* Monumental Centered Headline with React Bits ParticleText */}
+          <div className="w-full max-w-4xl flex flex-col items-center">
+            <span className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white block select-none">
+              {t.heroTitlePrefix}
             </span>
-          </h1>
+            <div className="w-full h-[65px] sm:h-[88px] md:h-[105px] relative flex items-center justify-center my-0 sm:my-0.5">
+              <ParticleText
+                text="Gallery Inspirations"
+                particleSize={2.2}
+                density={3.2}
+                color="#F8FAFC"
+                highlightColor="#38BDF8"
+                highlightMode="gradient"
+                shape="circle"
+                intro="gather"
+                scatter={120}
+                gatherDuration={1400}
+                stagger={300}
+                clickBurst={true}
+                burstStrength={1.2}
+                pointerRepel={45}
+                repelRadius={120}
+                idleDrift={0.8}
+                trigger="mount"
+                fontSize="clamp(2.5rem, 7.5vw, 5.2rem)"
+                fontWeight={900}
+                fontFamily="'Geist', sans-serif"
+                glow={true}
+                className="w-full h-full"
+              />
+            </div>
+          </div>
 
-          {/* Description */}
-          <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed max-w-2xl pt-1">
+          {/* Centered Curated Description */}
+          <p className="text-sm sm:text-base text-[#9CA3AF] leading-relaxed max-w-3xl mx-auto pt-0.5">
             {t.heroDescription}
           </p>
 
-          {/* Central Search Input with Ctrl+K shortcut */}
-          <div className="pt-4 max-w-2xl">
+          {/* Full-width Premium Frosted White Glass Search Capsule with Ctrl+K shortcut */}
+          <div className="pt-3 w-full">
             <div
               onClick={onOpenSearch}
-              className="w-full flex items-center justify-between px-4 py-3.5 rounded-xl bg-[#121212] hover:bg-[#161616] border border-[#262626] hover:border-[#3B82F6]/60 cursor-pointer transition-all shadow-sm group"
+              className="relative w-full flex items-center justify-between px-6 sm:px-7 py-4 sm:py-4.5 rounded-full cursor-pointer t-card group overflow-hidden bg-gradient-to-b from-white/[0.12] via-white/[0.08] to-white/[0.05] hover:from-white/[0.18] hover:via-white/[0.12] hover:to-white/[0.08] border border-white/25 hover:border-white/45 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.4),inset_0_1px_1px_0_rgba(255,255,255,0.4),0_0_24px_0_rgba(255,255,255,0.06)] hover:shadow-[0_12px_40px_0_rgba(0,0,0,0.5),inset_0_1px_2px_0_rgba(255,255,255,0.6),0_0_32px_0_rgba(255,255,255,0.12)]"
             >
-              <div className="flex items-center gap-3 truncate">
-                <Search className="w-4 h-4 text-[#71717A] group-hover:text-[#3B82F6] transition-colors shrink-0" />
-                <span className="text-xs sm:text-sm text-[#71717A] truncate">
+              {/* Top Glass Specular Reflection Highlight Line */}
+              <div className="absolute inset-x-8 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none" />
+
+              <div className="flex items-center gap-3.5 sm:gap-4 truncate">
+                <Search className="w-5 h-5 text-white/80 group-hover:text-white transition-colors shrink-0 drop-shadow-[0_0_8px_rgba(255,255,255,0.35)]" />
+                <span className="text-sm sm:text-[15px] font-normal text-white/85 group-hover:text-white transition-colors truncate tracking-wide">
                   {t.searchPlaceholderMain}
                 </span>
               </div>
-              <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-xs text-[#A1A1AA] bg-[#1E1E1E] border border-[#2E2E2E] rounded font-mono">
+              <kbd className="inline-flex items-center px-3 py-1 text-xs text-white bg-white/10 group-hover:bg-white/20 border border-white/25 group-hover:border-white/40 rounded-full font-mono shrink-0 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)] t-pill">
                 Ctrl K
               </kbd>
             </div>

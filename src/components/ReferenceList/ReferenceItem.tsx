@@ -20,7 +20,7 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
   const formattedIndex = String(index + 1).padStart(2, '0') + '.';
 
   return (
-    <article className="py-5 sm:py-6 border-b border-[#1E1E1E] transition-colors group">
+    <article className="py-5 sm:py-6 border-b border-[#1E1E1E] t-row-item hover:bg-[#121212]/50 px-3 sm:px-4 rounded-xl group">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         {/* Left Side: Number, Title, Description, Author & Category */}
         <div className="flex items-start gap-4 sm:gap-6 flex-1 min-w-0">
@@ -34,10 +34,10 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
             <div className="flex items-center gap-2 flex-wrap">
               <Link
                 to={`/reference/${reference.id}`}
-                className="text-base sm:text-lg font-semibold text-[#3B82F6] hover:text-[#60A5FA] transition-colors inline-flex items-center gap-1.5"
+                className="text-base sm:text-lg font-semibold text-[#38BDF8] hover:text-[#93C5FD] transition-colors inline-flex items-center gap-1.5 group/link"
               >
                 <span>{reference.title}</span>
-                <ExternalLink className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <ExternalLink className="w-3.5 h-3.5 opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
               </Link>
             </div>
 
@@ -53,7 +53,7 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
               {category && (
                 <Link
                   to={`/category/${category.slug}`}
-                  className="hover:text-[#3B82F6] transition-colors"
+                  className="hover:text-[#38BDF8] transition-colors"
                 >
                   {categoryName}
                 </Link>
@@ -75,7 +75,7 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
             {reference.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 text-[11px] rounded-md bg-[#161616] border border-[#262626] text-[#A1A1AA]"
+                className="px-2.5 py-1 text-[11px] rounded-md bg-[#161616] border border-[#262626] text-[#A1A1AA] hover:border-[#38BDF8]/40 hover:text-white t-pill cursor-default"
               >
                 {tag}
               </span>
@@ -83,10 +83,10 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
           </div>
 
           {/* Action Links */}
-          <div className="flex items-center gap-3 text-xs font-medium">
+          <div className="flex items-center gap-2 text-xs font-medium">
             <Link
               to={`/reference/${reference.id}`}
-              className="inline-flex items-center gap-1 text-[#3B82F6] hover:text-[#60A5FA] transition-colors py-1"
+              className="inline-flex items-center gap-1 text-[#38BDF8] hover:text-[#93C5FD] py-1.5 px-3 rounded-lg hover:bg-[#102035] t-button"
             >
               <span>{t.detailsAction}</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -96,7 +96,7 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
               href={reference.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[#A1A1AA] hover:text-white transition-colors py-1"
+              className="inline-flex items-center gap-1 text-[#A1A1AA] hover:text-white py-1.5 px-3 rounded-lg hover:bg-[#1C1C1C] t-button"
               title={`${t.visitAction} ${reference.title}`}
             >
               <span>{t.visitAction}</span>

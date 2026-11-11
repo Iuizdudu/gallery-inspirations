@@ -4,12 +4,12 @@ export type Language = 'pt-BR' | 'en';
 
 export const TRANSLATIONS = {
   'pt-BR': {
-    appName: 'Inspiration Archive',
-    badge: 'ARQUIVO DE INSPIRAÇÕES',
+    appName: 'Gallery Inspirations',
+    badge: 'A melhor coleção de inspiração em design & dev',
     heroTitlePrefix: 'Design & Development',
-    heroTitleHighlight: 'Inspiration Archive',
+    heroTitleHighlight: 'Gallery Inspirations',
     heroDescription:
-      'Uma biblioteca cuidadosamente organizada de referências de design e desenvolvimento. Explore ideias, descubra padrões e encontre inspiração para seus próximos projetos.',
+      'Uma coleção curada dos melhores recursos para designers e desenvolvedores explorarem inspiração, de landing pages modernas a componentes de UI e muito mais.',
     
     // Navbar
     navHome: 'Início',
@@ -29,7 +29,7 @@ export const TRANSLATIONS = {
     expandSidebar: 'Expandir Sidebar',
     
     // Search
-    searchPlaceholderMain: 'Buscar por categoria, descrição ou autor...',
+    searchPlaceholderMain: 'Buscar por inspiração...',
     searchCommandShortcut: 'Ctrl K',
     searchModalTitle: 'Buscar no Arquivo',
     searchModalPlaceholder: 'Digite o nome, tag, autor ou tecnologia...',
@@ -91,12 +91,12 @@ export const TRANSLATIONS = {
     footerCuratedBy: 'Curadoria independente e aberta à comunidade.',
   },
   'en': {
-    appName: 'Inspiration Archive',
-    badge: 'INSPIRATION ARCHIVE',
+    appName: 'Gallery Inspirations',
+    badge: 'The ultimate collection of design & dev inspiration',
     heroTitlePrefix: 'Design & Development',
-    heroTitleHighlight: 'Inspiration Archive',
+    heroTitleHighlight: 'Gallery Inspirations',
     heroDescription:
-      'A carefully organized library of design and development references. Explore ideas, discover patterns, and find inspiration for your next creations.',
+      'A curated collection of the best resources for designers and developers to explore inspiration, from modern landing pages to UI components and more.',
     
     // Navbar
     navHome: 'Home',
@@ -116,7 +116,7 @@ export const TRANSLATIONS = {
     expandSidebar: 'Expand Sidebar',
     
     // Search
-    searchPlaceholderMain: 'Search by category, description, or author...',
+    searchPlaceholderMain: 'Search for inspiration...',
     searchCommandShortcut: 'Ctrl K',
     searchModalTitle: 'Search the Archive',
     searchModalPlaceholder: 'Type a title, tag, author, or tech stack...',

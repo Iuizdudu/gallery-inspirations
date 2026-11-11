@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full px-4 sm:px-8 py-2.5 flex items-center justify-between backdrop-blur-md bg-[#090909]/80 border-b border-[#1E1E1E]">
+    <header className="sticky top-0 z-30 w-full h-16 px-4 sm:px-8 flex items-center justify-between backdrop-blur-md bg-[#090909]/80 border-b border-[#1E1E1E]">
       {/* Mobile Drawer Trigger & Brand */}
       <div className="flex items-center gap-3 lg:hidden">
         <button
@@ -59,9 +59,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
         >
           <Menu className="w-5 h-5" />
         </button>
-        <span className="font-semibold text-sm text-[#F5F5F5] tracking-tight">
-          Inspiration Archive
-        </span>
+        <img
+          src="/assets/aistudio/logo_trimmed.png"
+          alt="Gallery Inspirations"
+          className="h-8 sm:h-9 w-auto max-w-[170px] object-contain brightness-0 invert opacity-95"
+        />
       </div>
 
       {/* Center React Bits PillNav Component */}
@@ -88,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
         <div className="relative">
           <button
             onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#A1A1AA] hover:text-[#F5F5F5] bg-[#121212] hover:bg-[#181818] border border-[#262626] rounded-full transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#A1A1AA] hover:text-[#F5F5F5] bg-[#121212] hover:bg-[#181818] border border-[#262626] rounded-full t-button"
           >
             <Globe className="w-3.5 h-3.5 text-[#71717A]" />
             <span>{language === 'pt-BR' ? 'PT-BR' : 'EN'}</span>
@@ -97,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
 
           {langDropdownOpen && (
             <div
-              className="absolute right-0 mt-2 w-32 bg-[#121212] border border-[#262626] rounded-xl shadow-xl py-1 z-50 animate-in fade-in zoom-in-95"
+              className="absolute right-0 mt-2 w-32 bg-[#121212] border border-[#262626] rounded-xl shadow-xl py-1 z-50 t-dropdown-enter"
               onMouseLeave={() => setLangDropdownOpen(false)}
             >
               <button
@@ -124,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
           target="_blank"
           rel="noopener noreferrer"
           title="Contribuir no repositório GitHub"
-          className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-white bg-[#141414] hover:bg-[#1C1C1C] hover:border-[#3B82F6]/50 border border-[#262626] rounded-full transition-all duration-150 shadow-sm"
+          className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-white bg-[#141414] hover:bg-[#1C1C1C] hover:border-[#38BDF8]/50 border border-[#262626] rounded-full shadow-sm t-button"
         >
           <Github className="w-4 h-4 text-white" />
           <span className="hidden sm:inline">{t.navContribute}</span>
