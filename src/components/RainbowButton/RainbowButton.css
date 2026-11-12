@@ -1,0 +1,92 @@
+/* Magic UI Rainbow Button - Exact Match to Reference */
+.rainbow-star-btn {
+  --color-1: hsl(0, 100%, 63%);
+  --color-2: hsl(42, 100%, 55%);
+  --color-3: hsl(100, 100%, 58%);
+  --color-4: hsl(190, 100%, 55%);
+  --color-5: hsl(225, 100%, 65%);
+  --color-6: hsl(275, 100%, 65%);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+  isolation: isolate;
+
+  /* Sleek dark charcoal body with subtle top border and bright bottom rainbow */
+  border: 1px solid transparent;
+  border-bottom: 1.5px solid transparent;
+  background:
+    linear-gradient(#121316, #121316) padding-box,
+    linear-gradient(to bottom, #2d2e33 0%, #1f2024 45%, rgba(18, 19, 22, 0) 75%) border-box,
+    linear-gradient(
+      90deg,
+      var(--color-1),
+      var(--color-2),
+      var(--color-3),
+      var(--color-4),
+      var(--color-5),
+      var(--color-6),
+      var(--color-1)
+    ) border-box;
+  background-size: 100% 100%, 100% 100%, 200% 100%;
+  animation: rainbow-border-shift 3.5s linear infinite;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+/* Soft rainbow ambient reflection glow below the button */
+.rainbow-star-btn::before {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  right: 10%;
+  height: 14px;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-4),
+    var(--color-5),
+    var(--color-6),
+    var(--color-1)
+  );
+  background-size: 200% 100%;
+  animation: rainbow-border-shift 3.5s linear infinite;
+  filter: blur(10px);
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.rainbow-star-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.rainbow-star-btn:hover::before {
+  opacity: 0.95;
+  filter: blur(12px);
+}
+
+.rainbow-star-btn:active {
+  transform: scale(0.98);
+}
+
+@keyframes rainbow-border-shift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}

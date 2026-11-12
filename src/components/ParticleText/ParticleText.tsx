@@ -485,13 +485,16 @@ export const ParticleText: React.FC<ParticleTextProps> = ({
 
         if (hidden) continue;
 
-        const heat = motionHeat
-          ? clamp(
-              (Math.hypot(particle.x - particle.targetX, particle.y - particle.targetY) - HEAT_DEADZONE) / HEAT_RANGE,
-              0,
-              1
-            )
-          : particle.tone;
+        let proximityFactor = 0;
+        if (pointer.active && s.repelRadius > 0) {
+          const pDist = Math.hypot(particle.x - pointer.smoothX, particle.y - pointer.smoothY);
+          if (pDist < s.repelRadius) {
+            proximityFactor = Math.pow(1 - pDist / s.repelRadius, 1.1);
+          }
+        }
+        const displacement = Math.hypot(particle.x - particle.targetX, particle.y - particle.targetY);
+        const motionFactor = clamp((displacement - HEAT_DEADZONE) / HEAT_RANGE, 0, 1);
+        const heat = motionHeat ? clamp(Math.max(motionFactor, proximityFactor), 0, 1) : particle.tone;
         const tone = Math.round(heat * (TONES - 1));
         const fade = Math.round((floor + (1 - floor) * progress) * (FADES - 1));
         buckets[fade * TONES + tone].push(particle);

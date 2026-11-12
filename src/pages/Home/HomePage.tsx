@@ -7,6 +7,7 @@ import { ReferenceItem } from '../../components/ReferenceList/ReferenceItem';
 import { ContributionBanner } from '../../components/ContributionButton/ContributionBanner';
 import { CategoryIcon } from '../../components/Icons/CategoryIcon';
 import { ParticleText } from '../../components/ParticleText/ParticleText';
+import { FlipWords } from '../../components/ui/flip-words';
 import { useLanguage } from '../../locales/translations';
 
 interface HomePageProps {
@@ -84,7 +85,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                 particleSize={2.5}
                 density={3.4}
                 color="#FFFFFF"
-                highlightColor="#FFFFFF"
+                highlightColor="#365dff"
                 highlightMode="motion"
                 shape="circle"
                 intro="gather"
@@ -94,22 +95,56 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                 clickBurst={true}
                 burstStrength={0.9}
                 pointerRepel={38}
-                repelRadius={95}
+                repelRadius={105}
                 idleDrift={0}
                 trigger="mount"
                 fontSize="clamp(2.4rem, 6.4vw, 4.8rem)"
                 fontWeight={900}
                 fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
                 glow={false}
-                className="w-full h-full"
+                className="w-full h-full cursor-pointer"
               />
             </div>
           </div>
 
-          {/* Centered Curated Description */}
-          <p className="text-sm sm:text-base text-[#9CA3AF] leading-relaxed max-w-3xl mx-auto pt-0.5">
-            {t.heroDescription}
-          </p>
+          {/* Centered Curated Description with FlipWords */}
+          <div className="text-sm sm:text-base text-[#9CA3AF] leading-relaxed max-w-3xl mx-auto pt-0.5 select-none overflow-hidden">
+            {language === 'pt-BR' ? (
+              <span>
+                Uma coleção curada dos melhores recursos para designers e desenvolvedores explorarem inspiração, de{' '}
+                <FlipWords
+                  words={[
+                    'landing pages modernas',
+                    'componentes de UI',
+                    'dashboards elegantes',
+                    'sites premiados',
+                    'portfólios criativos',
+                    'design systems'
+                  ]}
+                  duration={2800}
+                  className="text-white font-semibold drop-shadow-[0_0_12px_rgba(54,93,255,0.35)] !px-1 inline-block"
+                />{' '}
+                e muito mais.
+              </span>
+            ) : (
+              <span>
+                A curated collection of the finest resources for designers and developers to explore inspiration, from{' '}
+                <FlipWords
+                  words={[
+                    'modern landing pages',
+                    'UI components',
+                    'sleek dashboards',
+                    'award-winning sites',
+                    'creative portfolios',
+                    'design systems'
+                  ]}
+                  duration={2800}
+                  className="text-white font-semibold drop-shadow-[0_0_12px_rgba(54,93,255,0.35)] !px-1 inline-block"
+                />{' '}
+                and beyond.
+              </span>
+            )}
+          </div>
 
           {/* Full-width Premium Frosted White Glass Search Capsule with Ctrl+K shortcut */}
           <div className="pt-3 w-full">
