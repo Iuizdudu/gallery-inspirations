@@ -78,29 +78,29 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
             <span className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white block select-none">
               {t.heroTitlePrefix}
             </span>
-            <div className="w-full h-[65px] sm:h-[88px] md:h-[105px] relative flex items-center justify-center my-0 sm:my-0.5">
+            <div className="w-full h-[75px] sm:h-[95px] md:h-[115px] relative flex items-center justify-center my-0 sm:my-0.5">
               <ParticleText
                 text="Gallery Inspirations"
-                particleSize={2.2}
-                density={3.2}
-                color="#F8FAFC"
-                highlightColor="#38BDF8"
-                highlightMode="gradient"
+                particleSize={2.5}
+                density={3.4}
+                color="#FFFFFF"
+                highlightColor="#FFFFFF"
+                highlightMode="motion"
                 shape="circle"
                 intro="gather"
-                scatter={120}
-                gatherDuration={1400}
-                stagger={300}
+                scatter={80}
+                gatherDuration={1100}
+                stagger={200}
                 clickBurst={true}
-                burstStrength={1.2}
-                pointerRepel={45}
-                repelRadius={120}
-                idleDrift={0.8}
+                burstStrength={0.9}
+                pointerRepel={38}
+                repelRadius={95}
+                idleDrift={0}
                 trigger="mount"
-                fontSize="clamp(2.5rem, 7.5vw, 5.2rem)"
+                fontSize="clamp(2.4rem, 6.4vw, 4.8rem)"
                 fontWeight={900}
-                fontFamily="'Geist', sans-serif"
-                glow={true}
+                fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                glow={false}
                 className="w-full h-full"
               />
             </div>

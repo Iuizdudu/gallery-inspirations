@@ -2,13 +2,13 @@
 
 <div align="center">
 
-  <a href="https://github.com/luizeduardo98r4/gallery-inspirations">
+  <a href="https://github.com/Iuizdudu/gallery-inspirations">
     <img alt="Gallery Inspirations" src="https://img.shields.io/badge/GALLERY-INSPIRATIONS%20HUB-0078d4?style=for-the-badge&logo=safari&logoColor=white&labelColor=1f1f1f">
   </a>
   <a href="https://vercel.com">
     <img alt="Deploy Vercel" src="https://img.shields.io/badge/DEPLOY-VERCEL%20READY-000000?style=for-the-badge&logo=vercel&logoColor=white">
   </a>
-  <a href="https://github.com/luizeduardo98r4/gallery-inspirations">
+  <a href="https://github.com/Iuizdudu/gallery-inspirations">
     <img alt="Open Source" src="https://img.shields.io/badge/OPEN%20SOURCE-GITHUB%20COMMUNITY-2496ED?style=for-the-badge&logo=github&logoColor=white">
   </a>
 
@@ -40,7 +40,7 @@
 [![TypeScript 5](https://img.shields.io/badge/typescript-v5.0-3178c6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![TailwindCSS 4](https://img.shields.io/badge/tailwindcss-v4.0-38bdf8.svg?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Vite](https://img.shields.io/badge/vite-v6.0-646CFF.svg?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
-[![References: 130+](https://img.shields.io/badge/refer%C3%AAncias-130%2B%20curadas-0078d4.svg?style=flat-square)](https://github.com/luizeduardo98r4/gallery-inspirations)
+[![References: 130+](https://img.shields.io/badge/refer%C3%AAncias-130%2B%20curadas-0078d4.svg?style=flat-square)](https://github.com/Iuizdudu/gallery-inspirations)
 
 </div>
 
@@ -167,7 +167,7 @@ Para executar o **Gallery Inspirations** localmente em seu computador:
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/luizeduardo98r4/gallery-inspirations.git
+git clone https://github.com/Iuizdudu/gallery-inspirations.git
 
 # 2. Acesse a pasta do projeto
 cd gallery-inspirations

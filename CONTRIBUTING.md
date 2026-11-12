@@ -2,21 +2,6 @@
 
 Thank you for your interest in contributing to **Gallery Inspirations**! This project is an open-source, community-curated digital catalog gathering premier design and web development references.
 
----
-
-## ⚙️ Setting Up Your GitHub Repository URL
-
-The repository URL used by the **Contribute** buttons throughout the app is defined in:
-```typescript
-src/data/config.ts
-```
-```typescript
-export const GITHUB_REPO_URL = "https://github.com/luizeduardo98r4/gallery-inspirations";
-```
-> **Tip:** You can replace this URL with your exact GitHub username and repository name anytime.
-
----
-
 ## 📋 How to Propose New References
 
 All references in **Gallery Inspirations** are typed in TypeScript and centralized in:

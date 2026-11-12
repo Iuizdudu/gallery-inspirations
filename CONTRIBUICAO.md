@@ -2,21 +2,6 @@
 
 Obrigado pelo interesse em contribuir com o **Gallery Inspirations**! Este projeto é uma biblioteca digital colaborativa, de código aberto, focada em reunir as melhores referências de design e engenharia web do mundo.
 
----
-
-## ⚙️ Configuração da URL do seu Repositório GitHub
-
-A URL utilizada por todos os botões de **Contribuir** da aplicação está configurada em:
-```typescript
-src/data/config.ts
-```
-```typescript
-export const GITHUB_REPO_URL = "https://github.com/luizeduardo98r4/gallery-inspirations";
-```
-> **Dica:** Você pode alterar essa constante a qualquer momento para o endereço exato do seu perfil ou organização no GitHub.
-
----
-
 ## 📋 Como Propor Novas Referências
 
 Todo o catálogo do Gallery Inspirations é gerenciado através de código tipado em TypeScript, centralizado no arquivo:

@@ -348,12 +348,13 @@ export const ParticleText: React.FC<ParticleTextProps> = ({
 
       const square = shp === 'square';
       for (const particle of group) {
-        const size = square ? base : Math.max(0.6, base * (0.75 + particle.weight * 0.45));
-        if (square || size <= 2.1) {
+        if (square) {
+          const size = base;
           target.rect(particle.x - size / 2, particle.y - size / 2, size, size);
         } else {
-          target.moveTo(particle.x + size / 2, particle.y);
-          target.arc(particle.x, particle.y, size / 2, 0, TAU);
+          const r = Math.max(0.7, (base * 0.5) * (0.85 + particle.weight * 0.3));
+          target.moveTo(particle.x + r, particle.y);
+          target.arc(particle.x, particle.y, r, 0, TAU);
         }
       }
       target.fill();
@@ -636,24 +637,40 @@ export const ParticleText: React.FC<ParticleTextProps> = ({
 
       const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
       const targets: { x: number; y: number; alpha: number }[] = [];
-      const sampleStep = Math.max(2, Math.floor(s.density));
+      
+      // Hexagonal close-packing pitch: creates dense, uniform stippling identical to reference
+      const hexStep = Math.max(2.6, Math.min(5.5, Number(s.density) || 3.4));
+      const rowHeight = hexStep * 0.866025; // sqrt(3)/2
 
-      for (let y = 0; y < offscreen.height; y += sampleStep) {
-        for (let x = 0; x < offscreen.width; x += sampleStep) {
-          const alpha = imageData.data[(y * offscreen.width + x) * 4 + 3];
-          if (alpha > 40) {
+      let rowIndex = 0;
+      for (let y = 1; y < offscreen.height - 1; y += rowHeight) {
+        const xOffset = (rowIndex % 2 === 1) ? hexStep * 0.5 : 0;
+        for (let x = xOffset + 1; x < offscreen.width - 1; x += hexStep) {
+          const px = Math.floor(x);
+          const py = Math.floor(y);
+          const idx = (py * offscreen.width + px) * 4;
+          const alpha = imageData.data[idx + 3];
+
+          // Solid alpha threshold for clean, crisp typography contours
+          if (alpha > 70) {
+            // Subtle sub-pixel organic jitter matching the stippled dot-matrix sample
+            const pseudo = ((rowIndex * 73 + Math.floor(x) * 37) % 1000) / 1000;
+            const pseudo2 = ((rowIndex * 109 + Math.floor(x) * 59) % 1000) / 1000;
+            const jitterX = (pseudo - 0.5) * (hexStep * 0.2);
+            const jitterY = (pseudo2 - 0.5) * (hexStep * 0.2);
+
             targets.push({
-              x: nextWidth / 2 - offscreen.width / 2 + x,
-              y: nextHeight / 2 - offscreen.height / 2 + y,
+              x: nextWidth / 2 - offscreen.width / 2 + x + jitterX,
+              y: nextHeight / 2 - offscreen.height / 2 + y + jitterY,
               alpha: alpha / 255
             });
           }
         }
+        rowIndex++;
       }
 
-      const maxParticles = Math.max(900, Math.min(5200, Math.floor((nextWidth * nextHeight) / 90)));
-      const stride = Math.max(1, Math.ceil(targets.length / maxParticles));
-      const selected = targets.filter((_, index) => index % stride === 0);
+      // Keep every sampled hex-lattice point: no modulo decimation that causes diagonal/wavy striping
+      const selected = targets;
       const intro = introPending && !reducedMotion;
       introPending = false;
 
