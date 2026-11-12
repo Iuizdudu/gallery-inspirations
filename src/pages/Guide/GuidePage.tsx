@@ -10,7 +10,7 @@ export const GuidePage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12 space-y-10">
       <header className="space-y-3 pb-6 border-b border-[#1E1E1E]">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#141414] border border-[#262626] text-xs font-mono text-[#3B82F6]">
+        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#141414] border border-[#262626] text-xs font-mono text-[#365dff]">
           <GitPullRequest className="w-3.5 h-3.5" />
           <span>GUIA DE CONTRIBUIÇÃO</span>
         </div>
@@ -31,7 +31,7 @@ export const GuidePage: React.FC = () => {
         <div className="space-y-4">
           {/* Step 1 */}
           <div className="p-5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-4">
-            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#3B82F6] shrink-0 font-semibold">
+            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#365dff] shrink-0 font-semibold">
               01
             </div>
             <div className="space-y-1">
@@ -44,7 +44,7 @@ export const GuidePage: React.FC = () => {
 
           {/* Step 2 */}
           <div className="p-5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-4">
-            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#3B82F6] shrink-0 font-semibold">
+            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#365dff] shrink-0 font-semibold">
               02
             </div>
             <div className="space-y-1">
@@ -57,13 +57,13 @@ export const GuidePage: React.FC = () => {
 
           {/* Step 3 */}
           <div className="p-5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-4">
-            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#3B82F6] shrink-0 font-semibold">
+            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#365dff] shrink-0 font-semibold">
               03
             </div>
             <div className="space-y-2">
               <h3 className="text-sm font-semibold text-white">Adicione sua Referência</h3>
               <p className="text-xs text-[#A1A1AA] leading-relaxed">
-                Abra o arquivo <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#3B82F6] font-mono">src/data/references.ts</code> e adicione o objeto da sua referência no array, respeitando o modelo de tipos TypeScript:
+                Abra o arquivo <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#365dff] font-mono">src/data/references.ts</code> e adicione o objeto da sua referência no array, respeitando o modelo de tipos TypeScript:
               </p>
               <pre className="p-3 bg-[#090909] border border-[#222222] rounded-lg text-[11px] text-[#A1A1AA] font-mono overflow-x-auto">
 {`{
@@ -81,20 +81,20 @@ export const GuidePage: React.FC = () => {
 
           {/* Step 4 */}
           <div className="p-5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-4">
-            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#3B82F6] shrink-0 font-semibold">
+            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#365dff] shrink-0 font-semibold">
               04
             </div>
             <div className="space-y-1">
               <h3 className="text-sm font-semibold text-white">Commit e Validação</h3>
               <p className="text-xs text-[#A1A1AA] leading-relaxed">
-                Faça o commit de suas alterações garantindo que o link funcione e a descrição esteja clara. Teste a execução local com <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#3B82F6] font-mono">npm run build</code>.
+                Faça o commit de suas alterações garantindo que o link funcione e a descrição esteja clara. Teste a execução local com <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#365dff] font-mono">npm run build</code>.
               </p>
             </div>
           </div>
 
           {/* Step 5 */}
           <div className="p-5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-4">
-            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#3B82F6] shrink-0 font-semibold">
+            <div className="w-8 h-8 rounded-full bg-[#181818] border border-[#2E2E2E] flex items-center justify-center text-xs font-mono text-[#365dff] shrink-0 font-semibold">
               05
             </div>
             <div className="space-y-1">
@@ -114,8 +114,8 @@ export const GuidePage: React.FC = () => {
           href={GITHUB_REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          color="#38BDF8"
-          trailColor="#60A5FA"
+          color="#365dff"
+          trailColor="#5c7eff"
           duration={3.5}
           stars={1}
           trailLength={0.35}

@@ -26,7 +26,7 @@ export const ChangelogPage: React.FC = () => {
       title: 'Validação da Arquitetura Textual',
       summary: 'Definição do modelo editorial puramente textual, eliminando thumbnails, galerias de imagens pesadas e cards decorativos.',
       changes: [
-        'Padronização da paleta monocromática com acento em azul elétrico #3B82F6',
+        'Padronização da paleta monocromática com acento em azul elétrico #365dff',
         'Hierarquia tipográfica em Geist e Inter com números tabulares',
         'Barra de navegação suspensa em formato de pílula central',
       ],
@@ -36,7 +36,7 @@ export const ChangelogPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12 space-y-10">
       <header className="space-y-3 pb-6 border-b border-[#1E1E1E]">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#141414] border border-[#262626] text-xs font-mono text-[#3B82F6]">
+        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#141414] border border-[#262626] text-xs font-mono text-[#365dff]">
           <History className="w-3.5 h-3.5" />
           <span>CHANGELOG</span>
         </div>
@@ -56,7 +56,7 @@ export const ChangelogPage: React.FC = () => {
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1E1E1E] pb-3">
               <div className="flex items-center gap-2.5">
-                <span className="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-[#3B82F6]/20 text-[#3B82F6] border border-[#3B82F6]/30">
+                <span className="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-[#365dff]/20 text-[#365dff] border border-[#365dff]/30">
                   {rel.version}
                 </span>
                 <h2 className="text-base font-semibold text-[#F5F5F5]">
@@ -75,7 +75,7 @@ export const ChangelogPage: React.FC = () => {
             <ul className="space-y-1.5 text-xs text-[#A1A1AA]">
               {rel.changes.map((change, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="text-[#3B82F6] font-bold select-none">•</span>
+                  <span className="text-[#365dff] font-bold select-none">•</span>
                   <span>{change}</span>
                 </li>
               ))}

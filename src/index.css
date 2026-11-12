@@ -12,7 +12,7 @@
     --text-primary: #F5F5F5;
     --text-secondary: #A1A1AA;
     --text-muted: #71717A;
-    --accent-blue: #3B82F6;
+    --accent-blue: #365dff;
 
     /* transitions.dev Motion Tokens */
     --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -51,7 +51,7 @@
   }
 
   ::selection {
-    background-color: rgba(59, 130, 246, 0.3);
+    background-color: rgba(54, 93, 255, 0.35);
     color: #ffffff;
   }
 }
@@ -73,7 +73,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3B82F6;
+  background: #365dff;
 }
 
 /* Ambient blue glow mesh at top right matching Stitch mockup */

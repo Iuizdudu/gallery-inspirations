@@ -9,7 +9,7 @@ export const ContributionBanner: React.FC = () => {
   const { language, t } = useLanguage();
 
   return (
-    <div className="w-full bg-[#121212] border border-[#262626] rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 t-card hover:border-[#38BDF8]/40 hover:shadow-xl hover:shadow-black/50">
+    <div className="w-full bg-[#121212] border border-[#262626] rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 t-card hover:border-[#365dff]/40 hover:shadow-xl hover:shadow-black/50">
       <div className="flex items-start sm:items-center gap-4">
         {/* GitHub circle mark */}
         <div className="w-12 h-12 rounded-full bg-[#1A1A1A] border border-[#2E2E2E] flex items-center justify-center shrink-0">
@@ -26,7 +26,7 @@ export const ContributionBanner: React.FC = () => {
                 Ajude a expandir nossa biblioteca compartilhando referências de qualidade através de Pull Requests no GitHub seguindo as instruções no{' '}
                 <Link
                   to="/guide"
-                  className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#0C1A30] border border-[#1D4ED8]/40 hover:border-[#38BDF8]/60 text-[#38BDF8] hover:text-[#7DD3FC] font-mono text-xs font-medium shadow-sm t-pill"
+                  className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#0e1630] border border-[#365dff]/40 hover:border-[#365dff]/80 text-[#5c7eff] hover:text-[#8ba2ff] font-mono text-xs font-medium shadow-sm t-pill"
                   title="Acessar o guia de contribuição"
                 >
                   contributing.md
@@ -38,7 +38,7 @@ export const ContributionBanner: React.FC = () => {
                 Help expand our library by sharing quality references through Pull Requests on GitHub following the guidelines in{' '}
                 <Link
                   to="/guide"
-                  className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#0C1A30] border border-[#1D4ED8]/40 hover:border-[#38BDF8]/60 text-[#38BDF8] hover:text-[#7DD3FC] font-mono text-xs font-medium shadow-sm t-pill"
+                  className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#0e1630] border border-[#365dff]/40 hover:border-[#365dff]/80 text-[#5c7eff] hover:text-[#8ba2ff] font-mono text-xs font-medium shadow-sm t-pill"
                   title="View contributing guide"
                 >
                   contributing.md
@@ -55,8 +55,8 @@ export const ContributionBanner: React.FC = () => {
         href={GITHUB_REPO_URL}
         target="_blank"
         rel="noopener noreferrer"
-        color="#38BDF8"
-        trailColor="#60A5FA"
+        color="#365dff"
+        trailColor="#5c7eff"
         duration={3.5}
         direction="clockwise"
         stars={1}

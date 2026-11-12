@@ -33,7 +33,7 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
                 href={reference.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base sm:text-lg font-semibold text-[#38BDF8] hover:text-[#93C5FD] transition-colors inline-flex items-center gap-1.5 group/link"
+                className="text-base sm:text-lg font-semibold text-[#365dff] hover:text-[#5c7eff] transition-colors inline-flex items-center gap-1.5 group/link"
                 title={`${t.visitAction} ${reference.title}`}
               >
                 <span>{reference.title}</span>
@@ -60,7 +60,7 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
               tint="#ffffff"
               tintOpacity={0.05}
               textColor="#D4D4D8"
-              lineColor="#38BDF8"
+              lineColor="#365dff"
               baseColor="#3F3F46"
               intensity={1}
               idleIntensity={0.25}

@@ -106,7 +106,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       >
         {/* Search Input Bar */}
         <div className="flex items-center px-5 sm:px-6 py-4 border-b border-[#262626] gap-3.5 bg-[#161616]">
-          <Search className="w-5 h-5 text-[#38BDF8] shrink-0" />
+          <Search className="w-5 h-5 text-[#365dff] shrink-0" />
           <input
             ref={inputRef}
             id="command-palette-title"
@@ -146,7 +146,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                   onClose();
                   navigate(`/category/${cat.slug}`);
                 }}
-                className="shrink-0 px-3 py-1 rounded-full bg-[#181818] border border-[#262626] hover:border-[#38BDF8]/40 hover:bg-[#222222] hover:text-white text-xs t-pill"
+                className="shrink-0 px-3 py-1 rounded-full bg-[#181818] border border-[#262626] hover:border-[#365dff]/40 hover:bg-[#222222] hover:text-white text-xs t-pill"
               >
                 {language === 'pt-BR' ? cat.namePt : cat.nameEn}
               </button>
@@ -179,7 +179,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`flex items-start justify-between p-3 rounded-lg cursor-pointer t-row-item ${
                     isSelected
-                      ? 'bg-[#1e1e1e] border-l-2 border-[#38BDF8] translate-x-1'
+                      ? 'bg-[#1e1e1e] border-l-2 border-[#365dff] translate-x-1'
                       : 'hover:bg-[#181818] hover:translate-x-0.5'
                   }`}
                 >
@@ -196,9 +196,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
                   <div className="flex items-center gap-2 shrink-0 self-center">
                     {isSelected && (
-                      <span className="flex items-center gap-1.5 text-[11px] text-[#38BDF8] bg-[#0C1A30] border border-[#1D4ED8]/40 px-2.5 py-1 rounded-md font-medium shadow-sm">
+                      <span className="flex items-center gap-1.5 text-[11px] text-[#365dff] bg-[#0C1A30] border border-[#1D4ED8]/40 px-2.5 py-1 rounded-md font-medium shadow-sm">
                         <span>Acessar</span>
-                        <ExternalLink className="w-3 h-3 text-[#38BDF8]" />
+                        <ExternalLink className="w-3 h-3 text-[#365dff]" />
                       </span>
                     )}
                   </div>

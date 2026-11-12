@@ -46,7 +46,7 @@ export default function App() {
     <LanguageProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen bg-[#090909] text-[#F5F5F5] flex flex-row relative antialiased selection:bg-[#3B82F6]/30 selection:text-white">
+        <div className="min-h-screen bg-[#090909] text-[#F5F5F5] flex flex-row relative antialiased selection:bg-[#365dff]/35 selection:text-white">
           {/* Left Fixed / Responsive Sidebar */}
           <Sidebar
             isCollapsed={isSidebarCollapsed}

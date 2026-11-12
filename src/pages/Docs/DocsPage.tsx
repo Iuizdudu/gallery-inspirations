@@ -10,7 +10,7 @@ export const DocsPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12 space-y-10">
       <header className="space-y-3 pb-6 border-b border-[#1E1E1E]">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#141414] border border-[#262626] text-xs font-mono text-[#3B82F6]">
+        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#141414] border border-[#262626] text-xs font-mono text-[#365dff]">
           <BookOpen className="w-3.5 h-3.5" />
           <span>DOCUMENTAÇÃO</span>
         </div>
@@ -95,7 +95,7 @@ export const DocsPage: React.FC = () => {
         <div className="pt-2">
           <Link
             to="/guide"
-            className="text-xs text-[#3B82F6] hover:underline inline-flex items-center gap-1 font-medium"
+            className="text-xs text-[#365dff] hover:text-[#5c7eff] hover:underline inline-flex items-center gap-1 font-medium"
           >
             <span>Ver Guia de Contribuição</span>
             <span>→</span>

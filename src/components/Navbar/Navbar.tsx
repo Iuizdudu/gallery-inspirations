@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
           hoverEffect="fill"
           indicator="dot"
           size="md"
-          highlightColor="#3B82F6"
+          highlightColor="#365dff"
           highlightTextColor="#ffffff"
         />
       </div>
@@ -108,14 +108,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
                 className="w-full flex items-center justify-between px-3 py-2 text-xs text-left text-[#F5F5F5] hover:bg-[#1C1C1C] transition-colors"
               >
                 <span>Português</span>
-                {language === 'pt-BR' && <Check className="w-3.5 h-3.5 text-[#3B82F6]" />}
+                {language === 'pt-BR' && <Check className="w-3.5 h-3.5 text-[#365dff]" />}
               </button>
               <button
                 onClick={() => handleLanguageChange('en')}
                 className="w-full flex items-center justify-between px-3 py-2 text-xs text-left text-[#F5F5F5] hover:bg-[#1C1C1C] transition-colors"
               >
                 <span>English</span>
-                {language === 'en' && <Check className="w-3.5 h-3.5 text-[#3B82F6]" />}
+                {language === 'en' && <Check className="w-3.5 h-3.5 text-[#365dff]" />}
               </button>
             </div>
           )}
@@ -128,8 +128,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
           target="_blank"
           rel="noopener noreferrer"
           title="Contribuir no repositório GitHub"
-          color="#38BDF8"
-          trailColor="#60A5FA"
+          color="#365dff"
+          trailColor="#5c7eff"
           duration={3.5}
           stars={1}
           trailLength={0.3}

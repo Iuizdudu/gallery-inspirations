@@ -8,7 +8,7 @@ export const NotFoundPage: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-28 text-center space-y-6">
-      <div className="w-16 h-16 rounded-2xl bg-[#141414] border border-[#262626] mx-auto flex items-center justify-center text-[#3B82F6]">
+      <div className="w-16 h-16 rounded-2xl bg-[#141414] border border-[#262626] mx-auto flex items-center justify-center text-[#365dff]">
         <AlertCircle className="w-8 h-8" />
       </div>
 
@@ -27,7 +27,7 @@ export const NotFoundPage: React.FC = () => {
       <div className="pt-4">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs font-semibold shadow-lg shadow-[#3B82F6]/20 transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#365dff] hover:bg-[#2e50df] text-white text-xs font-semibold shadow-lg shadow-[#365dff]/20 transition-all"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>{t.returnHome}</span>

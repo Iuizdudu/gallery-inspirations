@@ -62,7 +62,7 @@ export const CategoryPage: React.FC = () => {
         </p>
         <Link
           to="/"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#181818] border border-[#262626] text-xs text-[#3B82F6] hover:bg-[#222222]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#181818] border border-[#262626] text-xs text-[#365dff] hover:bg-[#222222]"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>{t.backToHome}</span>
@@ -85,7 +85,7 @@ export const CategoryPage: React.FC = () => {
       {/* Category Header */}
       <header className="space-y-3 pb-6 border-b border-[#1E1E1E]">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#3B82F6]">
+          <div className="p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#365dff]">
             <CategoryIcon name={category.iconName} className="w-5 h-5" />
           </div>
           <div className="flex items-center gap-3">
@@ -114,7 +114,7 @@ export const CategoryPage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={`Buscar em ${categoryName}...`}
-            className="w-full pl-9 pr-4 py-2 text-xs bg-[#121212] border border-[#262626] rounded-lg text-[#F5F5F5] placeholder-[#71717A] focus:outline-none focus:border-[#3B82F6]"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-[#121212] border border-[#262626] rounded-lg text-[#F5F5F5] placeholder-[#71717A] focus:outline-none focus:border-[#365dff]"
           />
         </div>
 
@@ -126,7 +126,7 @@ export const CategoryPage: React.FC = () => {
             onClick={() => setSortBy('popular')}
             className={`px-2.5 py-1 rounded-md transition-colors ${
               sortBy === 'popular'
-                ? 'bg-[#181818] text-[#3B82F6] font-medium border border-[#262626]'
+                ? 'bg-[#181818] text-[#365dff] font-medium border border-[#262626]'
                 : 'text-[#A1A1AA] hover:text-white'
             }`}
           >
@@ -136,7 +136,7 @@ export const CategoryPage: React.FC = () => {
             onClick={() => setSortBy('alpha')}
             className={`px-2.5 py-1 rounded-md transition-colors ${
               sortBy === 'alpha'
-                ? 'bg-[#181818] text-[#3B82F6] font-medium border border-[#262626]'
+                ? 'bg-[#181818] text-[#365dff] font-medium border border-[#262626]'
                 : 'text-[#A1A1AA] hover:text-white'
             }`}
           >
@@ -153,7 +153,7 @@ export const CategoryPage: React.FC = () => {
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="text-xs text-[#3B82F6] hover:underline"
+                className="text-xs text-[#365dff] hover:underline"
               >
                 Limpar busca
               </button>

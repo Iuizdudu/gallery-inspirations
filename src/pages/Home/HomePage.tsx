@@ -61,7 +61,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
         {/* Header Hero Section - Centered design matching reference */}
         <section className="flex flex-col items-center text-center space-y-3.5 pt-2 sm:pt-6 w-full">
           {/* Top Floating Glass Pill Badge with 4-Point Star */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121620]/90 border border-[#252E42] text-xs font-medium text-[#E4E4E7] shadow-lg shadow-black/40 backdrop-blur-md transition-all hover:border-[#38BDF8]/50">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121620]/90 border border-[#252E42] text-xs font-medium text-[#E4E4E7] shadow-lg shadow-black/40 backdrop-blur-md transition-all hover:border-[#365dff]/50">
             <svg
               viewBox="0 0 24 24"
               fill="currentColor"
@@ -184,7 +184,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-3 py-1.5 text-xs bg-[#121212] border border-[#262626] rounded-lg text-[#F5F5F5] focus:outline-none focus:border-[#3B82F6] cursor-pointer"
+                className="px-3 py-1.5 text-xs bg-[#121212] border border-[#262626] rounded-lg text-[#F5F5F5] focus:outline-none focus:border-[#365dff] cursor-pointer"
               >
                 <option value="all">{t.allCategories} ({REFERENCES.length})</option>
                 {CATEGORIES.map((cat) => {
@@ -206,7 +206,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                   onClick={() => setSortBy('popular')}
                   className={`px-2.5 py-1 rounded-md transition-colors ${
                     sortBy === 'popular'
-                      ? 'bg-[#181818] text-[#3B82F6] font-medium border border-[#262626]'
+                      ? 'bg-[#181818] text-[#365dff] font-medium border border-[#262626]'
                       : 'text-[#A1A1AA] hover:text-white'
                   }`}
                 >
@@ -216,7 +216,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                   onClick={() => setSortBy('alpha')}
                   className={`px-2.5 py-1 rounded-md transition-colors ${
                     sortBy === 'alpha'
-                      ? 'bg-[#181818] text-[#3B82F6] font-medium border border-[#262626]'
+                      ? 'bg-[#181818] text-[#365dff] font-medium border border-[#262626]'
                       : 'text-[#A1A1AA] hover:text-white'
                   }`}
                 >
@@ -229,7 +229,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
           {/* Active Section Header */}
           <div className="space-y-1">
             {/* Blue indicator line */}
-            <div className="w-8 h-0.5 bg-[#3B82F6] rounded-full mb-3" />
+            <div className="w-8 h-0.5 bg-[#365dff] rounded-full mb-3" />
 
             <div className="flex items-center gap-3 flex-wrap">
               <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#F5F5F5]">
@@ -264,7 +264,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                     setSelectedCategory('all');
                     setSearchQuery('');
                   }}
-                  className="px-4 py-2 text-xs text-[#3B82F6] hover:underline"
+                  className="px-4 py-2 text-xs text-[#365dff] hover:underline"
                 >
                   Limpar filtros
                 </button>
@@ -298,15 +298,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                 <Link
                   key={category.id}
                   to={`/category/${category.slug}`}
-                  className="p-4 rounded-xl bg-[#121212] hover:bg-[#161616] border border-[#262626] hover:border-[#3B82F6]/50 transition-all flex flex-col justify-between group"
+                  className="p-4 rounded-xl bg-[#121212] hover:bg-[#161616] border border-[#262626] hover:border-[#365dff]/50 transition-all flex flex-col justify-between group"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="p-1.5 rounded-lg bg-[#181818] text-[#71717A] group-hover:text-[#3B82F6] transition-colors">
+                        <span className="p-1.5 rounded-lg bg-[#181818] text-[#71717A] group-hover:text-[#365dff] transition-colors">
                           <CategoryIcon name={category.iconName} className="w-4 h-4" />
                         </span>
-                        <span className="text-sm font-semibold text-[#F5F5F5] group-hover:text-[#3B82F6] transition-colors">
+                        <span className="text-sm font-semibold text-[#F5F5F5] group-hover:text-[#365dff] transition-colors">
                           {catName}
                         </span>
                       </div>

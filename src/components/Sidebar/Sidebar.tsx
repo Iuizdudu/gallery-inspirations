@@ -89,7 +89,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           title={t.searchCommandShortcut}
         >
           <div className="flex items-center gap-2 truncate">
-            <Search className="w-3.5 h-3.5 text-[#71717A] group-hover:text-[#3B82F6] shrink-0 transition-colors" />
+            <Search className="w-3.5 h-3.5 text-[#71717A] group-hover:text-[#365dff] shrink-0 transition-colors" />
             {!isCollapsed && (
               <span className="truncate">{t.searchPlaceholderSidebar}</span>
             )}
@@ -111,7 +111,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           className={({ isActive }) =>
             `flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg transition-colors ${
               isActive
-                ? 'bg-[#181818] text-[#3B82F6] border border-[#262626]'
+                ? 'bg-[#181818] text-[#365dff] border border-[#262626]'
                 : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#141414]'
             } ${isCollapsed ? 'justify-center px-2' : ''}`
           }
@@ -167,14 +167,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
               className={({ isActive }) =>
                 `flex items-center justify-between px-3 py-2 text-xs rounded-lg transition-colors group ${
                   isActive
-                    ? 'bg-[#181818] text-white border-l-2 border-[#3B82F6]'
+                    ? 'bg-[#181818] text-white border-l-2 border-[#365dff]'
                     : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#141414]'
                 } ${isCollapsed ? 'justify-center px-2' : ''}`
               }
               title={categoryName}
             >
               <div className="flex items-center gap-2.5 truncate">
-                <span className="text-[#71717A] group-hover:text-[#3B82F6] transition-colors shrink-0">
+                <span className="text-[#71717A] group-hover:text-[#365dff] transition-colors shrink-0">
                   <CategoryIcon name={category.iconName} className="w-4 h-4" />
                 </span>
                 {!isCollapsed && (
