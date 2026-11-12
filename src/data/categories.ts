@@ -10,7 +10,7 @@ export interface Category {
 }
 
 /**
- * Catálogo Completo de Categorias do Inspiration Archive
+ * Catálogo Completo de Categorias do Gallery Inspirations
  * Contém TODAS as categorias do documento original fornecido pelo usuário,
  * além de preservar as categorias criadas anteriormente.
  */

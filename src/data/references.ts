@@ -15,7 +15,7 @@ export interface Reference {
 }
 
 /**
- * Catálogo Completo e Oficial do Inspiration Archive
+ * Catálogo Completo e Oficial do Gallery Inspirations
  * Contém 100% das referências presentes no documento original do usuário,
  * preservando nomes, URLs, descrições originais e integridade categórica.
  */
@@ -678,8 +678,8 @@ export const REFERENCES: Reference[] = [
     id: "navbar-gallery",
     title: "Navbar Gallery",
     categoryId: "navbar",
-    descriptionPt: "Best Navbar Design Inspiration Websites",
-    descriptionEn: "Best Navbar Design Inspiration Websites",
+    descriptionPt: "Curadoria especializada nos melhores designs de barras de navegação, menus responsivos e headers modernos da web.",
+    descriptionEn: "Curated collection of the best navigation bars, responsive menus, and modern header designs on the web.",
     author: "Navbar Gallery",
     tags: ["Navbars", "Menus", "Headers"],
     url: "https://www.navbargallery.com/",

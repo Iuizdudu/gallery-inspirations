@@ -74,7 +74,7 @@ export const TRANSLATIONS = {
     openExternalNotice: 'Abre em uma nova aba diretamente no site oficial.',
     
     // Secondary pages
-    docsTitle: 'Documentação do Inspiration Archive',
+    docsTitle: 'Documentação do Gallery Inspirations',
     docsSubtitle: 'Princípios editoriais, diretrizes de curadoria e arquitetura do repositório.',
     guideTitle: 'Guia de Contribuição',
     guideSubtitle: 'Como propor novas referências através do repositório oficial no GitHub.',
@@ -161,7 +161,7 @@ export const TRANSLATIONS = {
     openExternalNotice: 'Opens in a new tab directly on the official site.',
     
     // Secondary pages
-    docsTitle: 'Inspiration Archive Documentation',
+    docsTitle: 'Gallery Inspirations Documentation',
     docsSubtitle: 'Editorial standards, curatorial principles, and repository architecture.',
     guideTitle: 'Contribution Guide',
     guideSubtitle: 'How to propose new references via the official GitHub repository.',

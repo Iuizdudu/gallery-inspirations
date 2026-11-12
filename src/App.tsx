@@ -7,7 +7,6 @@ import { Footer } from './components/Footer/Footer';
 import { CommandPalette } from './components/Search/CommandPalette';
 import { HomePage } from './pages/Home/HomePage';
 import { CategoryPage } from './pages/Category/CategoryPage';
-import { ReferenceDetailsPage } from './pages/ReferenceDetails/ReferenceDetailsPage';
 import { DocsPage } from './pages/Docs/DocsPage';
 import { GuidePage } from './pages/Guide/GuidePage';
 import { ChangelogPage } from './pages/Changelog/ChangelogPage';
@@ -74,7 +73,6 @@ export default function App() {
                   }
                 />
                 <Route path="/category/:slug" element={<CategoryPage />} />
-                <Route path="/reference/:id" element={<ReferenceDetailsPage />} />
                 <Route path="/docs" element={<DocsPage />} />
                 <Route path="/guide" element={<GuidePage />} />
                 <Route path="/changelog" element={<ChangelogPage />} />

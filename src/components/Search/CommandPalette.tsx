@@ -71,7 +71,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
         if (filteredReferences[selectedIndex]) {
           const item = filteredReferences[selectedIndex];
           onClose();
-          navigate(`/reference/${item.id}`);
+          window.open(item.url, '_blank', 'noopener,noreferrer');
         }
       }
     };
@@ -174,7 +174,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                   key={ref.id}
                   onClick={() => {
                     onClose();
-                    navigate(`/reference/${ref.id}`);
+                    window.open(ref.url, '_blank', 'noopener,noreferrer');
                   }}
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`flex items-start justify-between p-3 rounded-lg cursor-pointer t-row-item ${
@@ -188,30 +188,20 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                       <span className="font-medium text-sm text-[#F5F5F5] group-hover:text-white">
                         {ref.title}
                       </span>
-                      <span className="text-xs text-[#38BDF8] font-mono">
-                        {catName}
-                      </span>
-                      {ref.year && (
-                        <span className="text-xs text-[#71717A] font-mono">
-                          · {ref.year}
-                        </span>
-                      )}
                     </div>
                     <p className="text-xs text-[#A1A1AA] line-clamp-1">
                       {language === 'pt-BR' ? ref.descriptionPt : ref.descriptionEn}
                     </p>
                     <div className="flex items-center gap-2 mt-1.5 text-[11px] text-[#71717A]">
-                      <span>{ref.author}</span>
-                      <span>·</span>
                       <span>{ref.tags.slice(0, 5).join(', ')}</span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0 self-center">
                     {isSelected && (
-                      <span className="flex items-center gap-1 text-[11px] text-[#A1A1AA] bg-[#262626] px-2 py-0.5 rounded">
+                      <span className="flex items-center gap-1.5 text-[11px] text-[#38BDF8] bg-[#0C1A30] border border-[#1D4ED8]/40 px-2.5 py-1 rounded-md font-medium shadow-sm">
                         <span>Acessar</span>
-                        <CornerDownLeft className="w-3 h-3 text-[#3B82F6]" />
+                        <ExternalLink className="w-3 h-3 text-[#38BDF8]" />
                       </span>
                     )}
                   </div>

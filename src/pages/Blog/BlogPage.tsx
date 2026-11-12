@@ -19,7 +19,7 @@ export const BlogPage: React.FC = () => {
       title: 'A Anatomia Oculta das Melhores Landing Pages do Ecossistema',
       date: 'Outubro 2026',
       readTime: '6 min de leitura',
-      author: 'Curadoria Inspiration Archive',
+      author: 'Curadoria Gallery Inspirations',
       excerpt: 'Uma dissecação estrutural de como Lapa Ninja, LandingHero e SaaSPages organizam blocos de valor, garantindo altas taxas de conversão sem comprometer a elegância.',
     },
     {
@@ -27,7 +27,7 @@ export const BlogPage: React.FC = () => {
       title: 'Design Systems Abertos: O Que Aprendemos com 50+ Bibliotecas',
       date: 'Setembro 2026',
       readTime: '5 min de leitura',
-      author: 'Inspiration Archive Lab',
+      author: 'Gallery Inspirations Lab',
       excerpt: 'Comparativo sobre como Design Systems modernos lidam com tokens de cores em modo escuro, física de microinterações e hierarquias semânticas.',
     },
   ];

@@ -28,7 +28,7 @@ export const DocsPage: React.FC = () => {
           1. Filosofia: Biblioteca de Conteúdo Textual
         </h2>
         <p>
-          O Inspiration Archive rejeita intencionalmente o modelo de galerias de screenshots e feeds de imagens inflados. Acreditamos que o estudo rigoroso de design e engenharia web reside na compreensão dos padrões arquiteturais, fluxos de interação, ergonomia de componentes e decisões tipográficas.
+          O Gallery Inspirations rejeita intencionalmente o modelo de galerias de screenshots e feeds de imagens inflados. Acreditamos que o estudo rigoroso de design e engenharia web reside na compreensão dos padrões arquiteturais, fluxos de interação, ergonomia de componentes e decisões tipográficas.
         </p>
         <p>
           Ao apresentar referências puramente em formato textual estruturado, eliminamos o ruído visual e priorizamos a leitura focada, velocidade instantânea de carregamento e acesso direto aos websites em produção.
@@ -90,7 +90,7 @@ export const DocsPage: React.FC = () => {
       <section className="p-6 rounded-xl bg-[#141414] border border-[#262626] space-y-3">
         <h3 className="text-base font-semibold text-white">Contribuições via GitHub</h3>
         <p className="text-xs text-[#A1A1AA]">
-          O repositório do Inspiration Archive é mantido de forma colaborativa através de Pull Requests. Consulte o nosso Guia de Contribuição para formatar seus dados no padrão do catálogo.
+          O repositório do Gallery Inspirations é mantido de forma colaborativa através de Pull Requests. Consulte o nosso Guia de Contribuição para formatar seus dados no padrão do catálogo.
         </p>
         <div className="pt-2">
           <Link

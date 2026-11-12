@@ -1,6 +1,6 @@
-# Guia de Contribuição — Inspiration Archive
+# Guia de Contribuição — Gallery Inspirations
 
-Agradecemos o interesse em contribuir com o **Inspiration Archive**! Este projeto é uma biblioteca digital colaborativa, de código aberto, focada em reunir referências de excelência em design e desenvolvimento web.
+Agradecemos o interesse em contribuir com o **Gallery Inspirations**! Este projeto é uma biblioteca digital colaborativa, de código aberto, focada em reunir referências de excelência em design e desenvolvimento web.
 
 ---
 

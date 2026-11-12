@@ -9,7 +9,7 @@ export const ChangelogPage: React.FC = () => {
     {
       version: 'v1.0.0',
       date: 'Novembro 2026',
-      title: 'Lançamento Inicial do Inspiration Archive',
+      title: 'Lançamento Inicial do Gallery Inspirations',
       summary: 'Reestruturação completa da biblioteca com 18 categorias oficiais, modo escuro nativo, Command Palette global e catálogo textual sem ruído visual.',
       changes: [
         'Implementação de 18 categorias oficiais de design e desenvolvimento',

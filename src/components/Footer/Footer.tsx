@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
                 </svg>
               </div>
               <span className="font-semibold text-sm text-[#F5F5F5] tracking-tight">
-                Inspiration Archive
+                Gallery Inspirations
               </span>
             </div>
             <p className="text-xs text-[#A1A1AA] max-w-sm leading-relaxed">
@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-6 border-t border-[#181818] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
           <span>
-            © {APP_CONFIG.year} Inspiration Archive. Todos os direitos reservados.
+            © {APP_CONFIG.year} Gallery Inspirations. Todos os direitos reservados.
           </span>
           <div className="flex items-center gap-4">
             <span>Geist · Lucide · React</span>

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { Reference } from '../../data/references';
-import { getCategoryById } from '../../data/categories';
 import { useLanguage } from '../../locales/translations';
 import SpecularButton from '../SpecularButton/SpecularButton';
 
@@ -13,8 +11,6 @@ interface ReferenceItemProps {
 
 export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }) => {
   const { language, t } = useLanguage();
-  const category = getCategoryById(reference.categoryId);
-  const categoryName = language === 'pt-BR' ? category?.namePt : category?.nameEn;
   const description = language === 'pt-BR' ? reference.descriptionPt : reference.descriptionEn;
 
   // Format index as 01., 02., etc.
@@ -31,68 +27,29 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
           </span>
 
           <div className="flex-1 min-w-0">
-            {/* Title with link */}
+            {/* Title with direct external link */}
             <div className="flex items-center gap-2 flex-wrap">
-              <Link
-                to={`/reference/${reference.id}`}
+              <a
+                href={reference.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-base sm:text-lg font-semibold text-[#38BDF8] hover:text-[#93C5FD] transition-colors inline-flex items-center gap-1.5 group/link"
+                title={`${t.visitAction} ${reference.title}`}
               >
                 <span>{reference.title}</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
-              </Link>
+              </a>
             </div>
 
             {/* Description */}
-            <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1.5 leading-relaxed max-w-2xl">
+            <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1.5 leading-relaxed max-w-3xl">
               {description}
             </p>
-
-            {/* Author and Category Meta */}
-            <div className="flex items-center gap-2 mt-2 text-xs text-[#71717A] flex-wrap">
-              <span className="text-[#A1A1AA]">{reference.author}</span>
-              <span aria-hidden="true">·</span>
-              {category && (
-                <Link
-                  to={`/category/${category.slug}`}
-                  className="hover:text-[#38BDF8] transition-colors"
-                >
-                  {categoryName}
-                </Link>
-              )}
-              {reference.year && (
-                <>
-                  <span aria-hidden="true">·</span>
-                  <span className="font-mono">{reference.year}</span>
-                </>
-              )}
-            </div>
           </div>
         </div>
 
-        {/* Right Side: Tags and Quick Action Links */}
-        <div className="flex flex-wrap md:flex-col lg:flex-row items-start md:items-end lg:items-center gap-3 sm:gap-4 shrink-0 pl-10 md:pl-0">
-          {/* Tags */}
-          <div className="flex items-center gap-1.5 flex-wrap">
-            {reference.tags.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="px-2.5 py-1 text-[11px] rounded-md bg-[#161616] border border-[#262626] text-[#A1A1AA] hover:border-[#38BDF8]/40 hover:text-white t-pill cursor-default"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {/* Action Links */}
-          <div className="flex items-center gap-2 text-xs font-medium">
-            <Link
-              to={`/reference/${reference.id}`}
-              className="inline-flex items-center gap-1 text-[#38BDF8] hover:text-[#93C5FD] py-1.5 px-3 rounded-lg hover:bg-[#102035] t-button"
-            >
-              <span>{t.detailsAction}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-
+        {/* Right Side: Direct Specular Visit Button */}
+        <div className="flex items-center gap-2 text-xs font-medium shrink-0 pl-10 sm:pl-0">
             <SpecularButton
               as="a"
               href={reference.url}
@@ -121,7 +78,6 @@ export const ReferenceItem: React.FC<ReferenceItemProps> = ({ reference, index }
             </SpecularButton>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
   );
 };
