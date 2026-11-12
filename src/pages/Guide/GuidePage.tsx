@@ -69,14 +69,11 @@ export const GuidePage: React.FC = () => {
 {`{
   id: "nome-da-referencia",
   title: "Nome do Recurso",
-  categoryId: "uma-das-18-categorias",
+  categoryId: "landing",
+  url: "https://site-oficial.com/",
   descriptionPt: "Descrição concisa em português...",
   descriptionEn: "Concise description in English...",
-  author: "Autor ou Estúdio",
-  tags: ["Tag1", "Tag2"],
-  url: "https://site-oficial.com/",
-  year: 2025,
-  popularity: 95
+  popularity: 90
 }`}
               </pre>
             </div>

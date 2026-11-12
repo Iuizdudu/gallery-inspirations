@@ -33,10 +33,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
 
         return (
           ref.title.toLowerCase().includes(q) ||
-          ref.author.toLowerCase().includes(q) ||
           desc.toLowerCase().includes(q) ||
           (catName && catName.toLowerCase().includes(q)) ||
-          ref.tags.some((tag) => tag.toLowerCase().includes(q))
+          (ref.author && ref.author.toLowerCase().includes(q)) ||
+          (ref.tags && ref.tags.some((tag) => tag.toLowerCase().includes(q)))
         );
       });
     }

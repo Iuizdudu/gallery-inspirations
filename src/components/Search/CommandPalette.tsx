@@ -44,10 +44,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
       return (
         ref.title.toLowerCase().includes(q) ||
-        ref.author.toLowerCase().includes(q) ||
         desc.toLowerCase().includes(q) ||
         (catName && catName.toLowerCase().includes(q)) ||
-        ref.tags.some((tag) => tag.toLowerCase().includes(q))
+        (ref.author && ref.author.toLowerCase().includes(q)) ||
+        (ref.tags && ref.tags.some((tag) => tag.toLowerCase().includes(q)))
       );
     }).slice(0, 15);
   }, [query, language]);
@@ -192,9 +192,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                     <p className="text-xs text-[#A1A1AA] line-clamp-1">
                       {language === 'pt-BR' ? ref.descriptionPt : ref.descriptionEn}
                     </p>
-                    <div className="flex items-center gap-2 mt-1.5 text-[11px] text-[#71717A]">
-                      <span>{ref.tags.slice(0, 5).join(', ')}</span>
-                    </div>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0 self-center">

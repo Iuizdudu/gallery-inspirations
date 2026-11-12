@@ -1,6 +1,19 @@
 # Guia de Contribuição — Gallery Inspirations ✦
 
-Obrigado por ajudar a comunidade a manter e expandir o **Gallery Inspirations**! Este projeto é uma biblioteca digital colaborativa, de código aberto, focada em reunir as melhores referências de design e engenharia web do mundo.
+Obrigado pelo interesse em contribuir com o **Gallery Inspirations**! Este projeto é uma biblioteca digital colaborativa, de código aberto, focada em reunir as melhores referências de design e engenharia web do mundo.
+
+---
+
+## ⚙️ Configuração da URL do seu Repositório GitHub
+
+A URL utilizada por todos os botões de **Contribuir** da aplicação está configurada em:
+```typescript
+src/data/config.ts
+```
+```typescript
+export const GITHUB_REPO_URL = "https://github.com/luizeduardo98r4/gallery-inspirations";
+```
+> **Dica:** Você pode alterar essa constante a qualquer momento para o endereço exato do seu perfil ou organização no GitHub.
 
 ---
 
@@ -11,41 +24,35 @@ Todo o catálogo do Gallery Inspirations é gerenciado através de código tipad
 src/data/references.ts
 ```
 
-### 1. Modelo de Dados de uma Referência
+### 1. Modelo Simplificado de Dados
 
-Toda nova referência adicionada deve seguir o formato da interface `Reference`:
+Para tornar o processo rápido, direto e sem burocracia, **apenas os campos que realmente são exibidos na tela são exigidos**:
 
 ```typescript
 export interface Reference {
   id: string;               // Identificador único em kebab-case (ex: "lapa-ninja")
-  title: string;            // Nome do site, estúdio ou ferramenta
+  title: string;            // Nome do site ou ferramenta (exibido no card)
   categoryId: string;       // ID da categoria correspondente (ver src/data/categories.ts)
-  url: string;              // URL canônica HTTPS direta
-  author: string;           // Nome do criador, estúdio ou empresa
-  authorUrl?: string;       // URL do portfólio/site do autor (opcional)
-  descriptionPt: string;    // Descrição editorial concisa em Português
-  descriptionEn: string;    // Descrição editorial concisa em Inglês
-  tags: string[];           // 3 a 5 tags representativas (ex: ["Landing Pages", "UI", "SaaS"])
-  year?: number;            // Ano de lançamento (opcional)
-  isFeatured?: boolean;     // Se deve ter destaque prioritário (opcional)
-  popularity?: number;      // Relevância de 1 a 100 (opcional)
+  url: string;              // URL direta HTTPS (aberta no clique)
+  descriptionPt: string;    // Descrição editorial em Português (exibida no card)
+  descriptionEn: string;    // Descrição editorial em Inglês (exibida no card)
+  popularity?: number;      // Relevância opcional de 1 a 100 para ordenação
 }
 ```
+
+> **Atenção:** Campos como autor, tags, ano de lançamento ou reviews detalhados foram propositalmente removidos da interface para manter o catálogo 100% minimalista e veloz. **Você não precisa preenchê-los!**
 
 ### Exemplo Prático de Nova Referência:
 
 ```typescript
 {
-  id: "linear-app",
-  title: "Linear",
-  categoryId: "saas",
-  url: "https://linear.app",
-  author: "Linear Orbit, Inc.",
-  descriptionPt: "O padrão-ouro em design de ferramentas de produtividade, microinterações e velocidade.",
-  descriptionEn: "The gold standard in productivity tool design, micro-interactions, and high performance.",
-  tags: ["SaaS", "Produtividade", "Dark Mode", "Craft"],
-  year: 2026,
-  popularity: 98,
+  id: "stripe-press",
+  title: "Stripe Press",
+  categoryId: "landing",
+  url: "https://press.stripe.com/",
+  descriptionPt: "Publicações sobre ideias, inovação e progresso econômico com direção de arte e tipografia editorial de excelência.",
+  descriptionEn: "Publications on ideas, innovation, and economic progress with world-class art direction and editorial typography.",
+  popularity: 96,
 }
 ```
 
@@ -59,7 +66,7 @@ export interface Reference {
    git checkout -b feature/adicionar-nome-da-referencia
    ```
 3. **Adicione a referência** ao array `REFERENCES` em `src/data/references.ts`.
-4. **Verifique se a categoria existe** em `src/data/categories.ts`. (O catálogo já conta com mais de 45 categorias oficiais pré-cadastradas).
+4. **Escolha uma categoria existente** em `src/data/categories.ts` (ex: `landing`, `saas`, `ui-ux`, `navbar`, `component`, `portfolio`, etc.).
 5. **Teste a compilação localmente**:
    ```bash
    npm run build
@@ -78,6 +85,6 @@ Para manter a alta qualidade do catálogo:
 - **Design Excepcional:** A referência deve se destacar por tipografia apurada, layout inovador, microinterações fluidas ou engenharia criativa.
 - **URL Canônica e Estável:** Apenas links seguros (`https://`) e websites ativos em produção.
 - **Sem Links de Afiliados ou Spam:** O repositório é 100% neutro, educacional e gratuito.
-- **Descrições Concisas:** Textos descritivos focados em valor técnico e decisões visuais.
+- **Descrições Concisas:** Textos descritivos focados em valor prático e decisões visuais.
 
 Agradecemos profundamente cada contribuição! 🚀

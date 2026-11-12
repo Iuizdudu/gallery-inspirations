@@ -1,65 +1,88 @@
-# Guia de Contribuição — Gallery Inspirations
+# Contributing Guide — Gallery Inspirations
 
-Agradecemos o interesse em contribuir com o **Gallery Inspirations**! Este projeto é uma biblioteca digital colaborativa, de código aberto, focada em reunir referências de excelência em design e desenvolvimento web.
+Thank you for your interest in contributing to **Gallery Inspirations**! This project is an open-source, community-curated digital catalog gathering premier design and web development references.
 
 ---
 
-## 📋 Como Propor Novas Referências
+## ⚙️ Setting Up Your GitHub Repository URL
 
-O catálogo é estruturado em TypeScript e centralizado no arquivo:
+The repository URL used by the **Contribute** buttons throughout the app is defined in:
+```typescript
+src/data/config.ts
+```
+```typescript
+export const GITHUB_REPO_URL = "https://github.com/luizeduardo98r4/gallery-inspirations";
+```
+> **Tip:** You can replace this URL with your exact GitHub username and repository name anytime.
+
+---
+
+## 📋 How to Propose New References
+
+All references in **Gallery Inspirations** are typed in TypeScript and centralized in:
 ```
 src/data/references.ts
 ```
 
-### 1. Modelo de Dados de uma Referência
+### 1. Minimal Data Model
 
-Toda nova referência adicionada deve seguir a interface TypeScript `Reference`:
+To keep contributions fast and simple, **only fields that are actually displayed on screen** are required:
 
 ```typescript
 export interface Reference {
-  id: string;               // Identificador único (kebab-case)
-  title: string;            // Nome do site, biblioteca ou produto
-  categoryId: string;       // ID da categoria correspondente (ver src/data/categories.ts)
-  url: string;              // URL canônica oficial
-  author: string;           // Criador, estúdio ou empresa
-  authorUrl?: string;       // URL do autor ou perfil oficial
-  descriptionPt: string;    // Descrição editorial em português
-  descriptionEn: string;    // Descrição editorial em inglês
-  tags: string[];           // Palavras-chave relevantes
-  year?: number;            // Ano de lançamento ou publicação
-  isFeatured?: boolean;     // Destaque na página principal
-  popularity?: number;      // Escala de 1 a 100
+  id: string;               // Unique slug in kebab-case (e.g. "lapa-ninja")
+  title: string;            // Name of the website or product (displayed on card)
+  categoryId: string;       // Matching category ID (see src/data/categories.ts)
+  url: string;              // Canonical HTTPS URL (opened on click)
+  descriptionPt: string;    // Brief description in Portuguese (displayed on card)
+  descriptionEn: string;    // Brief description in English (displayed on card)
+  popularity?: number;      // Optional relevance score from 1 to 100 (for sorting)
+}
+```
+
+> **Note:** Fields like author, authorUrl, year, and tags have been removed from the UI to ensure maximum minimalism and speed. You do **not** need to provide them!
+
+### Practical Example:
+
+```typescript
+{
+  id: "stripe-press",
+  title: "Stripe Press",
+  categoryId: "landing",
+  url: "https://press.stripe.com/",
+  descriptionPt: "Publicações sobre ideias, inovação e progresso econômico com direção de arte e tipografia editorial de excelência.",
+  descriptionEn: "Publications on ideas, innovation, and economic progress with world-class art direction and editorial typography.",
+  popularity: 96,
 }
 ```
 
 ---
 
-## 🛠️ Passo a Passo para Contribuir
+## 🛠️ Step-by-Step Contribution Flow
 
-1. **Faça um Fork** deste repositório para o seu perfil no GitHub.
-2. **Crie uma branch** para sua alteração:
+1. **Fork** this repository to your GitHub account.
+2. **Create a branch** for your addition:
    ```bash
-   git checkout -b feature/nova-referencia-nome
+   git checkout -b feature/add-new-reference
    ```
-3. **Edite o arquivo** `src/data/references.ts` adicionando a nova referência no array `REFERENCES`.
-4. **Verifique se a categoria existe** em `src/data/categories.ts`. Se for uma nova categoria, cadastre-a no array `CATEGORIES`.
-5. **Teste a compilação localmente**:
+3. **Add your reference** into the `REFERENCES` array in `src/data/references.ts`.
+4. **Choose an existing category ID** from `src/data/categories.ts` (e.g. `landing`, `saas`, `ui-ux`, `navbar`, `component`, `portfolio`, etc.).
+5. **Test the build** locally to ensure types compile cleanly:
    ```bash
    npm run build
    ```
-6. **Faça o Commit** das suas alterações com uma mensagem clara:
+6. **Commit** your changes:
    ```bash
-   git commit -m "feat(catalog): adicionar referência [Nome da Referência]"
+   git commit -m "feat(catalog): add [Reference Name]"
    ```
-7. **Abra um Pull Request (PR)** apontando para a branch principal (`main`).
+7. **Open a Pull Request** to the `main` branch.
 
 ---
 
-## ✨ Critérios Editoriais de Qualidade
+## ✨ Editorial Quality Standards
 
-- **Originalidade e Valor:** A referência deve oferecer valor prático, inspiração estética refinada ou utilidade técnica evidente.
-- **Links Válidos:** Somente URLs ativas com HTTPS são aceitas.
-- **Sem Spam ou Links de Afiliados:** Proibições estritas a promoções enganosas e paywalls ocultos.
-- **Biblioteca de Conteúdo:** O projeto foca em curadoria editorial textual rápida, sem poluição de capturas de tela desnecessárias.
+- **Working HTTPS Link:** Only live, secure, working production websites.
+- **Genuine Craft:** The reference should exhibit exceptional typography, UI layout, microinteractions, or creative engineering.
+- **No Paywalls or Affiliates:** We keep the archive 100% free and neutral.
 
-Obrigado por ajudar a comunidade a construir o melhor acervo de referências da web!
+Thank you for helping build the cleanest web inspiration directory! 🚀

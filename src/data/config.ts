@@ -5,7 +5,7 @@
  * Configure a URL do repositório oficial do GitHub aqui para o botão "Contribuir".
  * O usuário pode substituir pelo endereço exato de sua organização ou perfil.
  */
-export const GITHUB_REPO_URL = "https://github.com/luizeduardo98r4/inspiration-archive";
+export const GITHUB_REPO_URL = "https://github.com/luizeduardo98r4/gallery-inspirations";
 
 export const APP_CONFIG = {
   name: "Gallery Inspirations",

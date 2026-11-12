@@ -38,9 +38,9 @@ export const CategoryPage: React.FC = () => {
       refs = refs.filter(
         (ref) =>
           ref.title.toLowerCase().includes(q) ||
-          ref.author.toLowerCase().includes(q) ||
           (language === 'pt-BR' ? ref.descriptionPt : ref.descriptionEn).toLowerCase().includes(q) ||
-          ref.tags.some((tag) => tag.toLowerCase().includes(q))
+          (ref.author && ref.author.toLowerCase().includes(q)) ||
+          (ref.tags && ref.tags.some((tag) => tag.toLowerCase().includes(q)))
       );
     }
 

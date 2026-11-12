@@ -1,17 +1,16 @@
 export interface Reference {
-  id: string;
-  title: string;
-  categoryId: string; // ID da categoria correspondente
-  descriptionPt: string;
-  descriptionEn: string;
-  author: string;
-  tags: string[];
-  url: string;
-  popularity?: number; // 0-100
+  id: string;               // Identificador único (kebab-case)
+  title: string;            // Nome do site, biblioteca ou produto exibido no card
+  categoryId: string;       // ID da categoria correspondente (ver src/data/categories.ts)
+  url: string;              // URL canônica aberta pelo título e botão Visitar
+  descriptionPt: string;    // Descrição editorial em português exibida no card
+  descriptionEn: string;    // Descrição editorial em inglês exibida no card
+  popularity?: number;      // Relevância de 1 a 100 para ordenação (opcional, default 80)
+  // Campos legados opcionais mantidos para compatibilidade com registros existentes:
+  author?: string;
+  tags?: string[];
   year?: number;
   featured?: boolean;
-  detailedReviewPt?: string;
-  detailedReviewEn?: string;
 }
 
 /**
