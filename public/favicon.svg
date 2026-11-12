@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Circular dark badge -->
+  <circle cx="32" cy="32" r="30" fill="#121214" stroke="#262629" stroke-width="2"/>
+  <circle cx="32" cy="32" r="28" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1"/>
+
+  <!-- Main 4-pointed sparkle star with curved arcs -->
+  <path
+    d="M 32 16 
+       C 32 23.5, 24.5 31, 17 31 
+       C 16 31, 15.5 31.5, 15.5 32 
+       C 15.5 32.5, 16 33, 17 33 
+       C 24.5 33, 32 40.5, 32 48 
+       C 32 49, 32.5 49.5, 33 49.5 
+       C 33.5 49.5, 34 49, 34 48 
+       C 34 40.5, 41.5 33, 49 33 
+       C 50 33, 50.5 32.5, 50.5 32 
+       C 50.5 31.5, 50 31, 49 31 
+       C 41.5 31, 34 23.5, 34 16 
+       C 34 15, 33.5 14.5, 33 14.5 
+       C 32.5 14.5, 32 15, 32 16 Z"
+    fill="#F4F4F5"
+    stroke="#FFFFFF"
+    stroke-width="0.5"
+    stroke-linejoin="round"
+  />
+
+  <!-- Top-right secondary sparkle -->
+  <path
+    d="M 46 18 
+       C 46 20.5, 44 22, 42 22 
+       C 44 22, 46 23.5, 46 26 
+       C 46 23.5, 48 22, 50 22 
+       C 48 22, 46 20.5, 46 18 Z"
+    fill="#E4E4E7"
+  />
+
+  <!-- Bottom-left accent dot -->
+  <circle cx="21" cy="43" r="2.5" fill="#E4E4E7"/>
+</svg>
