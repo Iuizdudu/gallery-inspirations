@@ -25,8 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
     { label: t.navHome, href: '/' },
     { label: t.navDocs, href: '/docs' },
     { label: t.navGuide, href: '/guide' },
-    { label: t.navChangelog, href: '/changelog' },
-    { label: t.navBlog, href: '/blog' }
+    { label: t.navChangelog, href: '/changelog' }
   ];
 
   // Router Link component to integrate React Router SPA navigation into PillNav

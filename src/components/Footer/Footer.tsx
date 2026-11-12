@@ -21,14 +21,12 @@ export const Footer: React.FC = () => {
         { num: '02', label: 'Guia de Contribuição', path: '/guide' },
         { num: '03', label: 'Documentação', path: '/docs' },
         { num: '04', label: 'Changelog', path: '/changelog' },
-        { num: '05', label: 'Blog Editorial', path: '/blog' },
       ]
     : [
         { num: '01', label: 'Home', path: '/' },
         { num: '02', label: 'Contribution Guide', path: '/guide' },
         { num: '03', label: 'Documentation', path: '/docs' },
         { num: '04', label: 'Changelog', path: '/changelog' },
-        { num: '05', label: 'Editorial Blog', path: '/blog' },
       ];
 
   const categoryLinks = isPt

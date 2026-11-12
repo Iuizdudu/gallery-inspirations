@@ -10,7 +10,6 @@ import { CategoryPage } from './pages/Category/CategoryPage';
 import { DocsPage } from './pages/Docs/DocsPage';
 import { GuidePage } from './pages/Guide/GuidePage';
 import { ChangelogPage } from './pages/Changelog/ChangelogPage';
-import { BlogPage } from './pages/Blog/BlogPage';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 
 // Scroll to top helper on route change
@@ -76,7 +75,6 @@ export default function App() {
                 <Route path="/docs" element={<DocsPage />} />
                 <Route path="/guide" element={<GuidePage />} />
                 <Route path="/changelog" element={<ChangelogPage />} />
-                <Route path="/blog" element={<BlogPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </main>

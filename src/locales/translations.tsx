@@ -16,7 +16,6 @@ export const TRANSLATIONS = {
     navDocs: 'Documentação',
     navGuide: 'Guia',
     navChangelog: 'Changelog',
-    navBlog: 'Blog',
     navContribute: 'Contribuir',
     navContributeShort: 'Contribuir',
     
@@ -80,8 +79,6 @@ export const TRANSLATIONS = {
     guideSubtitle: 'Como propor novas referências através do repositório oficial no GitHub.',
     changelogTitle: 'Histórico de Atualizações',
     changelogSubtitle: 'Acompanhe as versões e inclusões de novas categorias e referências no arquivo.',
-    blogTitle: 'Caderno Editorial',
-    blogSubtitle: 'Ensaios, notas sobre design systems e reflexões sobre a evolução da web moderna.',
     pageNotFoundTitle: 'Página Não Encontrada',
     pageNotFoundSubtitle: 'A rota solicitada não existe ou foi movida no arquivo.',
     returnHome: 'Retornar ao Início',
@@ -103,7 +100,6 @@ export const TRANSLATIONS = {
     navDocs: 'Documentation',
     navGuide: 'Guide',
     navChangelog: 'Changelog',
-    navBlog: 'Blog',
     navContribute: 'Contribute',
     navContributeShort: 'Contribute',
     
@@ -167,8 +163,6 @@ export const TRANSLATIONS = {
     guideSubtitle: 'How to propose new references via the official GitHub repository.',
     changelogTitle: 'Changelog & Updates',
     changelogSubtitle: 'Track versions and additions of new categories and references in the archive.',
-    blogTitle: 'Editorial Notebook',
-    blogSubtitle: 'Essays, design systems notes, and observations on modern web craft.',
     pageNotFoundTitle: 'Page Not Found',
     pageNotFoundSubtitle: 'The requested route does not exist or has been relocated.',
     returnHome: 'Return to Home',
