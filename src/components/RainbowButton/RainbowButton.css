@@ -1,11 +1,11 @@
-/* Magic UI Rainbow Button - Exact Match to Reference */
+/* Blue & Ice-White Shimmer Button matching #365dff brand palette */
 .rainbow-star-btn {
-  --color-1: hsl(0, 100%, 63%);
-  --color-2: hsl(42, 100%, 55%);
-  --color-3: hsl(100, 100%, 58%);
-  --color-4: hsl(190, 100%, 55%);
-  --color-5: hsl(225, 100%, 65%);
-  --color-6: hsl(275, 100%, 65%);
+  --color-1: #1e40af;
+  --color-2: #365dff;
+  --color-3: #6c8cff;
+  --color-4: #e6efff;
+  --color-5: #7ea0ff;
+  --color-6: #365dff;
 
   position: relative;
   display: inline-flex;

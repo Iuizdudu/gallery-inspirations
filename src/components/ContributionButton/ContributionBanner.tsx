@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Github, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../locales/translations';
-import { GITHUB_REPO_URL } from '../../data/config';
-import StarBorder from '../StarBorder/StarBorder';
+import { RainbowButton } from '../RainbowButton/RainbowButton';
 
 export const ContributionBanner: React.FC = () => {
   const { language, t } = useLanguage();
@@ -50,32 +49,11 @@ export const ContributionBanner: React.FC = () => {
         </div>
       </div>
 
-      <StarBorder
-        as="a"
-        href={GITHUB_REPO_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        color="#365dff"
-        trailColor="#5c7eff"
-        duration={3.5}
-        direction="clockwise"
-        stars={1}
-        trailLength={0.35}
-        thickness={1.5}
-        radius={999}
-        glow={0.7}
-        hover="lap"
-        sparkle={true}
-        clickPulse={true}
-        theme="dark"
-        backgroundColor="#141416"
-        borderColor="rgba(255, 255, 255, 0.12)"
-        className="w-full sm:w-auto shrink-0 !py-2.5 !px-5 text-xs sm:text-sm font-medium text-white shadow-lg shadow-black/40 group"
-      >
+      <RainbowButton className="w-full sm:w-auto shrink-0 !h-10 !px-5 text-xs sm:text-sm font-medium text-white gap-2">
         <Github className="w-4 h-4 text-white shrink-0" />
         <span className="font-medium">{t.contributeButton}</span>
         <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover:text-white group-hover:translate-x-1 transition-transform shrink-0" />
-      </StarBorder>
+      </RainbowButton>
     </div>
   );
 };
