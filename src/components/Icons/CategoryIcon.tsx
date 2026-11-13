@@ -47,6 +47,9 @@ import {
   TrendingUp,
   Package,
   Contrast,
+  Hexagon,
+  LayoutTemplate,
+  SlidersHorizontal,
 } from 'lucide-react';
 
 interface CategoryIconProps {
@@ -148,6 +151,12 @@ export const CategoryIcon: React.FC<CategoryIconProps> = ({ name, className = "w
       return <Package className={className} />;
     case 'Contrast':
       return <Contrast className={className} />;
+    case 'Hexagon':
+      return <Hexagon className={className} />;
+    case 'LayoutTemplate':
+      return <LayoutTemplate className={className} />;
+    case 'SlidersHorizontal':
+      return <SlidersHorizontal className={className} />;
     default:
       return <Folder className={className} />;
   }

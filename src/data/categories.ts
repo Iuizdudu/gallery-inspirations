@@ -430,6 +430,36 @@ export const CATEGORIES: Category[] = [
     descriptionEn: "Analytics consoles, metric visualizers, presentation decks, data grids, and management workspaces.",
     iconName: "BarChart3",
   },
+  {
+    id: "icons",
+    slug: "icons",
+    namePt: "Ícones",
+    nameEn: "Icons",
+    descriptionPt: "Bibliotecas de ícones SVG open-source, conjuntos vetoriais personalizáveis e sistemas iconográficos para interfaces.",
+    descriptionEn: "Open-source SVG icon libraries, customizable vector sets, and cohesive iconography systems for interfaces.",
+    iconName: "Hexagon",
+    aliases: ["icones"],
+  },
+  {
+    id: "templates",
+    slug: "templates",
+    namePt: "Templates & Blocos",
+    nameEn: "Templates & Blocks",
+    descriptionPt: "Templates prontos, seções modulares e blocos de páginas para Vercel, Framer, Webflow, Tailwind e shadcn/ui.",
+    descriptionEn: "Production templates, modular page sections, and ready-to-use UI blocks for Vercel, Framer, Webflow, Tailwind, and shadcn/ui.",
+    iconName: "LayoutTemplate",
+    aliases: ["blocos"],
+  },
+  {
+    id: "css-elements",
+    slug: "css-elements",
+    namePt: "Elementos CSS & Loaders",
+    nameEn: "CSS Elements & Loaders",
+    descriptionPt: "Botões, inputs, loaders, spinners e microelementos interativos em CSS puro e Tailwind prontos para copiar.",
+    descriptionEn: "Pure CSS and Tailwind micro-elements including buttons, inputs, loaders, and animated spinners ready to copy and adapt.",
+    iconName: "SlidersHorizontal",
+    aliases: ["elementos-css", "loaders"],
+  },
 ];
 
 export function getCategoryBySlug(slug: string): Category | undefined {

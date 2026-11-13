@@ -477,6 +477,39 @@ const CATEGORY_PROMPT_PROFILES: Record<string, CategoryPromptProfile> = {
       'Responsive grid adaptation without horizontal overflow',
     ],
   },
+  icons: {
+    projectContext: 'an interface iconography and SVG icon system',
+    focusSummary:
+      'stroke weight consistency, optical grid alignment, corner radius harmony, multi-style variants, tree-shakeable React/SVG usage, and accessible labeling',
+    analysisAreas: [
+      'Consistent stroke width, cap/join geometry, and optical sizing across viewBoxes',
+      'Outline vs. filled/duotone visual pairing for active and inactive states',
+      'Crisp rendering at 16px, 20px, and 24px interface scales',
+      'Semantic accessibility attributes and lightweight SVG integration',
+    ],
+  },
+  templates: {
+    projectContext: 'modular Website Templates and Section Blocks',
+    focusSummary:
+      'page architecture, reusable section composition, responsive grid pacing, CTA hierarchy, dark/light surface balance, and clean code structure',
+    analysisAreas: [
+      'Modular section composition across hero, feature, pricing, and FAQ blocks',
+      'Grid proportions, whitespace rhythm, and responsive breakpoint transitions',
+      'Consistent visual language across full-page templates and marketing blocks',
+      'Adaptable component markup ready for customization without lock-in',
+    ],
+  },
+  'css-elements': {
+    projectContext: 'pure CSS UI Micro-Elements, Buttons, Inputs, and Loaders',
+    focusSummary:
+      'tactile micro-interactions, pure-CSS animation timing, hover/focus/active states, border/shadow craft, reduced-motion safety, and lightweight zero-dependency markup',
+    analysisAreas: [
+      'Smooth compositor-friendly CSS transitions and keyframe loader timing',
+      'Crisp button, input, and toggle tactile feedback across hover and focus-visible states',
+      'Layered surface depth, border highlights, and accessible contrast',
+      'Respect for prefers-reduced-motion and clean semantic HTML controls',
+    ],
+  },
 };
 
 function getCategoryPromptProfile(category: Category): CategoryPromptProfile {
