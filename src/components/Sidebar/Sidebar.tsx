@@ -7,11 +7,14 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
-  Sparkles,
+  BookOpen,
+  GitPullRequest,
+  History,
 } from 'lucide-react';
 import { CATEGORIES } from '../../data/categories';
 import { REFERENCES, getReferencesByCategory } from '../../data/references';
 import { CategoryIcon } from '../Icons/CategoryIcon';
+import { BrandLogo } from '../BrandLogo/BrandLogo';
 import { useLanguage } from '../../locales/translations';
 
 interface SidebarProps {
@@ -48,23 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           className="flex items-center group overflow-hidden w-full"
           title="Gallery Inspirations"
         >
-          {isCollapsed ? (
-            <div className="mx-auto w-10 h-10 rounded-xl bg-[#141414] hover:bg-[#1A1A1A] border border-[#262626] flex items-center justify-center overflow-hidden shrink-0 p-1.5 shadow-md transition-colors">
-              <img
-                src="/assets/aistudio/logo_icon.png"
-                alt="Gallery Inspirations"
-                className="w-full h-full object-contain brightness-0 invert opacity-95 group-hover:opacity-100 transition-opacity"
-              />
-            </div>
-          ) : (
-            <div className="flex items-center w-full">
-              <img
-                src="/assets/aistudio/logo_trimmed.png"
-                alt="Gallery Inspirations"
-                className="h-9 sm:h-10 max-h-10 w-auto max-w-[195px] object-contain brightness-0 invert opacity-95 group-hover:opacity-100 transition-all duration-150 drop-shadow-[0_2px_12px_rgba(255,255,255,0.18)]"
-              />
-            </div>
-          )}
+          <BrandLogo collapsed={isCollapsed} size="md" />
         </NavLink>
 
         {/* Mobile close button */}
@@ -139,6 +126,54 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <List className="w-4 h-4 shrink-0" />
           {!isCollapsed && <span>{t.contentIndex}</span>}
         </button>
+
+        {/* Secondary pages visible inside mobile drawer (< md where PillNav is hidden) */}
+        {!isCollapsed && (
+          <div className="md:hidden pt-1 space-y-1">
+            <NavLink
+              to="/docs"
+              onClick={onCloseMobile}
+              className={({ isActive }) =>
+                `flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg transition-colors ${
+                  isActive
+                    ? 'bg-[#181818] text-[#365dff] border border-[#262626]'
+                    : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#141414]'
+                }`
+              }
+            >
+              <BookOpen className="w-4 h-4 shrink-0" />
+              <span>{t.navDocs}</span>
+            </NavLink>
+            <NavLink
+              to="/guide"
+              onClick={onCloseMobile}
+              className={({ isActive }) =>
+                `flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg transition-colors ${
+                  isActive
+                    ? 'bg-[#181818] text-[#365dff] border border-[#262626]'
+                    : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#141414]'
+                }`
+              }
+            >
+              <GitPullRequest className="w-4 h-4 shrink-0" />
+              <span>{t.navGuide}</span>
+            </NavLink>
+            <NavLink
+              to="/changelog"
+              onClick={onCloseMobile}
+              className={({ isActive }) =>
+                `flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg transition-colors ${
+                  isActive
+                    ? 'bg-[#181818] text-[#365dff] border border-[#262626]'
+                    : 'text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#141414]'
+                }`
+              }
+            >
+              <History className="w-4 h-4 shrink-0" />
+              <span>{t.navChangelog}</span>
+            </NavLink>
+          </div>
+        )}
       </div>
 
       {/* Divider */}

@@ -17,7 +17,8 @@
 <br>
 
 <div align="center">
-  <img src="./public/assets/aistudio/logo_trimmed.png" alt="Gallery Inspirations Banner" style="width: 100%; max-width: 540px; height: auto; object-fit: contain; padding: 24px 16px; background: linear-gradient(180deg, #121214 0%, #09090b 100%); border: 1px solid #27272a; border-radius: 16px; box-shadow: 0 12px 36px rgba(0,0,0,0.6);" />
+  <img src="./public/favicon.svg" alt="Gallery Inspirations" width="72" height="72" />
+  <h1>Gallery Inspirations</h1>
 </div>
 
 <br>

@@ -186,6 +186,9 @@ export const ParticleText: React.FC<ParticleTextProps> = ({
     let last = 0;
     let visible = true;
     let alive = true;
+    let fontScale = 1;
+    let minDotSize = 0.8;
+    let minRadius = 0.7;
     let colorKey = '';
     let palette: string[] = [];
     let glowColor = '#000000';
@@ -352,7 +355,7 @@ export const ParticleText: React.FC<ParticleTextProps> = ({
           const size = base;
           target.rect(particle.x - size / 2, particle.y - size / 2, size, size);
         } else {
-          const r = Math.max(0.7, (base * 0.5) * (0.85 + particle.weight * 0.3));
+          const r = Math.max(minRadius, (base * 0.5) * (0.85 + particle.weight * 0.3));
           target.moveTo(particle.x + r, particle.y);
           target.arc(particle.x, particle.y, r, 0, TAU);
         }
@@ -402,7 +405,10 @@ export const ParticleText: React.FC<ParticleTextProps> = ({
       const lines = s.shape === 'line';
       const floor = gathering ? (FADE_FLOOR[introMode] ?? 0) : 0;
       const time = now * 0.001;
-      const sizeBase = Math.max(0.1, Number(s.particleSize) || 0);
+      const sizeBase =
+        minDotSize > 0.8
+          ? minDotSize
+          : Math.max(0.8, (Number(s.particleSize) || 0) * fontScale);
       const restLength = Math.max(2, sizeBase * 0.8 + Math.max(2, Math.floor(Number(s.density) || 0)) * 0.7);
       let complete = true;
       let moving = false;
@@ -608,42 +614,71 @@ export const ParticleText: React.FC<ParticleTextProps> = ({
       if (!offCtx) return;
 
       const content = String(s.text || ' ');
-      const maxTextWidth = nextWidth * 0.95;
+      const lines = content.split('\n');
+      const maxTextWidth = nextWidth * 0.96;
+      const maxTextHeight = nextHeight * 0.92;
       offCtx.font = font;
-      let metrics = offCtx.measureText(content);
-      const measuredWidth = Math.max(1, metrics.width);
-      if (measuredWidth > maxTextWidth) {
-        resolvedSize = Math.max(18, resolvedSize * (maxTextWidth / measuredWidth));
+      let lineMetrics = lines.map((line) => offCtx.measureText(line));
+      const measuredWidth = Math.max(1, ...lineMetrics.map((m) => m.width));
+      const estimatedHeight = resolvedSize * (lines.length === 1 ? 1 : 1 + (lines.length - 1) * 1.08);
+      const widthRatio = measuredWidth > maxTextWidth ? maxTextWidth / measuredWidth : 1;
+      const heightRatio = estimatedHeight > maxTextHeight ? maxTextHeight / estimatedHeight : 1;
+      const fitRatio = Math.min(widthRatio, heightRatio);
+
+      if (fitRatio < 1) {
+        resolvedSize = Math.max(18, resolvedSize * fitRatio);
         font = `${s.fontWeight} ${resolvedSize}px ${resolvedFamily}`;
         await waitForFonts(font);
         if (currentBuild !== buildId || !alive) return;
         offCtx.font = font;
-        metrics = offCtx.measureText(content);
+        lineMetrics = lines.map((line) => offCtx.measureText(line));
       }
 
-      const left = Math.ceil(metrics.actualBoundingBoxLeft || 0);
-      const right = Math.ceil(metrics.actualBoundingBoxRight || metrics.width);
-      const ascent = Math.ceil(metrics.actualBoundingBoxAscent || resolvedSize * 0.78);
-      const descent = Math.ceil(metrics.actualBoundingBoxDescent || resolvedSize * 0.22);
-      const padding = Math.max(12, Math.ceil(resolvedSize * 0.08));
-      const textWidth = Math.max(1, left + right);
-      const textHeight = Math.max(1, ascent + descent);
+      // 2x supersampling offscreen for compact font sizes so curves and letter counters stay crisp
+      const sampleScale = resolvedSize < 56 ? 2 : 1;
+      const sampleSize = resolvedSize * sampleScale;
+      const sampleFont = `${s.fontWeight} ${sampleSize}px ${resolvedFamily}`;
+      offCtx.font = sampleFont;
+      const sampledMetrics = lines.map((line) => offCtx.measureText(line));
+
+      const lineHeight = Math.ceil(sampleSize * 1.06);
+      const firstAscent = Math.ceil(sampledMetrics[0]?.actualBoundingBoxAscent || sampleSize * 0.78);
+      const lastDescent = Math.ceil(sampledMetrics[sampledMetrics.length - 1]?.actualBoundingBoxDescent || sampleSize * 0.22);
+      const padding = Math.max(12 * sampleScale, Math.ceil(sampleSize * 0.1));
+      const textWidth = Math.ceil(
+        Math.max(
+          1,
+          ...sampledMetrics.map((m) => Math.max(m.width, (m.actualBoundingBoxLeft || 0) + (m.actualBoundingBoxRight || m.width)))
+        )
+      );
+      const textHeight = Math.max(1, firstAscent + lastDescent + Math.max(0, lines.length - 1) * lineHeight);
 
       offscreen.width = textWidth + padding * 2;
       offscreen.height = textHeight + padding * 2;
       offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
-      offCtx.font = font;
-      offCtx.textAlign = 'left';
+      offCtx.font = sampleFont;
+      offCtx.textAlign = 'center';
       offCtx.textBaseline = 'alphabetic';
       offCtx.fillStyle = '#ffffff';
-      offCtx.fillText(content, padding - left, padding + ascent);
+      lines.forEach((line, index) => {
+        offCtx.fillText(line, offscreen.width / 2, padding + firstAscent + index * lineHeight);
+      });
 
       const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
       const targets: { x: number; y: number; alpha: number }[] = [];
-      
-      // Hexagonal close-packing pitch: creates dense, uniform stippling identical to reference
-      const hexStep = Math.max(2.6, Math.min(5.5, Number(s.density) || 3.4));
+
+      const nextFontScale = clamp(resolvedSize / 72, 0.45, 1);
+      // Scale CSS-space pitch cleanly with font size so 1-line mobile text stays solid & readable
+      const hexStepCss =
+        resolvedSize < 64
+          ? clamp(resolvedSize / 27, 1.05, 1.95)
+          : Math.max(2.4, Math.min(5.5, Number(s.density) || 3.4));
+      const hexStep = hexStepCss * sampleScale;
       const rowHeight = hexStep * 0.866025; // sqrt(3)/2
+      const jitterAmount = resolvedSize < 64 ? 0 : hexStep * 0.2;
+      const alphaThreshold = sampleScale > 1 ? 95 : 70;
+      const cssOffscreenW = offscreen.width / sampleScale;
+      const cssOffscreenH = offscreen.height / sampleScale;
 
       let rowIndex = 0;
       for (let y = 1; y < offscreen.height - 1; y += rowHeight) {
@@ -655,22 +690,26 @@ export const ParticleText: React.FC<ParticleTextProps> = ({
           const alpha = imageData.data[idx + 3];
 
           // Solid alpha threshold for clean, crisp typography contours
-          if (alpha > 70) {
-            // Subtle sub-pixel organic jitter matching the stippled dot-matrix sample
+          if (alpha > alphaThreshold) {
+            // Subtle sub-pixel organic jitter on large sizes, disabled on compact sizes for legibility
             const pseudo = ((rowIndex * 73 + Math.floor(x) * 37) % 1000) / 1000;
             const pseudo2 = ((rowIndex * 109 + Math.floor(x) * 59) % 1000) / 1000;
-            const jitterX = (pseudo - 0.5) * (hexStep * 0.2);
-            const jitterY = (pseudo2 - 0.5) * (hexStep * 0.2);
+            const jitterX = (pseudo - 0.5) * jitterAmount;
+            const jitterY = (pseudo2 - 0.5) * jitterAmount;
 
             targets.push({
-              x: nextWidth / 2 - offscreen.width / 2 + x + jitterX,
-              y: nextHeight / 2 - offscreen.height / 2 + y + jitterY,
+              x: nextWidth / 2 - cssOffscreenW / 2 + (x + jitterX) / sampleScale,
+              y: nextHeight / 2 - cssOffscreenH / 2 + (y + jitterY) / sampleScale,
               alpha: alpha / 255
             });
           }
         }
         rowIndex++;
       }
+
+      fontScale = nextFontScale;
+      minDotSize = resolvedSize < 64 ? hexStepCss * 1.18 : 0.8;
+      minRadius = resolvedSize < 64 ? 0.45 : 0.7;
 
       // Keep every sampled hex-lattice point: no modulo decimation that causes diagonal/wavy striping
       const selected = targets;

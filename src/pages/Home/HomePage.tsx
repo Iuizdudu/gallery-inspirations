@@ -74,12 +74,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
             </span>
           </div>
 
-          {/* Monumental Centered Headline with React Bits ParticleText */}
+          {/* Monumental Centered Headline with React Bits ParticleText on one horizontal line */}
           <div className="w-full max-w-4xl flex flex-col items-center">
-            <span className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white block select-none">
+            <span className="text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white block select-none">
               {t.heroTitlePrefix}
             </span>
-            <div className="w-full h-[75px] sm:h-[95px] md:h-[115px] relative flex items-center justify-center my-0 sm:my-0.5">
+            <div className="w-full h-[76px] sm:h-[95px] md:h-[115px] relative flex items-center justify-center my-0 sm:my-0.5">
               <ParticleText
                 text="Gallery Inspirations"
                 particleSize={2.5}
@@ -89,7 +89,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                 highlightMode="motion"
                 shape="circle"
                 intro="gather"
-                scatter={80}
+                scatter={65}
                 gatherDuration={1100}
                 stagger={200}
                 clickBurst={true}
@@ -98,7 +98,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                 repelRadius={105}
                 idleDrift={0}
                 trigger="mount"
-                fontSize="clamp(2.4rem, 6.4vw, 4.8rem)"
+                fontSize="clamp(2.15rem, 6.4vw, 4.8rem)"
                 fontWeight={900}
                 fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
                 glow={false}
