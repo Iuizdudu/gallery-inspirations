@@ -49,25 +49,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full h-16 px-4 sm:px-8 flex items-center justify-between backdrop-blur-md bg-[#090909]/80 border-b border-[#1E1E1E]">
-      {/* Mobile Drawer Trigger & Brand */}
-      <div className="flex items-center gap-3 lg:hidden">
-        <button
-          onClick={onToggleSidebarMobile}
-          aria-label="Abrir menu"
-          className="p-1.5 rounded-lg bg-[#141414] border border-[#262626] text-[#A1A1AA] hover:text-white transition-colors"
-        >
-          <Menu className="w-5 h-5" />
-        </button>
-        <img
-          src="/assets/aistudio/logo_trimmed.png"
-          alt="Gallery Inspirations"
-          className="h-8 sm:h-9 w-auto max-w-[170px] object-contain brightness-0 invert opacity-95"
-        />
+    <header className="sticky top-0 z-30 w-full h-16 px-4 sm:px-8 flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4 backdrop-blur-md bg-[#090909]/80 border-b border-[#1E1E1E]">
+      {/* Left slot: Mobile Drawer Trigger & Brand (occupies equal 1fr track on desktop for true centering) */}
+      <div className="flex items-center gap-3 md:justify-self-start">
+        <div className="flex items-center gap-3 lg:hidden">
+          <button
+            onClick={onToggleSidebarMobile}
+            aria-label="Abrir menu"
+            className="p-1.5 rounded-lg bg-[#141414] border border-[#262626] text-[#A1A1AA] hover:text-white transition-colors"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+          <img
+            src="/assets/aistudio/logo_trimmed.png"
+            alt="Gallery Inspirations"
+            className="h-8 sm:h-9 w-auto max-w-[170px] object-contain brightness-0 invert opacity-95"
+          />
+        </div>
       </div>
 
       {/* Center React Bits PillNav Component */}
-      <div className="hidden md:flex items-center mx-auto">
+      <div className="hidden md:flex items-center justify-center md:justify-self-center">
         <PillNav
           items={navItems}
           activeHref={location.pathname}
@@ -79,13 +81,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
           hoverEffect="fill"
           indicator="dot"
           size="md"
+          collapse="never"
           highlightColor="#365dff"
           highlightTextColor="#ffffff"
         />
       </div>
 
       {/* Right Actions: Language Selector & GitHub Contribute Button */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 md:justify-self-end">
         {/* Language Dropdown */}
         <div className="relative">
           <button

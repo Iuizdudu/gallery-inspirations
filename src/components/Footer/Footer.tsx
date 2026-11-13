@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Github, ArrowUpRight, Search, Sparkles, BookOpen, Mail, ShieldCheck } from 'lucide-react';
+import { Github, ArrowUpRight, Search, Sparkles } from 'lucide-react';
 import { useLanguage } from '../../locales/translations';
-import { GITHUB_REPO_URL, APP_CONFIG } from '../../data/config';
+import { GITHUB_REPO_URL, DEPLOY_URL, APP_CONFIG } from '../../data/config';
 import { RainbowButton } from '../RainbowButton/RainbowButton';
 
 export const Footer: React.FC = () => {
@@ -61,13 +61,13 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-white/[0.06]">
           {/* Col 1: Brand, Punchy Headline & CTA (inspired by Firsight reference) */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Logo Badge */}
+            {/* Logo Badge using the page favicon */}
             <Link to="/" className="inline-flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#365dff] to-[#60A5FA] flex items-center justify-center text-white shadow-lg shadow-[#365dff]/25 group-hover:scale-105 transition-transform">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                  <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
-                </svg>
-              </div>
+              <img
+                src="/favicon.svg"
+                alt="Gallery Inspirations"
+                className="w-9 h-9 rounded-full object-contain shadow-lg shadow-black/50 group-hover:scale-105 transition-transform"
+              />
               <span className="font-bold text-lg text-white tracking-tight group-hover:text-white transition-colors">
                 Gallery Inspirations
               </span>
@@ -195,7 +195,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="https://vercel.com"
+                  href={DEPLOY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-1.5 text-[#D4D4D8] hover:text-white transition-colors"
@@ -208,14 +208,6 @@ export const Footer: React.FC = () => {
               </li>
               <li className="pt-2 text-[11px] text-[#71717A] leading-relaxed">
                 <span>{isPt ? 'Licença MIT · Código Aberto' : 'MIT License · Open Source'}</span>
-              </li>
-              <li className="text-[11px] text-[#71717A] truncate">
-                <a
-                  href="mailto:luizeduardo98r4@gmail.com"
-                  className="hover:text-white transition-colors"
-                >
-                  luizeduardo98r4@gmail.com
-                </a>
               </li>
             </ul>
           </div>

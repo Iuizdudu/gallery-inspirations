@@ -1,33 +1,39 @@
 # Contributing Guide — Gallery Inspirations
 
-Thank you for your interest in contributing to **Gallery Inspirations**! This project is an open-source, community-curated digital catalog gathering premier design and web development references.
+Thank you for your interest in contributing to **Gallery Inspirations**! This project is an open-source, community-curated digital catalog gathering premier design and web engineering references.
 
-## 📋 How to Propose New References
+- **Live Deployment (Vercel):** https://gallery-inspirations.vercel.app/
+- **Official Repository (GitHub):** https://github.com/Iuizdudu/gallery-inspirations
+
+---
+
+## 📋 1. How to Propose New References
 
 All references in **Gallery Inspirations** are typed in TypeScript and centralized in:
+
 ```
 src/data/references.ts
 ```
 
-### 1. Minimal Data Model
-
-To keep contributions fast and simple, **only fields that are actually displayed on screen** are required:
+### Data Model (`Reference`)
 
 ```typescript
 export interface Reference {
-  id: string;               // Unique slug in kebab-case (e.g. "lapa-ninja")
-  title: string;            // Name of the website or product (displayed on card)
+  id: string;               // Unique slug in kebab-case (e.g. "stripe-press")
+  title: string;            // Name of the website, library, or product shown on screen
   categoryId: string;       // Matching category ID (see src/data/categories.ts)
-  url: string;              // Canonical HTTPS URL (opened on click)
-  descriptionPt: string;    // Brief description in Portuguese (displayed on card)
-  descriptionEn: string;    // Brief description in English (displayed on card)
-  popularity?: number;      // Optional relevance score from 1 to 100 (for sorting)
+  url: string;              // Canonical HTTPS URL opened on click
+  descriptionPt: string;    // Concise editorial description in Portuguese
+  descriptionEn: string;    // Concise editorial description in English
+  popularity?: number;      // Optional relevance score from 1 to 100 for sorting (default: 80)
+  author?: string;          // Optional author/studio (indexed in Ctrl + K search)
+  tags?: string[];          // Optional search keywords (indexed in Ctrl + K search)
+  year?: number;            // Optional reference year
+  featured?: boolean;       // Optional featured flag
 }
 ```
 
-> **Note:** Fields like author, authorUrl, year, and tags have been removed from the UI to ensure maximum minimalism and speed. You do **not** need to provide them!
-
-### Practical Example:
+### Practical Example
 
 ```typescript
 {
@@ -43,31 +49,93 @@ export interface Reference {
 
 ---
 
-## 🛠️ Step-by-Step Contribution Flow
+## 🗂️ 2. How to Create a New Category
+
+If your reference does not fit any existing category in `src/data/categories.ts`, you can propose a **new category** by following these 3 steps:
+
+### Step 1: Register the category in `src/data/categories.ts`
+
+Add a new object to the `CATEGORIES` array matching the `Category` TypeScript interface:
+
+```typescript
+export interface Category {
+  id: string;            // Unique kebab-case ID (referenced by categoryId in references.ts)
+  slug: string;          // Route slug for /category/:slug (usually identical to id)
+  namePt: string;        // Category name in Portuguese (displayed in Sidebar and filters)
+  nameEn: string;        // Category name in English
+  descriptionPt: string; // Header description on the category page (PT-BR)
+  descriptionEn: string; // Header description on the category page (EN)
+  iconName: string;      // Icon name mapped in src/components/Icons/CategoryIcon.tsx
+  aliases?: string[];    // Optional alternative URL slugs
+}
+```
+
+#### Example New Category (`src/data/categories.ts`):
+
+```typescript
+{
+  id: "ai-interfaces",
+  slug: "ai-interfaces",
+  namePt: "Interfaces de IA",
+  nameEn: "AI Interfaces",
+  descriptionPt: "Padrões de interface, fluxos conversacionais, prompts e experiências visuais para produtos com inteligência artificial.",
+  descriptionEn: "Interface patterns, conversational flows, prompt UIs, and visual experiences for AI-powered products.",
+  iconName: "Cpu",
+},
+```
+
+### Step 2: Configure the icon in `src/components/Icons/CategoryIcon.tsx`
+
+Set `iconName` to any Lucide icon already registered in `src/components/Icons/CategoryIcon.tsx`:
+
+- **Built-in icons:** `Layout`, `Layers`, `Compass`, `Sparkles`, `Box`, `Globe`, `ShoppingCart`, `Smartphone`, `Moon`, `Navigation`, `PanelBottom`, `AlertCircle`, `BarChart3`, `Feather`, `Type`, `Palette`, `PlayCircle`, `Briefcase`, `Presentation`, `Image`, `Paintbrush`, `Shapes`, `PenTool`, `Code2`, `Cpu`, `Archive`, `Coins`, `Megaphone`, `Mail`, `Film`, `LineChart`, `Brush`, `Grid`, `FileText`, `Columns`, `Newspaper`, `Camera`, `Search`, `Component`, `Zap`, `BookOpen`, `Eye`, `Quote`, `TrendingUp`, `Package`, `Contrast`.
+- **Need a new icon?** Import the icon from `lucide-react` inside `src/components/Icons/CategoryIcon.tsx` and add a corresponding `case 'IconName':` branch to the `switch` statement. (Unknown names safely fall back to `Folder`.)
+
+### Step 3: Include initial references in `src/data/references.ts`
+
+Every new category should include **at least 1 to 3 valid references** using the matching `categoryId` (e.g., `categoryId: "ai-interfaces"`) so the category is never empty in the Sidebar or index.
+
+> The Sidebar, Home page, `/category/:slug` route, and `Ctrl + K` Command Palette dynamically pick up any new entry added to `CATEGORIES`.
+
+---
+
+## 🛠️ 3. Step-by-Step Pull Request Workflow
 
 1. **Fork** this repository to your GitHub account.
-2. **Create a branch** for your addition:
+2. **Clone** your fork and install dependencies:
    ```bash
-   git checkout -b feature/add-new-reference
+   git clone https://github.com/YOUR-USERNAME/gallery-inspirations.git
+   cd gallery-inspirations
+   npm install
    ```
-3. **Add your reference** into the `REFERENCES` array in `src/data/references.ts`.
-4. **Choose an existing category ID** from `src/data/categories.ts` (e.g. `landing`, `saas`, `ui-ux`, `navbar`, `component`, `portfolio`, etc.).
-5. **Test the build** locally to ensure types compile cleanly:
+3. **Create a branch** for your contribution:
    ```bash
-   npm run build
+   git checkout -b feat/add-new-reference
+   # or for a new category:
+   git checkout -b feat/new-category-ai-interfaces
+   ```
+4. **Edit the data files** (`src/data/categories.ts`, `src/components/Icons/CategoryIcon.tsx` if needed, and `src/data/references.ts`).
+5. **Verify locally** before committing:
+   ```bash
+   npm run dev     # Preview at http://localhost:3000
+   npm run lint    # TypeScript check (tsc --noEmit)
+   npm run build   # Production bundle check
    ```
 6. **Commit** your changes:
    ```bash
    git commit -m "feat(catalog): add [Reference Name]"
+   # or:
+   git commit -m "feat(categories): add [Category Name] category"
    ```
-7. **Open a Pull Request** to the `main` branch.
+7. **Open a Pull Request** targeting the `main` branch.
 
 ---
 
-## ✨ Editorial Quality Standards
+## ✨ 4. Editorial Quality Standards
 
-- **Working HTTPS Link:** Only live, secure, working production websites.
-- **Genuine Craft:** The reference should exhibit exceptional typography, UI layout, microinteractions, or creative engineering.
-- **No Paywalls or Affiliates:** We keep the archive 100% free and neutral.
+- **Working HTTPS Link:** Only live, secure, active production websites.
+- **Genuine Craft:** References should demonstrate strong typography, layout clarity, thoughtful UI patterns, or creative engineering.
+- **No Paywalls or Affiliates:** The archive remains 100% free, open, and neutral.
+- **Bilingual Descriptions:** Always provide both `descriptionPt` and `descriptionEn` so both language modes stay complete.
 
-Thank you for helping build the cleanest web inspiration directory! 🚀
+Thank you for helping build **Gallery Inspirations**! 🚀

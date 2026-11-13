@@ -5,7 +5,7 @@
   <a href="https://github.com/Iuizdudu/gallery-inspirations">
     <img alt="Gallery Inspirations" src="https://img.shields.io/badge/GALLERY-INSPIRATIONS%20HUB-0078d4?style=for-the-badge&logo=safari&logoColor=white&labelColor=1f1f1f">
   </a>
-  <a href="https://vercel.com">
+  <a href="https://gallery-inspirations.vercel.app/">
     <img alt="Deploy Vercel" src="https://img.shields.io/badge/DEPLOY-VERCEL%20READY-000000?style=for-the-badge&logo=vercel&logoColor=white">
   </a>
   <a href="https://github.com/Iuizdudu/gallery-inspirations">
@@ -205,7 +205,7 @@ Contributions are kept minimal. **Only the fields actually displayed in the UI a
 }
 ```
 
-See [**CONTRIBUTING.md**](./CONTRIBUTING.md) for complete details.
+See [**CONTRIBUTING.md**](./CONTRIBUTING.md) for complete details (including how to add new references and create new categories in `src/data/categories.ts`).
 
 <div align="right">
   <br>
@@ -218,6 +218,8 @@ See [**CONTRIBUTING.md**](./CONTRIBUTING.md) for complete details.
 
 <a id="vercel"></a>
 <img src="https://readme-typing-svg.herokuapp.com?font=Lexend+Giga&size=24&pause=1000&color=38BDF8&vCenter=true&width=500&height=28&lines=DEPLOY+ON+VERCEL" width="500"/>
+
+- **Live Production Deployment:** https://gallery-inspirations.vercel.app/
 
 Deploy your own instance of **Gallery Inspirations** with 1 click:
 

@@ -5,7 +5,7 @@
   <a href="https://github.com/Iuizdudu/gallery-inspirations">
     <img alt="Gallery Inspirations" src="https://img.shields.io/badge/GALLERY-INSPIRATIONS%20HUB-0078d4?style=for-the-badge&logo=safari&logoColor=white&labelColor=1f1f1f">
   </a>
-  <a href="https://vercel.com">
+  <a href="https://gallery-inspirations.vercel.app/">
     <img alt="Deploy Vercel" src="https://img.shields.io/badge/DEPLOY-VERCEL%20READY-000000?style=for-the-badge&logo=vercel&logoColor=white">
   </a>
   <a href="https://github.com/Iuizdudu/gallery-inspirations">
@@ -220,15 +220,15 @@ El proceso de contribución está diseñado para ser directo y rápido. **Solo s
 
 ### Pasos Rápidos para Contribuir:
 1. Haz un **Fork** de este repositorio en GitHub.
-2. Crea una rama para tu nueva referencia:
+2. Crea una rama para tu nueva referencia o categoría:
    ```bash
    git checkout -b feature/agregar-nombre-del-sitio
    ```
-3. Añade la referencia al array `REFERENCES` en `src/data/references.ts`.
+3. Añade la referencia al array `REFERENCES` en `src/data/references.ts` (o registra una nueva categoría en `src/data/categories.ts` + icono en `src/components/Icons/CategoryIcon.tsx`).
 4. Haz commit y envía tu **Pull Request (PR)**.
 
 > [!NOTE]
-> Consulta la [**Guía de Contribución Completa (CONTRIBUTING.md)**](./CONTRIBUTING.md) para más detalles y convenciones de formato.
+> Consulta la [**Guía de Contribución Completa (CONTRIBUTING.md)**](./CONTRIBUTING.md) para más detalles, convenciones de formato y creación de nuevas categorías.
 
 <div align="right">
   <br>
@@ -241,6 +241,8 @@ El proceso de contribución está diseñado para ser directo y rápido. **Solo s
 
 <a id="vercel"></a>
 <img src="https://readme-typing-svg.herokuapp.com?font=Lexend+Giga&size=24&pause=1000&color=38BDF8&vCenter=true&width=500&height=28&lines=DESPLIEGUE+EN+VERCEL" width="500"/>
+
+- **Sitio Oficial en Producción:** https://gallery-inspirations.vercel.app/
 
 Para publicar tu propia instancia de **Gallery Inspirations** en Vercel con 1 clic:
 

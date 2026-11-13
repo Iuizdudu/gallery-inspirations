@@ -1,39 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Circular dark badge -->
-  <circle cx="32" cy="32" r="30" fill="#121214" stroke="#262629" stroke-width="2"/>
-  <circle cx="32" cy="32" r="28" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1"/>
+  <!-- Circular dark badge matching uploaded symbol -->
+  <circle cx="32" cy="32" r="30" fill="#161618" stroke="#2A2A2E" stroke-width="2"/>
+  <circle cx="32" cy="32" r="28" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1"/>
 
-  <!-- Main 4-pointed sparkle star with curved arcs -->
+  <!-- Main outlined 4-pointed sparkle star centered symmetrically at (32, 32) -->
   <path
-    d="M 32 16 
-       C 32 23.5, 24.5 31, 17 31 
-       C 16 31, 15.5 31.5, 15.5 32 
-       C 15.5 32.5, 16 33, 17 33 
-       C 24.5 33, 32 40.5, 32 48 
-       C 32 49, 32.5 49.5, 33 49.5 
-       C 33.5 49.5, 34 49, 34 48 
-       C 34 40.5, 41.5 33, 49 33 
-       C 50 33, 50.5 32.5, 50.5 32 
-       C 50.5 31.5, 50 31, 49 31 
-       C 41.5 31, 34 23.5, 34 16 
-       C 34 15, 33.5 14.5, 33 14.5 
-       C 32.5 14.5, 32 15, 32 16 Z"
-    fill="#F4F4F5"
-    stroke="#FFFFFF"
-    stroke-width="0.5"
+    d="M 32 15.5
+       C 32 24.5, 24.5 32, 15.5 32
+       C 24.5 32, 32 39.5, 32 48.5
+       C 32 39.5, 39.5 32, 48.5 32
+       C 39.5 32, 32 24.5, 32 15.5 Z"
+    fill="#161618"
+    stroke="#F4F4F5"
+    stroke-width="2.8"
+    stroke-linecap="round"
     stroke-linejoin="round"
   />
 
-  <!-- Top-right secondary sparkle -->
+  <!-- Top-right secondary 4-point sparkle -->
   <path
-    d="M 46 18 
-       C 46 20.5, 44 22, 42 22 
-       C 44 22, 46 23.5, 46 26 
-       C 46 23.5, 48 22, 50 22 
-       C 48 22, 46 20.5, 46 18 Z"
+    d="M 45.5 15
+       C 45.5 18.2, 43.2 20.5, 40 20.5
+       C 43.2 20.5, 45.5 22.8, 45.5 26
+       C 45.5 22.8, 47.8 20.5, 51 20.5
+       C 47.8 20.5, 45.5 18.2, 45.5 15 Z"
     fill="#E4E4E7"
   />
 
-  <!-- Bottom-left accent dot -->
-  <circle cx="21" cy="43" r="2.5" fill="#E4E4E7"/>
+  <!-- Bottom-left small hollow ring -->
+  <circle cx="19.5" cy="43.5" r="3.4" stroke="#E4E4E7" stroke-width="2.2" fill="#161618"/>
 </svg>

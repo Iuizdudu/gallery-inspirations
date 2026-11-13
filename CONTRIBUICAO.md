@@ -1,33 +1,41 @@
-# Guia de Contribuição — Gallery Inspirations ✦
+# Guia de Contribuição — Gallery Inspirations
 
-Obrigado pelo interesse em contribuir com o **Gallery Inspirations**! Este projeto é uma biblioteca digital colaborativa, de código aberto, focada em reunir as melhores referências de design e engenharia web do mundo.
+Obrigado pelo interesse em contribuir com o **Gallery Inspirations**! Este projeto é uma biblioteca digital colaborativa, de código aberto, focada em reunir as melhores referências de design e engenharia web.
 
-## 📋 Como Propor Novas Referências
+- **Site em Produção (Vercel):** https://gallery-inspirations.vercel.app/
+- **Repositório Oficial (GitHub):** https://github.com/Iuizdudu/gallery-inspirations
 
-Todo o catálogo do Gallery Inspirations é gerenciado através de código tipado em TypeScript, centralizado no arquivo:
+---
+
+## 📋 1. Como Propor Novas Referências
+
+Todo o catálogo de referências do Gallery Inspirations é tipado em TypeScript e centralizado no arquivo:
+
 ```
 src/data/references.ts
 ```
 
-### 1. Modelo Simplificado de Dados
+### Modelo de Dados (`Reference`)
 
-Para tornar o processo rápido, direto e sem burocracia, **apenas os campos que realmente são exibidos na tela são exigidos**:
+Os campos obrigatórios exibidos na interface e opcionais de indexação/busca são:
 
 ```typescript
 export interface Reference {
-  id: string;               // Identificador único em kebab-case (ex: "lapa-ninja")
-  title: string;            // Nome do site ou ferramenta (exibido no card)
+  id: string;               // Identificador único em kebab-case (ex: "stripe-press")
+  title: string;            // Nome do site, biblioteca ou produto exibido na lista
   categoryId: string;       // ID da categoria correspondente (ver src/data/categories.ts)
-  url: string;              // URL direta HTTPS (aberta no clique)
-  descriptionPt: string;    // Descrição editorial em Português (exibida no card)
-  descriptionEn: string;    // Descrição editorial em Inglês (exibida no card)
-  popularity?: number;      // Relevância opcional de 1 a 100 para ordenação
+  url: string;              // URL canônica HTTPS aberta ao clicar
+  descriptionPt: string;    // Descrição editorial concisa em Português
+  descriptionEn: string;    // Descrição editorial concisa em Inglês
+  popularity?: number;      // Opcional: relevância de 1 a 100 para ordenação (padrão: 80)
+  author?: string;          // Opcional: autor/estúdio (ajuda na busca global Ctrl + K)
+  tags?: string[];          // Opcional: palavras-chave para busca global (Ctrl + K)
+  year?: number;            // Opcional: ano de referência
+  featured?: boolean;       // Opcional: marca como destaque no catálogo
 }
 ```
 
-> **Atenção:** Campos como autor, tags, ano de lançamento ou reviews detalhados foram propositalmente removidos da interface para manter o catálogo 100% minimalista e veloz. **Você não precisa preenchê-los!**
-
-### Exemplo Prático de Nova Referência:
+### Exemplo Prático de Nova Referência
 
 ```typescript
 {
@@ -43,33 +51,94 @@ export interface Reference {
 
 ---
 
-## 🛠️ Passo a Passo para Contribuir
+## 🗂️ 2. Como Criar uma Nova Categoria
 
-1. **Faça um Fork** deste repositório para a sua conta no GitHub.
-2. **Crie uma branch** para suas alterações:
-   ```bash
-   git checkout -b feature/adicionar-nome-da-referencia
-   ```
-3. **Adicione a referência** ao array `REFERENCES` em `src/data/references.ts`.
-4. **Escolha uma categoria existente** em `src/data/categories.ts` (ex: `landing`, `saas`, `ui-ux`, `navbar`, `component`, `portfolio`, etc.).
-5. **Teste a compilação localmente**:
-   ```bash
-   npm run build
-   ```
-6. **Realize o Commit** de forma padronizada:
-   ```bash
-   git commit -m "feat(catalog): adicionar referência [Nome da Referência]"
-   ```
-7. **Abra um Pull Request (PR)** para a branch principal (`main`) no repositório oficial.
+Caso a sua referência não se encaixe em nenhuma das categorias existentes em `src/data/categories.ts`, você pode propor a criação de uma **nova categoria** seguindo estes 3 passos:
+
+### Passo 1: Registrar a categoria em `src/data/categories.ts`
+
+Adicione um novo objeto no array `CATEGORIES` respeitando a interface `Category`:
+
+```typescript
+export interface Category {
+  id: string;            // Identificador único em kebab-case (usado como categoryId nas referências)
+  slug: string;          // Slug da rota /category/:slug (normalmente igual ao id)
+  namePt: string;        // Nome da categoria em Português (exibido na Sidebar e filtros)
+  nameEn: string;        // Nome da categoria em Inglês
+  descriptionPt: string; // Descrição exibida no cabeçalho da página da categoria (PT-BR)
+  descriptionEn: string; // Descrição exibida no cabeçalho da página da categoria (EN)
+  iconName: string;      // Nome do ícone mapeado em src/components/Icons/CategoryIcon.tsx
+  aliases?: string[];    // Opcional: slugs alternativos para compatibilidade de URL
+}
+```
+
+#### Exemplo de Nova Categoria (`src/data/categories.ts`):
+
+```typescript
+{
+  id: "ai-interfaces",
+  slug: "ai-interfaces",
+  namePt: "Interfaces de IA",
+  nameEn: "AI Interfaces",
+  descriptionPt: "Padrões de interface, fluxos conversacionais, prompts e experiências visuais para produtos com inteligência artificial.",
+  descriptionEn: "Interface patterns, conversational flows, prompt UIs, and visual experiences for AI-powered products.",
+  iconName: "Cpu",
+},
+```
+
+### Passo 2: Configurar o ícone em `src/components/Icons/CategoryIcon.tsx`
+
+O campo `iconName` deve corresponder a um dos ícones já importados do `lucide-react` em `src/components/Icons/CategoryIcon.tsx`:
+
+- **Ícones já disponíveis:** `Layout`, `Layers`, `Compass`, `Sparkles`, `Box`, `Globe`, `ShoppingCart`, `Smartphone`, `Moon`, `Navigation`, `PanelBottom`, `AlertCircle`, `BarChart3`, `Feather`, `Type`, `Palette`, `PlayCircle`, `Briefcase`, `Presentation`, `Image`, `Paintbrush`, `Shapes`, `PenTool`, `Code2`, `Cpu`, `Archive`, `Coins`, `Megaphone`, `Mail`, `Film`, `LineChart`, `Brush`, `Grid`, `FileText`, `Columns`, `Newspaper`, `Camera`, `Search`, `Component`, `Zap`, `BookOpen`, `Eye`, `Quote`, `TrendingUp`, `Package`, `Contrast`.
+- **Quer usar um ícone diferente?** Importe o ícone desejado de `lucide-react` em `src/components/Icons/CategoryIcon.tsx` e adicione o respectivo `case 'NomeDoIcone':` no `switch`. (Caso o nome não seja encontrado, o componente usa `Folder` como fallback.)
+
+### Passo 3: Adicionar referências iniciais em `src/data/references.ts`
+
+Toda nova categoria deve vir acompanhada de **pelo menos 1 a 3 referências válidas** vinculadas pelo mesmo `categoryId` (ex.: `categoryId: "ai-interfaces"`), para que a categoria não apareça vazia na navegação lateral e na busca.
+
+> A Sidebar, a página inicial, a página `/category/:slug` e o Command Palette (`Ctrl + K`) carregam automaticamente novas categorias adicionadas ao array `CATEGORIES`.
 
 ---
 
-## ✨ Critérios de Aprovação
+## 🛠️ 3. Passo a Passo para Enviar seu Pull Request
 
-Para manter a alta qualidade do catálogo:
-- **Design Excepcional:** A referência deve se destacar por tipografia apurada, layout inovador, microinterações fluidas ou engenharia criativa.
-- **URL Canônica e Estável:** Apenas links seguros (`https://`) e websites ativos em produção.
-- **Sem Links de Afiliados ou Spam:** O repositório é 100% neutro, educacional e gratuito.
-- **Descrições Concisas:** Textos descritivos focados em valor prático e decisões visuais.
+1. **Faça um Fork** deste repositório para a sua conta no GitHub.
+2. **Clone** o seu fork e instale as dependências:
+   ```bash
+   git clone https://github.com/SEU-USUARIO/gallery-inspirations.git
+   cd gallery-inspirations
+   npm install
+   ```
+3. **Crie uma branch** descritiva para suas alterações:
+   ```bash
+   git checkout -b feat/adicionar-referencia
+   # ou para nova categoria:
+   git checkout -b feat/nova-categoria-ai-interfaces
+   ```
+4. **Edite os arquivos** necessários (`src/data/categories.ts`, `src/components/Icons/CategoryIcon.tsx` se aplicável, e `src/data/references.ts`).
+5. **Teste localmente** antes de commitar:
+   ```bash
+   npm run dev     # Visualizar em http://localhost:3000
+   npm run lint    # Verificar tipos TypeScript (tsc --noEmit)
+   npm run build   # Validar build de produção
+   ```
+6. **Faça o Commit** seguindo o padrão convencional:
+   ```bash
+   git commit -m "feat(catalog): adicionar referência [Nome]"
+   # ou:
+   git commit -m "feat(categories): adicionar categoria [Nome]"
+   ```
+7. **Envie para o seu Fork e abra um Pull Request (PR)** para a branch `main` no repositório oficial.
 
-Agradecemos profundamente cada contribuição! 🚀
+---
+
+## ✨ 4. Critérios de Aprovação
+
+Para manter a alta qualidade editorial do catálogo:
+- **Design e Engenharia de Alto Nível:** A referência deve se destacar por tipografia apurada, layout sólido, microinterações fluidas ou utilidade prática comprovada.
+- **URL Canônica e Ativa:** Apenas links diretos em produção (`https://`) e sem redirecionamentos quebrados.
+- **Sem Links de Afiliados ou Spam:** O repositório é 100% neutro, gratuito e aberto à comunidade.
+- **Descrições Bilíngues Claras:** Forneça `descriptionPt` e `descriptionEn` objetivos para manter a consistência entre Português e Inglês.
+
+Obrigado por ajudar a construir o **Gallery Inspirations**! 🚀

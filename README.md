@@ -5,7 +5,7 @@
   <a href="https://github.com/Iuizdudu/gallery-inspirations">
     <img alt="Gallery Inspirations" src="https://img.shields.io/badge/GALLERY-INSPIRATIONS%20HUB-0078d4?style=for-the-badge&logo=safari&logoColor=white&labelColor=1f1f1f">
   </a>
-  <a href="https://vercel.com">
+  <a href="https://gallery-inspirations.vercel.app/">
     <img alt="Deploy Vercel" src="https://img.shields.io/badge/DEPLOY-VERCEL%20READY-000000?style=for-the-badge&logo=vercel&logoColor=white">
   </a>
   <a href="https://github.com/Iuizdudu/gallery-inspirations">
@@ -220,15 +220,15 @@ O modelo de contribuição do Gallery Inspirations foi simplificado ao máximo. 
 
 ### Passo a Passo Rápido:
 1. Faça um **Fork** deste repositório no GitHub.
-2. Crie uma branch para a nova referência:
+2. Crie uma branch para a nova referência ou categoria:
    ```bash
    git checkout -b feature/adicionar-nome-do-site
    ```
-3. Adicione a referência ao array `REFERENCES` em `src/data/references.ts`.
-4. Faça o commit e envie seu **Pull Request (PR)**.
+3. Adicione a referência ao array `REFERENCES` em `src/data/references.ts` (ou crie uma nova categoria em `src/data/categories.ts` + ícone em `src/components/Icons/CategoryIcon.tsx`).
+4. Valide com `npm run lint` e `npm run build`, faça o commit e envie seu **Pull Request (PR)**.
 
 > [!NOTE]
-> Para orientações detalhadas, consulte o [**Guia de Contribuição Completo (CONTRIBUICAO.md)**](./CONTRIBUICAO.md).
+> Para orientações detalhadas (incluindo como criar uma **nova categoria**), consulte o [**Guia de Contribuição Completo (CONTRIBUICAO.md)**](./CONTRIBUICAO.md).
 
 <div align="right">
   <br>
@@ -242,7 +242,9 @@ O modelo de contribuição do Gallery Inspirations foi simplificado ao máximo. 
 <a id="vercel"></a>
 <img src="https://readme-typing-svg.herokuapp.com?font=Lexend+Giga&size=24&pause=1000&color=38BDF8&vCenter=true&width=500&height=28&lines=DEPLOY+NA+VERCEL" width="500"/>
 
-Para colocar sua instância do **Gallery Inspirations** online na Vercel com apenas 1 clique:
+- **Instância Oficial em Produção:** https://gallery-inspirations.vercel.app/
+
+Para colocar sua própria instância do **Gallery Inspirations** online na Vercel com apenas 1 clique:
 
 1. Suba o código para o seu repositório no GitHub.
 2. Acesse o seu painel na [Vercel](https://vercel.com) e selecione **Add New Project**.
