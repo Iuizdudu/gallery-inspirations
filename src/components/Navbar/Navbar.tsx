@@ -78,14 +78,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
                 alt="Gallery Inspirations"
                 className="w-7 h-7 rounded-full object-contain ring-1 ring-white/10 shrink-0"
               />
-              <div className="flex flex-col justify-center min-w-0 gap-[2px]">
+              <div className="flex flex-col justify-center shrink-0 gap-[2px]">
                 <span
                   style={{ fontFamily: "'Syne', sans-serif" }}
-                  className="font-extrabold text-[13.5px] leading-none tracking-[-0.03em] bg-gradient-to-b from-white via-white to-[#B8BCC6] bg-clip-text text-transparent truncate"
+                  className="font-extrabold text-[13.5px] leading-none tracking-[-0.03em] bg-gradient-to-b from-white via-white to-[#B8BCC6] bg-clip-text text-transparent whitespace-nowrap"
                 >
                   Gallery
                 </span>
-                <span className="font-mono font-medium uppercase text-[7.5px] tracking-[0.16em] leading-none text-[#9CA3AF] truncate">
+                <span className="font-mono font-medium uppercase text-[7.5px] tracking-[0.16em] leading-none text-[#9CA3AF] whitespace-nowrap">
                   Inspirations
                 </span>
               </div>
