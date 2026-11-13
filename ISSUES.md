@@ -1,154 +1,79 @@
-<div align="center">
+# (Feature Request) Gerar prompts copiáveis a partir das referências do acervo
 
-  <img src="./public/favicon.svg" alt="Gallery Inspirations" width="56" height="56" />
-  <h1>Roadmap &amp; Issues — Gallery Inspirations</h1>
-  <p>Propostas de novas funcionalidades, melhorias de experiência e tarefas abertas para contribuição da comunidade.</p>
-
-  <a href="https://github.com/Iuizdudu/gallery-inspirations/issues">
-    <img alt="GitHub Issues" src="https://img.shields.io/badge/GITHUB-ISSUES-365dff?style=for-the-badge&logo=github&logoColor=white">
-  </a>
-  <a href="https://gallery-inspirations.vercel.app/">
-    <img alt="Deploy Vercel" src="https://img.shields.io/badge/APP-ONLINE%20NA%20VERCEL-000000?style=for-the-badge&logo=vercel&logoColor=white">
-  </a>
-
-</div>
+> **Tipo:** Feature Request (`enhancement`, `ai-workflow`)  
+> **Projeto:** [Gallery Inspirations](https://github.com/Iuizdudu/gallery-inspirations) · [App Online](https://gallery-inspirations.vercel.app/)
 
 ---
 
-## Como usar este arquivo
+## Resumo
 
-Este documento centraliza ideias de evolução do **Gallery Inspirations** estruturadas no formato de **Issues**. Se você quiser implementar alguma das propostas abaixo:
-
-1. Acesse a aba [**Issues**](https://github.com/Iuizdudu/gallery-inspirations/issues) no repositório oficial e verifique se já existe uma discussão aberta.
-2. Comente na issue informando que pretende trabalhar nela para evitar trabalho duplicado.
-3. Siga o guia em [`CONTRIBUICAO.md`](./CONTRIBUICAO.md) (ou [`CONTRIBUTING.md`](./CONTRIBUTING.md)) para criar sua branch e enviar o Pull Request.
+Adicionar ao acervo do **Gallery Inspirations** uma ação para copiar um prompt pronto, contextualizado com as referências de cada item ou seção, para ser utilizado diretamente no agente de IA do usuário.
 
 ---
 
-## Issue #01 — Copiar Prompt da Categoria para Agentes de IA
+## Problema
 
-> **Status:** Aberta para contribuição · **Prioridade:** Alta · **Labels:** `enhancement`, `ai-workflow`, `good first issue`
+Atualmente, o Gallery Inspirations reúne referências de sites e inspirações organizadas em diversas categorias, como `Landing`, `SaaS`, `UI/UX`, `Onboarding`, `Component`, `Web`, `eCommerce`, `Mobile`, `Navbar`, `Footer`, `Motion`, `Branding` e outras.
 
-### Contexto / Problema
+Apesar de o acervo facilitar a descoberta e consulta dessas referências, ainda existe uma etapa manual para utilizá-las no agente de IA: o usuário precisa selecionar ou copiar os links, abrir o agente e explicar por conta própria como aquelas referências devem ser utilizadas.
 
-O **Gallery Inspirations** organiza mais de 45 categorias curadas (`Landing Pages`, `SaaS`, `Dashboards`, `Modo Escuro`, `Navbars`, `Componentes`, etc.) com links e descrições editoriais de sites reais de alta qualidade.
+Esse processo torna o fluxo menos prático e faz com que o usuário tenha que escrever repetidamente instruções semelhantes.
 
-Atualmente, quando um desenvolvedor ou designer quer instruir um **agente de IA** (como Cursor, Claude, ChatGPT, Windsurf, v0 ou Lovable) a se inspirar nos sites de uma categoria específica da lista, ele precisa abrir e copiar manualmente cada título, URL e descrição um por um.
+---
 
-### Solução Proposta
+## Solução proposta
 
-Adicionar uma funcionalidade de **"Copiar Prompt para IA"** dentro de cada categoria (e opcionalmente nos resultados filtrados) para gerar e copiar para a área de transferência um prompt completo e estruturado contendo os sites daquela categoria.
+Disponibilizar uma ação visual, como um botão **"Copiar prompt"**, nos itens ou agrupamentos de referências do acervo.
 
-#### Comportamento Esperado
+Ao acionar o botão, o sistema deve montar e copiar automaticamente um prompt que reúna os links correspondentes e explique ao agente de IA como utilizá-los como referência.
 
-1. Na página de categoria (`src/pages/Category/CategoryPage.tsx`), exibir um botão discreto no cabeçalho ao lado do contador de referências:
-   - PT-BR: `Copiar Prompt para IA`
-   - EN: `Copy AI Agent Prompt`
-2. Ao clicar no botão, montar automaticamente um prompt em texto puro/Markdown com:
-   - O nome e o objetivo editorial da categoria selecionada;
-   - A lista completa (ou filtrada) das referências daquela categoria (`Título`, `URL oficial` e `Descrição`);
-   - Instruções claras para o agente de IA analisar os padrões visuais, tipografia, espaçamento, hierarquia e microinterações dessas referências antes de projetar ou codificar a interface;
-   - Idioma do prompt acompanhando automaticamente a seleção `pt-BR` / `en` de `useLanguage()`.
-3. Exibir feedback visual temporário após a cópia (ex.: `Prompt copiado!` com ícone de check por 2 segundos).
+O prompt deve deixar claro que os links servem como inspiração visual e funcional para a tarefa solicitada — e não como conteúdo para simplesmente copiar ou reproduzir integralmente.
 
-#### Exemplo do Prompt Gerado
+---
+
+## Exemplo de prompt gerado
 
 ```markdown
-Atue como um Designer de Produto Sênior e Engenheiro Frontend.
-Quero criar uma interface para a categoria "Landing Pages" utilizando como referência estética, estrutural e de microinterações os seguintes sites curados no Gallery Inspirations:
+Utilize as referências abaixo como inspiração para desenvolver a interface solicitada.
 
-1. Lapa Ninja — https://www.lapa.ninja/
-   Galeria com centenas de landing pages reais focadas em conversão, design limpo e SaaS.
-2. SaaSPages — https://saaspages.xyz/
-   Coleção de blocos, seções de pricing, heróis e provas sociais das melhores landing pages SaaS.
-3. Godly — https://godly.website/
-   Curadoria de websites com forte direção de arte, movimento fluido e tipografia marcante.
-...
+Analise os elementos visuais e funcionais de cada referência, observando aspectos como layout, hierarquia visual, composição, tipografia, cores, espaçamentos, componentes e interações.
 
-Instruções para o agente:
-- Extraia os padrões de hierarquia tipográfica, espaçamento, contraste e ritmo visual dessas referências.
-- Evite layouts genéricos; priorize clareza de proposta de valor, microinterações sutis e responsividade.
-- Proponha a estrutura de seções e implemente o código mantendo acessibilidade e performance.
+Aproveite as ideias que fizerem sentido para o contexto do projeto, adaptando-as de forma consistente à identidade visual e aos requisitos existentes. Não reproduza as páginas literalmente e não substitua funcionalidades já implementadas sem necessidade.
+
+Referências:
+- (Link da referência 1)
+- (Link da referência 2)
+- (Link da referência 3)
 ```
 
-### Checklist Técnico Sugerido
-
-- [ ] Criar utilitário `src/utils/promptBuilder.ts` com a função `buildCategoryPrompt(category, references, language)`.
-- [ ] Adicionar chaves de tradução (`copyAiPrompt`, `aiPromptCopied`) em `src/locales/translations.tsx`.
-- [ ] Integrar o botão de cópia via `navigator.clipboard.writeText(...)` em `src/pages/Category/CategoryPage.tsx`.
-- [ ] (Opcional) Permitir escolher entre copiar o prompt com **todas as referências** ou **top 10 por popularidade** quando a categoria for extensa.
-- [ ] Validar com `npm run lint` e `npm run build`.
-
-### Critérios de Aceite
-
-- O botão copia o prompt em 1 clique sem recarregar a página.
-- Todos os links e nomes da categoria aparecem corretamente no texto copiado.
-- Funciona tanto em `PT-BR` quanto em `EN`.
-- Mantém o visual minimalista e escuro do catálogo (`#121212`, `#262626`, destaque `#365dff`).
+> *Os links acima são ilustrativos. O conteúdo real do prompt deve ser preenchido automaticamente com as referências associadas ao item ou seção selecionada.*
 
 ---
 
-## Issue #02 — Exportar Lista da Categoria em Markdown ou JSON
+## Comportamento esperado
 
-> **Status:** Proposta · **Prioridade:** Média · **Labels:** `enhancement`, `dx`
-
-### Descrição
-
-Permitir que usuários exportem as referências de uma categoria específica em `.md` (lista pronta para documentação/Notion/Obsidian) ou `.json` para reutilização em ferramentas internas de times de design e engenharia.
-
-### Tarefas Sugeridas
-
-- [ ] Adicionar função de exportação para Markdown (`- [Título](url) — descrição`) e JSON estruturado.
-- [ ] Incluir ação discreta no menu da página de categoria sem poluir a listagem editorial.
+1. O usuário acessa uma categoria, seção ou item do acervo.
+2. Encontra uma ação de **"Copiar prompt"** próxima às referências disponíveis.
+3. Ao clicar, o sistema reúne os links relacionados e gera o prompt correspondente.
+4. O prompt completo é copiado para a área de transferência.
+5. A interface apresenta uma confirmação visual discreta, como **"Prompt copiado!"**.
+6. O usuário pode colar o conteúdo diretamente no agente de IA que estiver utilizando.
 
 ---
 
-## Issue #03 — Filtro por Tags e Busca Interna na Página de Categoria
+## Critérios de aceitação
 
-> **Status:** Proposta · **Prioridade:** Média · **Labels:** `enhancement`, `ux`
-
-### Descrição
-
-Categorias maiores já contam com dezenas de referências. Adicionar uma barra rápida de filtragem por `tags` (ex.: `minimal`, `motion`, `typography`, `open-source`) dentro de `/category/:slug` ajuda a refinar ainda mais a pesquisa sem precisar sair da categoria atual.
-
-### Tarefas Sugeridas
-
-- [ ] Extrair dinamicamente as tags mais frequentes da categoria aberta.
-- [ ] Permitir selecionar uma tag para filtrar as referências mantendo a ordenação (`Mais populares` / `A–Z`).
+- [ ] Disponibilizar a ação de copiar prompt no contexto das referências do acervo.
+- [ ] Incluir automaticamente no prompt todos os links pertencentes ao item ou agrupamento selecionado.
+- [ ] Gerar instruções claras sobre como o agente deve analisar e utilizar as referências.
+- [ ] Preservar os links originais, sem omitir referências.
+- [ ] Copiar o prompt completo para a área de transferência.
+- [ ] Exibir um feedback visual após a cópia.
+- [ ] Manter a experiência visual consistente com a interface atual do Gallery Inspirations.
+- [ ] Garantir que o recurso funcione nas versões desktop e mobile.
 
 ---
 
-## Issue #04 — Sugestão de Novas Referências e Categorias
+## Resultado esperado
 
-> **Status:** Contínua · **Labels:** `curation`, `community`
-
-### Descrição
-
-Quer sugerir um site incrível ou propor uma nova categoria para o catálogo? Antes de abrir uma PR, confira se a referência:
-
-- Está online, ativa e com acesso público direto;
-- Não está duplicada em `src/data/references.ts`;
-- Possui descrição editorial concisa e objetiva em Português e Inglês.
-
----
-
-## Template para Abrir uma Nova Issue
-
-Copie e preencha o modelo abaixo ao abrir uma nova issue em [github.com/Iuizdudu/gallery-inspirations/issues](https://github.com/Iuizdudu/gallery-inspirations/issues):
-
-```markdown
-### Tipo de Issue
-- [ ] Nova funcionalidade (Feature)
-- [ ] Correção de bug (Bug)
-- [ ] Sugestão de categoria / referência
-- [ ] Melhoria de documentação
-
-### Descrição
-Explique claramente o problema que você encontrou ou a funcionalidade que gostaria de adicionar.
-
-### Comportamento Esperado
-Descreva passo a passo como a interface ou o fluxo deveria funcionar.
-
-### Contexto Adicional
-Prints, viewport (desktop/mobile) ou referências relacionadas, se aplicável.
-```
+Transformar o acervo em algo mais prático para o fluxo de trabalho com IA: em vez de apenas consultar e copiar referências manualmente, o usuário poderá obter, com um único clique, um prompt contextualizado e pronto para enviar ao seu agente de IA.
