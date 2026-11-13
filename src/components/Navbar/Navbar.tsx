@@ -4,8 +4,8 @@ import { Globe, Github, Menu, ChevronDown, Check } from 'lucide-react';
 import { useLanguage, Language } from '../../locales/translations';
 import { GITHUB_REPO_URL } from '../../data/config';
 import { PillNav, PillNavItem } from './PillNav';
-import StarBorder from '../StarBorder/StarBorder';
 import { BrandLogo } from '../BrandLogo/BrandLogo';
+import './NavbarGitHubButton.css';
 
 interface NavbarProps {
   onToggleSidebarMobile: () => void;
@@ -155,32 +155,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebarMobile }) => {
           )}
         </div>
 
-        {/* Contribute Button - Opens official GitHub repository with StarBorder effect */}
-        <StarBorder
-          as="a"
+        {/* Contribute Button - Compact dark icon on mobile, dark sliding GitHub pill on sm+ */}
+        <a
           href={GITHUB_REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
           title="Contribuir no repositório GitHub"
-          color="#365dff"
-          trailColor="#5c7eff"
-          duration={3.5}
-          stars={1}
-          trailLength={0.3}
-          thickness={1}
-          radius={999}
-          glow={0.5}
-          hover="lap"
-          sparkle={false}
-          clickPulse={true}
-          theme="dark"
-          backgroundColor="#141416"
-          borderColor="rgba(255, 255, 255, 0.12)"
-          className="!h-9 !w-9 sm:!w-auto !p-0 sm:!px-3.5 sm:!py-0 text-xs font-medium text-white shadow-sm flex items-center justify-center gap-0 sm:gap-2"
+          aria-label={t.navContribute}
+          className="sm:hidden w-9 h-9 rounded-full bg-[#121212] hover:bg-[#181818] text-white border border-[#262626] flex items-center justify-center shrink-0 transition-colors active:scale-95"
         >
-          <Github className="w-4 h-4 text-white shrink-0" />
-          <span className="hidden sm:inline font-medium">{t.navContribute}</span>
-        </StarBorder>
+          <Github className="w-4 h-4 text-white" />
+        </a>
+
+        <a
+          href={GITHUB_REPO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Contribuir no repositório GitHub"
+          aria-label={t.navContribute}
+          className="hidden sm:inline-flex github-slide-btn"
+        >
+          <span className="github-slide-btn__icon" aria-hidden="true">
+            <Github className="w-4 h-4 text-white" />
+          </span>
+          <span className="github-slide-btn__text1">{t.navContribute}</span>
+          <span className="github-slide-btn__text2">GitHub</span>
+        </a>
       </div>
     </header>
   );
