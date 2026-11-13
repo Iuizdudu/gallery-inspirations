@@ -49,6 +49,8 @@ export interface Reference {
 }
 ```
 
+> **Sobre o AI Reference Prompt:** Você **não** precisa escrever prompts manualmente ao adicionar uma nova referência. O título, a `url` e a `descriptionEn` cadastrados aqui são incluídos automaticamente no **AI Reference Prompt** da categoria correspondente.
+
 ---
 
 ## 🗂️ 2. Como Criar uma Nova Categoria
@@ -95,9 +97,28 @@ O campo `iconName` deve corresponder a um dos ícones já importados do `lucide-
 
 ### Passo 3: Adicionar referências iniciais em `src/data/references.ts`
 
-Toda nova categoria deve vir acompanhada de **pelo menos 1 a 3 referências válidas** vinculadas pelo mesmo `categoryId` (ex.: `categoryId: "ai-interfaces"`), para que a categoria não apareça vazia na navegação lateral e na busca.
+Toda nova categoria deve vir acompanhada de **pelo menos 1 a 3 referências válidas** vinculadas pelo mesmo `categoryId` (ex.: `categoryId: "ai-interfaces"`), para que a categoria não apareça vazia na navegação lateral, na busca e no gerador de **AI Reference Prompt**.
 
-> A Sidebar, a página inicial, a página `/category/:slug` e o Command Palette (`Ctrl + K`) carregam automaticamente novas categorias adicionadas ao array `CATEGORIES`.
+### Passo 4 (Opcional): Personalizar o perfil do AI Reference Prompt em `src/utils/aiPromptBuilder.ts`
+
+Você **não precisa escrever nenhum prompt manualmente** para que a nova categoria funcione com o botão **Copy For AI**: o gerador cria automaticamente um prompt contextualizado em inglês a partir de `nameEn` e `descriptionEn` da categoria.
+
+Caso deseje refinar ainda mais o contexto e os pontos de análise específicos do domínio, adicione opcionalmente uma entrada em `CATEGORY_PROMPT_PROFILES` dentro de `src/utils/aiPromptBuilder.ts`:
+
+```typescript
+"ai-interfaces": {
+  projectContext: "an AI-powered interface and conversational product experience",
+  focusSummary:
+    "prompt ergonomics, streaming states, citation patterns, layout clarity, visual hierarchy, typography, and interaction patterns",
+  analysisAreas: [
+    "Prompt composer ergonomics and multi-turn readability",
+    "Streaming indicators, citations, and transparent system feedback",
+    "Balanced workspace layout between controls and generated output",
+  ],
+},
+```
+
+> A Sidebar, a página inicial, a página `/category/:slug`, o botão **Copy For AI** e o Command Palette (`Ctrl + K`) carregam automaticamente novas categorias adicionadas ao array `CATEGORIES`.
 
 ---
 
@@ -139,6 +160,6 @@ Para manter a alta qualidade editorial do catálogo:
 - **Design e Engenharia de Alto Nível:** A referência deve se destacar por tipografia apurada, layout sólido, microinterações fluidas ou utilidade prática comprovada.
 - **URL Canônica e Ativa:** Apenas links diretos em produção (`https://`) e sem redirecionamentos quebrados.
 - **Sem Links de Afiliados ou Spam:** O repositório é 100% neutro, gratuito e aberto à comunidade.
-- **Descrições Bilíngues Claras:** Forneça `descriptionPt` e `descriptionEn` objetivos para manter a consistência entre Português e Inglês.
+- **Descrições Bilíngues Claras:** Forneça `descriptionPt` e `descriptionEn` objetivos para manter a consistência entre Português e Inglês (o campo `descriptionEn` também alimenta diretamente o **AI Reference Prompt** da categoria).
 
 Obrigado por ajudar a construir o **Gallery Inspirations**! 🚀

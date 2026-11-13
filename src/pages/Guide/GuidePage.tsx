@@ -1,5 +1,5 @@
 import React from 'react';
-import { GitPullRequest, ExternalLink, Github, FolderPlus, Globe } from 'lucide-react';
+import { GitPullRequest, ExternalLink, Github, FolderPlus, Globe, Sparkles } from 'lucide-react';
 import { useLanguage } from '../../locales/translations';
 import { GITHUB_REPO_URL, DEPLOY_URL } from '../../data/config';
 import StarBorder from '../../components/StarBorder/StarBorder';
@@ -111,6 +111,11 @@ export const GuidePage: React.FC = () => {
   popularity: 96, // Opcional (1-100)
 }`}
               </pre>
+              <p className="text-[11px] text-[#71717A] leading-relaxed">
+                {isPt
+                  ? 'Nota: Você não precisa escrever nenhum prompt manualmente. Assim que a referência entra no catálogo, o título, a URL e o campo descriptionEn são incluídos automaticamente no AI Reference Prompt da categoria.'
+                  : 'Note: You do not need to write any prompt manually. Once your reference is added, its title, URL, and descriptionEn are automatically included in the category’s AI Reference Prompt.'}
+              </p>
             </div>
           </div>
 
@@ -260,17 +265,60 @@ export const GuidePage: React.FC = () => {
                   Adicione ao menos uma referência em{' '}
                   <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#365dff] font-mono">src/data/references.ts</code>{' '}
                   apontando <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#E4E4E7] font-mono">categoryId: &quot;ai-interfaces&quot;</code>{' '}
-                  para que a nova categoria não apareça vazia na interface.
+                  para que a nova categoria não apareça vazia na interface e já gere prompts válidos.
                 </>
               ) : (
                 <>
                   Add at least one reference in{' '}
                   <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#365dff] font-mono">src/data/references.ts</code>{' '}
                   with <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#E4E4E7] font-mono">categoryId: &quot;ai-interfaces&quot;</code>{' '}
-                  so the new category is populated right away.
+                  so the new category is populated and ready to generate AI prompts right away.
                 </>
               )}
             </p>
+          </div>
+
+          {/* Cat Step 4 (Optional AI Prompt Profile) */}
+          <div className="p-5 rounded-xl bg-[#121212] border border-[#262626] space-y-2.5">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#365dff] shrink-0" />
+              <h3 className="text-sm font-semibold text-white">
+                {isPt
+                  ? 'D. (Opcional) Personalize o perfil do AI Reference Prompt'
+                  : 'D. (Optional) Customize the AI Reference Prompt profile'}
+              </h3>
+            </div>
+            <p className="text-xs text-[#A1A1AA] leading-relaxed">
+              {isPt ? (
+                <>
+                  <strong>Não é obrigatório escrever um prompt manualmente:</strong> o gerador em{' '}
+                  <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#365dff] font-mono">src/utils/aiPromptBuilder.ts</code>{' '}
+                  monta automaticamente um prompt em inglês usando <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#E4E4E7] font-mono">nameEn</code> e{' '}
+                  <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#E4E4E7] font-mono">descriptionEn</code> da categoria. Se desejar orientações de análise ainda mais específicas, adicione uma entrada opcional em{' '}
+                  <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#365dff] font-mono">CATEGORY_PROMPT_PROFILES</code>:
+                </>
+              ) : (
+                <>
+                  <strong>Manual prompt writing is not required:</strong> the builder in{' '}
+                  <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#365dff] font-mono">src/utils/aiPromptBuilder.ts</code>{' '}
+                  automatically generates a contextualized English prompt from the category’s{' '}
+                  <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#E4E4E7] font-mono">nameEn</code> and{' '}
+                  <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#E4E4E7] font-mono">descriptionEn</code>. If you want bespoke domain analysis criteria, you can optionally register a profile in{' '}
+                  <code className="px-1.5 py-0.5 bg-[#181818] rounded text-[#365dff] font-mono">CATEGORY_PROMPT_PROFILES</code>:
+                </>
+              )}
+            </p>
+            <pre className="p-3 bg-[#090909] border border-[#222222] rounded-lg text-[11px] text-[#A1A1AA] font-mono overflow-x-auto">
+{`"ai-interfaces": {
+  projectContext: "an AI-powered interface and conversational product experience",
+  focusSummary: "prompt ergonomics, streaming feedback, citations, visual hierarchy, typography, and interaction patterns",
+  analysisAreas: [
+    "Prompt composer clarity and multi-turn readability",
+    "Streaming states, loading indicators, and transparent feedback",
+    "Balanced workspace layout between controls and generated output",
+  ],
+}`}
+            </pre>
           </div>
         </div>
       </section>

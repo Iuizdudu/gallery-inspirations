@@ -47,6 +47,8 @@ export interface Reference {
 }
 ```
 
+> **About AI Reference Prompt:** You do **not** need to write any prompts manually when adding a reference. Its `title`, `url`, and `descriptionEn` are automatically embedded into the category's **AI Reference Prompt**.
+
 ---
 
 ## 🗂️ 2. How to Create a New Category
@@ -93,9 +95,28 @@ Set `iconName` to any Lucide icon already registered in `src/components/Icons/Ca
 
 ### Step 3: Include initial references in `src/data/references.ts`
 
-Every new category should include **at least 1 to 3 valid references** using the matching `categoryId` (e.g., `categoryId: "ai-interfaces"`) so the category is never empty in the Sidebar or index.
+Every new category should include **at least 1 to 3 valid references** using the matching `categoryId` (e.g., `categoryId: "ai-interfaces"`) so the category is never empty in the Sidebar, index, or **AI Reference Prompt** generator.
 
-> The Sidebar, Home page, `/category/:slug` route, and `Ctrl + K` Command Palette dynamically pick up any new entry added to `CATEGORIES`.
+### Step 4 (Optional): Customize the AI Reference Prompt profile in `src/utils/aiPromptBuilder.ts`
+
+You do **not** need to write a prompt manually for a new category to support the **Copy For AI** button: the generator automatically builds a contextualized English prompt using the category's `nameEn` and `descriptionEn`.
+
+If you want tailored domain-specific analysis bullet points, you can optionally add an entry to `CATEGORY_PROMPT_PROFILES` inside `src/utils/aiPromptBuilder.ts`:
+
+```typescript
+"ai-interfaces": {
+  projectContext: "an AI-powered interface and conversational product experience",
+  focusSummary:
+    "prompt ergonomics, streaming states, citation patterns, layout clarity, visual hierarchy, typography, and interaction patterns",
+  analysisAreas: [
+    "Prompt composer ergonomics and multi-turn readability",
+    "Streaming indicators, citations, and transparent system feedback",
+    "Balanced workspace layout between controls and generated output",
+  ],
+},
+```
+
+> The Sidebar, Home page, `/category/:slug` route, **Copy For AI** button, and `Ctrl + K` Command Palette dynamically pick up any new entry added to `CATEGORIES`.
 
 ---
 
@@ -136,6 +157,6 @@ Every new category should include **at least 1 to 3 valid references** using the
 - **Working HTTPS Link:** Only live, secure, active production websites.
 - **Genuine Craft:** References should demonstrate strong typography, layout clarity, thoughtful UI patterns, or creative engineering.
 - **No Paywalls or Affiliates:** The archive remains 100% free, open, and neutral.
-- **Bilingual Descriptions:** Always provide both `descriptionPt` and `descriptionEn` so both language modes stay complete.
+- **Bilingual Descriptions:** Always provide both `descriptionPt` and `descriptionEn` so both language modes stay complete (`descriptionEn` also feeds directly into the category's **AI Reference Prompt**).
 
 Thank you for helping build **Gallery Inspirations**! 🚀

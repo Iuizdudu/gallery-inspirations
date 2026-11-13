@@ -5,6 +5,7 @@ import { getCategoryBySlug, CATEGORIES } from '../../data/categories';
 import { getReferencesByCategory, Reference } from '../../data/references';
 import { ReferenceItem } from '../../components/ReferenceList/ReferenceItem';
 import { CategoryIcon } from '../../components/Icons/CategoryIcon';
+import { AiPromptButton } from '../../components/AiPromptButton/AiPromptButton';
 import { useLanguage } from '../../locales/translations';
 
 export const CategoryPage: React.FC = () => {
@@ -83,25 +84,33 @@ export const CategoryPage: React.FC = () => {
       </nav>
 
       {/* Category Header */}
-      <header className="space-y-3 pb-6 border-b border-[#1E1E1E]">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#365dff]">
-            <CategoryIcon name={category.iconName} className="w-5 h-5" />
+      <header className="pb-6 border-b border-[#1E1E1E]">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div className="space-y-3 min-w-0">
+            <div className="flex items-center gap-3 flex-wrap">
+              <div className="p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#365dff] shrink-0">
+                <CategoryIcon name={category.iconName} className="w-5 h-5" />
+              </div>
+              <div className="flex items-center gap-3 flex-wrap">
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F5F5F5]">
+                  {categoryName}
+                </h1>
+                <span className="px-2.5 py-0.5 text-xs font-mono rounded-full bg-[#141414] border border-[#262626] text-[#A1A1AA] tabular-nums">
+                  {filteredReferences.length}{' '}
+                  {filteredReferences.length === 1 ? t.referenceCountSingle : t.referencesCount}
+                </span>
+              </div>
+            </div>
+
+            <p className="text-sm text-[#A1A1AA] max-w-2xl leading-relaxed">
+              {categoryDesc}
+            </p>
           </div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F5F5F5]">
-              {categoryName}
-            </h1>
-            <span className="px-2.5 py-0.5 text-xs font-mono rounded-full bg-[#141414] border border-[#262626] text-[#A1A1AA] tabular-nums">
-              {filteredReferences.length}{' '}
-              {filteredReferences.length === 1 ? t.referenceCountSingle : t.referencesCount}
-            </span>
+
+          <div className="shrink-0 sm:pt-0.5">
+            <AiPromptButton category={category} />
           </div>
         </div>
-
-        <p className="text-sm text-[#A1A1AA] max-w-2xl leading-relaxed">
-          {categoryDesc}
-        </p>
       </header>
 
       {/* Search and Sort Filter Toolbar */}

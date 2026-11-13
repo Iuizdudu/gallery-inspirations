@@ -56,6 +56,11 @@ export const TRANSLATIONS = {
     noReferencesFound: 'Nenhuma referência encontrada para esta busca.',
     featuredReferencesTitle: 'Referências em Destaque',
     exploreCategoriesTitle: 'Índice de Categorias',
+    aiPromptLabel: 'Copy For AI',
+    aiPromptCopied: 'Prompt copiado!',
+    aiPromptEmpty: 'Sem referências na categoria',
+    aiPromptError: 'Falha ao copiar prompt',
+    aiPromptHint: 'Copiar prompt em inglês para agente de IA com todas as referências desta categoria',
     
     // Reference Details Page
     backToHome: 'Voltar ao início',
@@ -140,6 +145,11 @@ export const TRANSLATIONS = {
     noReferencesFound: 'No references found matching this criteria.',
     featuredReferencesTitle: 'Featured References',
     exploreCategoriesTitle: 'Category Index',
+    aiPromptLabel: 'Copy For AI',
+    aiPromptCopied: 'Prompt copied!',
+    aiPromptEmpty: 'No references in category',
+    aiPromptError: 'Could not copy prompt',
+    aiPromptHint: 'Copy contextualized English AI agent prompt with all references in this category',
     
     // Reference Details Page
     backToHome: 'Back to home',
