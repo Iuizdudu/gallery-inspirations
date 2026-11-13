@@ -17,9 +17,11 @@
 <br>
 
 <div align="center">
-  <img src="./public/favicon.svg" alt="Gallery Inspirations" width="72" height="72" />
-  <h1>Gallery Inspirations</h1>
+  <a href="" target="_blank" rel="noopener noreferrer">
+    <img src="https://i.ibb.co/7JjMwK07/Whats-App-Image-2026-11-13-at-10-28-47-1.jpg" alt="Calculadora Banner" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);" />
+  </a>
 </div>
+
 
 <br>
 
