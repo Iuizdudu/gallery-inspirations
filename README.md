@@ -229,7 +229,7 @@ O modelo de contribuição do Gallery Inspirations foi simplificado ao máximo. 
 4. Valide com `npm run lint` e `npm run build`, faça o commit e envie seu **Pull Request (PR)**.
 
 > [!NOTE]
-> Para orientações detalhadas (incluindo como criar uma **nova categoria**), consulte o [**Guia de Contribuição Completo (CONTRIBUICAO.md)**](./CONTRIBUICAO.md). Para acompanhar sugestões de novas funcionalidades (como copiar prompts de categorias para agentes de IA), acesse o [**Roadmap de Issues (ISSUES.md)**](./ISSUES.md).
+> Para orientações detalhadas (incluindo como criar uma **nova categoria**), consulte o [**Guia de Contribuição Completo (CONTRIBUICAO.md)**](./CONTRIBUICAO.md).
 
 <div align="right">
   <br>
